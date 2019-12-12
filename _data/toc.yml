@@ -1,7 +1,7 @@
 # Each entry has the following schema:
 #
 # - title: mytitle   # Title of chapter or section
-#   url: /myurl  # URL of section relative to the /content/ folder.
+#   url: //myurl  # URL of section relative to the /content/ folder.
 #   sections:  # Contains a list of more entries that make up the chapter's sections
 #   not_numbered: true  # if the section shouldn't have a number in the sidebar
 #     (e.g. Introduction or appendices)
@@ -26,33 +26,32 @@
 # ==============================
 
 - title: Open quantum systems course
-  url: index
+  url: /index
+  not_numbered: true
 - title: Introduction
-  url: introduction
+  url: /introduction
 - title: Preliminaries
-  url: preliminaries
+  url: /preliminaries
 - title: Microscopic derivation of the master equation
-  url: microscopic_derivation_of_the_markovian_master_equation
+  url: /microscopic_derivation_of_the_markovian_master_equation
 - title: "Dynamical maps: Markovian semigroups"
-  url: markovian_semigroups
+  url: /markovian_semigroups
 - title: "Dynamical maps: divisibility"
-  url: divisible_maps
-- url: projection_operator_techniques
+  url: /divisible_maps
+- url: /projection_operator_techniques
   title: Projection operator techniques
-- url: jaynes_cummings_with_losses
+- url: /jaynes_cummings_with_losses
   title: Jaynes-Cummings with losses
-- url: non-markovian_quantum_dynamics
+- url: /non-markovian_quantum_dynamics
   title: Non-Markovian quantum Dynamics
 
-- title: Projects
-  not_numbered: true
-  expand_sections: true
-  sections:
-  - url: project_1-depolarizing_channel
-  - url: project_1-solution
-  - url: project_3-reservoir-engineering
-  - url: project_3-solution
-  - url: project_2-pauli_channel
-  - url: project_2-solution
-  - url: project_4-amplitude_damping
-  - url: project_4-solution
+- header: Projects
+
+- url: /project_1-depolarizing_channel
+- url: /project_1-solution
+- url: /project_3-reservoir-engineering
+- url: /project_3-solution
+- url: /project_2-pauli_channel
+- url: /project_2-solution
+- url: /project_4-amplitude_damping
+- url: /project_4-solution

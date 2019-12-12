@@ -16,13 +16,13 @@
 
 #######################################################################################
 # Jekyll site settings
-title: Jupyter Book
+title: Open Quantum Systems
 author: The Jupyter Book Community
 email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This is an example book built with Jupyter Books.
 
-baseurl: "/oqs-jupyterbook" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
+baseurl: "" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
 url: "https://matteoacrossi.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 
@@ -34,23 +34,23 @@ footer_text               : This page was created by <a href="https://github.com
 
 # Sidebar settings
 show_sidebar              : true  # Show the sidebar. Only set to false if your only wish to host a single page.
-collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
-collapse_inactive_sections: true  # Whether to collapse the sub-sections within a non-active section in the sidebar
-textbook_logo             : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar. Should be square
-textbook_logo_link        : https://jupyterbook.org/intro.html  # A link for the logo.
+collapse_inactive_chapters: false  # Whether to collapse the inactive chapters in the sidebar
+collapse_inactive_sections: false  # Whether to collapse the sub-sections within a non-active section in the sidebar
+textbook_logo             : images/oqs.001.png  # A logo to be displayed at the top of your textbook sidebar. Should be square
+textbook_logo_link        : index.html  # A link for the logo.
 sidebar_footer_text       : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'
 number_toc_chapters       : true  # Whether to add numbers to chapterse in your Table of Contents. If true, you can control this at the Chapter level in _data/toc.yml
 
 # Search settings
 search_max_words_in_content : 100  # In the search function, use at most this many words (too many words will make search slow)
 
-# Controlling page information
-page_titles                    : infer  # Either `None`, `infer`, or `toc`
-page_authors                   : None  # Either `None` or `infer`
-filename_title_split_character : '_'  # If inferring titles based on filename, splt on this character.
+# # Controlling page information
+# page_titles                    : None  # Either `None`, `infer`, or `toc`
+# page_authors                   : None  # Either `None` or `infer`
+# filename_title_split_character : '_'  # If inferring titles based on filename, splt on this character.
 
 # Math settings
-number_equations               : false  # Whether to automatically number all block equations with MathJax
+number_equations               : true  # Whether to automatically number all block equations with MathJax
 
 #######################################################################################
 # Interact link settings
@@ -89,8 +89,8 @@ download_page_header             : "Made with Jupyter Book" # A header that will
 # Jupyter book extensions and additional features
 
 # Bibliography and citation settings. See https://github.com/inukshuk/jekyll-scholar#configuration for options
-scholar:
-  style: apa
+# scholar:
+#   style: apa
 
 #######################################################################################
 # Option to add a Goggle analytics tracking code
@@ -154,7 +154,7 @@ exclude:
 
 plugins:
   - jekyll-redirect-from
-  - jekyll-scholar
+#  - jekyll-scholar
 
 # Jupyter Book version - DO NOT CHANGE THIS. It is generated when a new book is created
 jupyter_book_version: "0.6.4"
