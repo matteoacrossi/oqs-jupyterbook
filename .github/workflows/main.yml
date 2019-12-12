@@ -30,7 +30,7 @@ jobs:
 
     - name: Build book
       run: |
-        make build
+        make book
         touch ./_build/.nojekyll
 
     - name: Deploy
