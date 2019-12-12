@@ -1,0 +1,2474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Dynamical maps: divisibility</title>
+  <meta name="description" content="        Dynamical maps: divisibility    5. Dynamical maps: divisibility  Dynamical maps: divisibilityExample 6Commutative dynamicsExample 7Example 8IBM Q exa...">
+
+  <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/divisible_maps.html">
+  <link rel="alternate" type="application/rss+xml" title="Jupyter Book" href="https://matteoacrossi.github.io/oqs-jupyterbook/feed.xml">
+
+  <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/divisible_maps.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Dynamical maps: divisibility" />
+<meta property="og:description" content="        Dynamical maps: divisibility    5. Dynamical maps: divisibility  Dynamical maps: divisibilityExample 6Commutative dynamicsExample 7Example 8IBM Q exa..." />
+<meta property="og:image"       content="https://matteoacrossi.github.io/oqs-jupyterbook/images/logo/logo.png" />
+
+<meta name="twitter:card" content="summary">
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/divisible_maps.html",
+  "headline": "Dynamical maps: divisibility",
+  "datePublished": "2019-12-12T11:03:18+00:00",
+  "dateModified": "2019-12-12T11:03:18+00:00",
+  "description": "        Dynamical maps: divisibility    5. Dynamical maps: divisibility  Dynamical maps: divisibilityExample 6Commutative dynamicsExample 7Example 8IBM Q exa...",
+  "author": {
+    "@type": "Person",
+    "name": "The Jupyter Book Community"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/css/styles.css">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/oqs-jupyterbook/images/logo/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<!-- (mostly) copied from nbconvert configuration -->
+<!-- https://github.com/jupyter/nbconvert/blob/master/nbconvert/templates/html/mathjax.tpl -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    // Center justify equations in code and markdown cells. Elsewhere
+    // we use CSS to left justify single line equations in code cells.
+    displayAlign: 'center',
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}},
+        linebreaks: { automatic: true },
+    },
+    
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML' async></script>
+
+
+  <!-- DOM updating function -->
+  <script src="/oqs-jupyterbook/assets/js/page/dom-update.js"></script>
+
+  <!-- Selectors for elements on the page -->
+  <script src="/oqs-jupyterbook/assets/js/page/documentSelectors.js"></script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '/oqs-jupyterbook';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/anchors.js" async></script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+<!-- Display Thebelab button in each code cell -->
+<script>
+/**
+ * Set up thebelab button for code blocks
+ */
+
+const thebelabCellButton = id =>
+  `<a id="thebelab-cell-button-${id}" class="btn thebebtn o-tooltip--left" data-tooltip="Interactive Mode">
+    <img src="/oqs-jupyterbook/assets/images/edit-button.svg" alt="Start thebelab interactive mode">
+  </a>`
+
+
+const addThebelabButtonToCodeCells =  () => {
+
+  const codeCells = document.querySelectorAll('div.input_area > div.highlight:not(.output) pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("thebelab-cell-button-" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', thebelabCellButton(id));
+    }
+  })
+}
+
+initFunction(addThebelabButtonToCodeCells);
+</script>
+
+
+<script src="https://unpkg.com/thebelab@latest/lib/index.js" async></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+
+                // Clean up the language to make it work w/ CodeMirror and add it to the cell
+                dataLanguage = ""
+                dataLanguage = detectLanguage(dataLanguage);
+                codeCell.setAttribute('data-language', dataLanguage)
+                codeCell.setAttribute('data-executable', 'true')
+
+                // If the code cell is hidden, show it
+                var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
+                if (inputCheckbox !== null) {
+                    setCodeCellVisibility(inputCheckbox, 'visible');
+                }
+            });
+
+            // Remove the event listener from the page so keyboard press doesn't
+            // Change page
+            document.removeEventListener('keydown', initPageNav)
+            keyboardListener = false;
+
+            // Init thebelab
+            thebelab.bootstrap();
+
+            // Remove copy buttons since they won't work anymore
+            const copyAndThebeButtons = document.querySelectorAll('.copybtn, .thebebtn')
+            copyAndThebeButtons.forEach((button, index) => {
+                button.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+
+            // Find any cells with an initialization tag and ask ThebeLab to run them when ready
+            var thebeInitCells = document.querySelectorAll('div.tag_thebelab-init');
+            thebeInitCells.forEach((cell) => {
+                console.log("Initializing ThebeLab with cell: " + cell.id);
+                cell.querySelector('.thebelab-run-button').click();
+            });
+        }
+
+        // Add event listener for the function to modify code cells
+        const thebelabButtons = document.querySelectorAll('[id^=thebelab], [id$=thebelab]')
+        thebelabButtons.forEach((thebelabButton,index) => {
+            if (thebelabButton === null) {
+                setTimeout(initThebelab, 250)
+                return
+            };
+            thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        });
+    }
+
+    // Initialize Thebelab
+    initFunction(initThebelab);
+
+// Helper function to munge the language name
+var detectLanguage = (language) => {
+    if (language.indexOf('python') > -1) {
+        language = "python";
+    }
+    return language;
+}
+</script>
+
+
+
+  <!-- Load the auto-generating TOC (non-async otherwise the TOC won't load w/ turbolinks) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.8.1/tocbot.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/tocbot.js"></script>
+
+  <!-- Google analytics -->
+  
+
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script>
+
+  <!-- Load custom website scripts -->
+  <script src="/oqs-jupyterbook/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/oqs-jupyterbook/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return dict2param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
+    // If the link is an internal link...
+    if (href.search("https://matteoacrossi.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['jupyterhub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'jupyterhub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    jupyterHubUrl = rest['jupyterhub'];
+    var hubType = null;
+    var hubUrl = null;
+    if (jupyterHubUrl !== undefined) {
+      hubType = 'jupyterhub';
+      hubUrl = jupyterHubUrl;
+    }
+
+    if (hubType !== null) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      var interactButtons = document.querySelectorAll("button.interact-button")
+      var lastButton = interactButtons[interactButtons.length-1];
+      var link = lastButton.parentElement;
+
+      // If we've already run this, skip the link updating
+      if (link.nextElementSibling !== null) {
+        return;
+      }
+
+      // Update the link and add context div
+      var href = link.getAttribute('href');
+      if (lastButton.id === 'interact-button-binder') {
+        // If binder links exist, we need to re-work them for jupyterhub
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+          first = [hubUrl, 'git-sync'].join('/')
+        } else {
+          first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+        }
+        href = first + '?' + binder2Jupyterhub(href);
+      } else {
+        // If interact button isn't binderhub, assume it's jupyterhub
+        // If JupyterHub links, we only need to replace the hub url
+        href = href.replace("", hubUrl);
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // Assume we're working from a local Jupyter server and remove `/hub`
+          href = href.replace("/hub/user-redirect", "");
+        }
+      }
+      link.setAttribute('href', decodeURIComponent(href));
+
+      // Add text after interact link saying where we're launching
+      hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+      link.insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
+
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
+
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js" async></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+
+  <!-- Load JS that depends on site variables -->
+  <script src="/oqs-jupyterbook/assets/js/page/copy-button.js" async></script>
+
+  <!-- Hide cell code -->
+  <script src="/oqs-jupyterbook/assets/js/page/hide-cell.js" async></script>
+
+  <!-- Printing the screen -->
+  <!-- Include nbinteract for interactive widgets -->
+<script src="https://printjs-4de6.kxcdn.com/print.min.js" async></script>
+<script>
+printContent = () => {
+    // MathJax displays a second version of any math for assistive devices etc.
+    // This prevents double-rendering in the PDF output.
+    var ignoreAssistList = [];
+    assistives = document.querySelectorAll('.MathJax_Display span.MJX_Assistive_MathML').forEach((element, index) => {
+        var thisId = 'MathJax-assistive-' + index.toString();
+        element.setAttribute('id', thisId);
+        ignoreAssistList.push(thisId)
+    });
+
+    // Print the actual content object
+    printJS({
+        printable: 'textbook_content',
+        type: 'html',
+        css: "/oqs-jupyterbook/assets/css/styles.css",
+        style: "#textbook_content {padding-top: 40px};",
+        scanStyles: false,
+        targetStyles: ["*"],
+        ignoreElements: ignoreAssistList,
+        documentTitle: "Made with Jupyter Book"
+    })
+};
+
+initPrint = () => {
+    document.querySelector('#interact-button-print').addEventListener('click', printContent)
+}
+
+initFunction(initPrint)
+</script>
+
+</head>
+
+  <body>
+    <!-- Include the ThebeLab config so it gets reloaded on each page -->
+    <script type="text/x-thebe-config">{
+    requestKernel: true,
+    binderOptions: {
+    repo: "jupyter/jupyter-book",
+    ref: "gh-pages",
+    },
+    codeMirrorConfig: {
+    theme: "abcdef",
+    mode: "python"
+    },
+    kernelOptions: {
+    kernelName: "python3",
+    path: "content"
+    }
+}
+</script>
+
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://jupyterbook.org/intro.html"><img src="/oqs-jupyterbook/images/logo/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">Jupyter Book</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="index">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/index.html"
+        >
+          
+            1.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="introduction">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/introduction.html"
+        >
+          
+            2.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="preliminaries">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/preliminaries.html"
+        >
+          
+            3.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="microscopic_derivation_of_the_markovian_master_equation">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html"
+        >
+          
+            4.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="markovian_semigroups">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/markovian_semigroups.html"
+        >
+          
+            5.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="divisible_maps">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/divisible_maps.html"
+        >
+          
+            6.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="projection_operator_techniques">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/projection_operator_techniques.html"
+        >
+          
+            7.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="jaynes_cummings_with_losses">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/jaynes_cummings_with_losses.html"
+        >
+          
+            8.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="non-markovian_quantum_dynamics">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/non-markovian_quantum_dynamics.html"
+        >
+          
+            9.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="">
+        <a class="c-sidebar__entry"
+          href=".html"
+        >
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+        
+
+        
+
+        <ul class="c-sidebar__sections">
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-depolarizing_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-depolarizing_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-reservoir-engineering">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-reservoir-engineering.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-pauli_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-pauli_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-amplitude_damping">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-amplitude_damping.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+        </ul>
+      
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</nav>
+
+      
+      <div class="c-topbar" id="top-navbar">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <div class="c-topbar__buttons">
+    <button
+      id="js-sidebar-toggle"
+      class="hamburger hamburger--arrowalt is-active"
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="buttons">
+<div class="download-buttons-dropdown">
+    <button id="dropdown-button-trigger" class="interact-button"><img src="/oqs-jupyterbook/assets/images/download-solid.svg" alt="Download" /></button>
+    <div class="download-buttons">
+        <a href="/oqs-jupyterbook/content/divisible_maps.ipynb" download>
+        <button id="interact-button-download" class="interact-button">.ipynb</button>
+        </a>
+        
+        <a id="interact-button-print"><button id="interact-button-download" class="interact-button">.pdf</button></a>
+    </div>
+</div>
+
+
+  <button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+  
+  
+
+
+
+
+
+
+<a href="https://mybinder.org/v2/gh/jupyter/jupyter-book/gh-pages?filepath=content%2Fdivisible_maps.ipynb"><button class="interact-button" id="interact-button-binder"><img class="interact-button-logo" src="/oqs-jupyterbook/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
+  
+
+
+</div>
+
+  </div>
+  <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+  <aside class="sidebar__right">
+    <header><h4 class="nav__title"><img src="/oqs-jupyterbook/assets/images/list-solid.svg" alt="Search" />   On this page</h4></header>
+    <nav class="onthispage">
+    </nav>
+  </aside>
+  <a href="/oqs-jupyterbook/search.html" class="topbar-right-button" id="search-button">
+    <img src="/oqs-jupyterbook/assets/images/search-solid.svg" alt="Search" />
+  </a>
+</div>
+
+      <main class="c-textbook__page" tabindex="-1">
+            <div class="c-textbook__content" id="textbook_content">
+                  <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Dynamical maps: divisibility</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="5.-Dynamical-maps:-divisibility-">5. Dynamical maps: divisibility <a id="comanddiv" /><a class="anchor-link" href="#5.-Dynamical-maps:-divisibility-"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li><p><a href="#comanddiv">Dynamical maps: divisibility</a></p>
+<p><a href="#ex6">Example 6</a></p>
+<ol>
+<li><p><a href="#com">Commutative dynamics</a></p>
+<ul>
+<li><a href="#ex7">Example 7</a></li>
+<li><a href="#ex8">Example 8</a></li>
+<li><a href="#IBMPauli">IBM Q example: Pauli channel</a></li>
+<li><a href="#IBMDep">IBM Q example: Depolarising channel</a></li>
+</ul>
+</li>
+<li><p><a href="#div">Markovian evolution - divisible dynamical maps</a></p>
+<ul>
+<li><a href="#ex9">Example 9</a></li>
+<li><a href="#ex10">Example 10</a></li>
+<li><a href="#IBMMark">IBM Q example: Markovian reservoir engineering</a><ul>
+<li><a href="#theory">Theory</a></li>
+<li><a href="#circuit">Circuit implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\newcommand{\Mn}{M_n(\mathbb{C})}$
+$\newcommand{\Mq}{M_2(\mathbb{C})}$
+$\newcommand{\Mk}{M_k(\mathbb{C})}$
+$\newcommand{\Mm}{M_m(\mathbb{C})}$
+$\newcommand{\Mnm}{M_{n \times m}(\mathbb{C})}$
+$\newcommand{\Mnp}{M_n^+(\mathbb{C})}$
+$\newcommand{\ra}{\,\rightarrow\,}$
+$\newcommand{\id}{\mbox{id} }$
+$\newcommand{\ot}{ {\,\otimes\,} }$
+$\newcommand{\Cd}{ {\mathbb{C}^d} }$
+$\newcommand{\Rn}{ {\mathbb{R}^n} }$
+$\newcommand{\asterisk}{*}$</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We have discussed how to describe the quantum evolution of open quantum systems and we have introduced the concept of dynamical map $\Lambda_t$ and its time-dependent generator $L_t$. The latter quantity is also known as the dissipator and describes the form of the master equation. The connection between the two is given by Eq. (2.29). A very important problem in the theory of open quantum systems is the following:</p>
+<p><strong>Problem 1</strong></p>
+<blockquote><p>What are the properties of the local time-dependent generator $L_t$ that guarantee $\Lambda_t$, as defined by the T-product exponential formula (2.29), defines a legitimate dynamical map?</p>
+</blockquote>
+<p>The formulation of our problem is pretty simple, but in general the answer is not known. In fact, it turns out that the answer is only known for the special case of time-independent generators, giving rise to Markovian semigroups. In this case the answer to this important problem is given by the GKSL theorem discussed in <strong>Chapter 4</strong>. But what about more general types of generators?</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us observe that if we knew a dynamical map $\Lambda_t$ that was invertible, i.e. there exists $\Lambda_t^{-1} : \Mn \ra \Mn$ such that $\Lambda_t^{-1} \Lambda_t = \Lambda_t \Lambda_t^{-1} = \mathbb{1}_n$, then</p>
+\begin{equation}
+    \dot{\Lambda}_t = \dot{\Lambda}_t \Lambda_t^{-1} \Lambda_t = L_t \, \Lambda_t\ ,
+\tag{5.1}
+\end{equation}<p>where we defined
+\begin{equation}
+    L_t := \dot{\Lambda}_t \Lambda_t^{-1} \ .
+\tag{5.2}
+\end{equation}</p>
+<p>It should be stressed that the inverse of $\Lambda_t$ need not be CP. One may prove that if $\Lambda_t$ is CP then $\Lambda_t^{-1}$ is CP  if and only if $\Lambda_t(\rho) = U_t \rho U_t^\dagger$ with unitary $U_t$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-6-">Example 6 <a id="ex6" /><a class="anchor-link" href="#Example-6-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Consider a unitary dynamical map $\mathcal{U}_t$ defined in (2.23). It is clear that $\mathcal{U}_t$ is invertible and $\mathcal{U}_t^{-1} = \mathcal{U}_{-t}$ is CP. One finds for the corresponding generator
+\begin{equation}
+    L_t(\rho) = [\dot{\mathcal{U} }_t \mathcal{U}_{-t}](\rho)  = \dot{U}_t (U_t^\dagger \rho U_t) U_t^\dagger + {U}_t (U_t^\dagger \rho U_t) \dot{U}_t^\dagger \ ,
+\tag{5.3}
+\end{equation}</p>
+<p>and hence recalling that $U_t$ satisfies the Schrödinger equation $\dot{U}_t = -iHU_t$, one obtains $L_t(\rho) = -i[H,\rho]$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this course instead of analyzing this problem in full generality we restrict ourselves to study special classes of dynamical maps and corresponding local generators.
+Specifically we analyze 3 important classes of generators</p>
+<ul>
+<li>$C_1$ - a class of time-independent generators giving rise to Markovian semigroups,</li>
+<li>$C_2 $ - a class of time-dependent generators giving rise to commutative dynamics,</li>
+<li>$C_3 $ - a class of time-dependent generators giving rise to the so-called divisible dynamical maps.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.1.-Commutative-dynamics-">5.1. Commutative dynamics <a id="com" /><a class="anchor-link" href="#5.1.-Commutative-dynamics-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We call a dynamical map $\Lambda_t$ commutative if $[\Lambda_t,\Lambda_u]=0$ for all $t,u\geq 0$. It means that for each $A\in \Mn$ one has</p>
+\begin{equation}
+    \Lambda_t(\Lambda_u(A)) = \Lambda_u(\Lambda_t(A)) \ .
+\tag{5.4}
+\end{equation}<p>It is easy to show that commutativity of $\Lambda_t$ is equivalent to commutativity of the local generator</p>
+\begin{equation}\label{[]=0}
+    [L_t,L_u]=0\ ,
+\tag{5.5}
+\end{equation}<p>for any $t,u \geq 0$.  Note that in this case  the formula (2.30) considerably simplifies: the 'T' product drops out and the solution is fully controlled by the integral $\int_0^t L_u du$:
+\begin{equation}\label{Dyson-com}
+    \Lambda_t = \exp\left( \int_0^t L_u du\right) = \mathbb{1}_n + \int_0^t   L_{u}du + \frac 12 \left( \int_0^{t}  L_{u}du \right)^2 + \ldots \ .
+\tag{5.6}
+\end{equation}</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, it follows from Theorem 3 that if $\Lambda = e^M$, then $\Lambda$ is a quantum channel if $M$ is a GKSL generator. Therefore, one has the following</p>
+<p><strong>Theorem 4</strong></p>
+<blockquote><p>If $L_t$ satisfies (<a href="#mjx-eqn-[]=0">5.5</a>), then $L_t$ is a legitimate generator if $\int_0^t L_\tau d\tau$ is a GKSL generator for all $t\geq 0$.</p>
+</blockquote>
+<p>Note that, if $L_t = L$ is time independent, then $\int_0^t L_udu = tL$ and the above theorem reproduces <strong>Theorem 3</strong>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is clear that if $L$ is a legitimate GKSL generator and $f: \mathbb{R}_+ \ra \mathbb{R}$ an arbitrary function, then $L_t = f(t) L$ generates a commutative dynamical map $\Lambda_t$ iff $\int_0^t f(u) du \geq 0$ for all $t\geq 0$. A typical example of commutative dynamics is provided by</p>
+\begin{equation}
+    L_t = \omega(t) L_0 + a_1(t) L_1 + \ldots + a_N(t) L_N\ ,
+\tag{5.7}
+\end{equation}<p>where $[L_\alpha,L_\beta]=0$ with $L_0(\rho) =  -i[H,\rho]$, and for $\alpha&gt;0$ the generators $L_\alpha$ are purely dephasing, that is, $L_\alpha(\rho) = \Phi_\alpha(\rho) - \frac 12 \{ \Phi_\alpha^*(\mathbb{I}),\rho\}$.  One has for the corresponding dynamical map</p>
+\begin{equation}
+    \Lambda_t = e^{\Omega(t)L_0} \cdot e^{A_1(t)L_1} \cdot \ldots\cdot e^{A_N(t)L_N}\ ,
+\tag{5.8}
+\end{equation}<p>with
+$$ \Omega(t) = \int_0^t \omega(u)du\ ; \ \ \ \ A_\alpha(t) = \int_0^t a_\alpha(u)du\  . $$</p>
+<p>It is clear that $\Lambda_t$ is CP iff $A_\alpha(t) \geq 0$ for all $\alpha=1,\ldots,N$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-7-">Example 7 <a id="ex7" /><a class="anchor-link" href="#Example-7-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Consider a qubit generator $L_0(\rho) = -i[\sigma_3,\rho]$ together with $L_1,L_2,L_3$ defined in (<a href="#LLL">5.27</a>). One easily proves</p>
+\begin{equation}
+    [L_0,L_\alpha] = [L_3,L_\alpha]=0 \ ; \ \ \ \alpha=1,2,3\ ,
+\tag{5.9}
+\end{equation}<p>and
+\begin{equation}\label{L-L}
+    [L_1,L_2] = L_1 - L_2 \ .
+\tag{5.10}
+\end{equation}</p>
+<p>Define the time-dependent commutative generator</p>
+\begin{equation}
+    L_t = \frac{\omega(t)}{2} L_0 + \frac{\delta(t)}{2} ( \mu_1 L_1 + \mu_2 L_2) + \frac{\gamma(t)}{2} L_z\ ,
+\tag{5.11}
+\end{equation}<p>with $\mu_1,\mu_2 \geq 0$ and $\mu_1 + \mu_2=1$. Defining</p>
+\begin{equation}
+    \Omega(t) = \int_0^t \omega(u)du\ ; \ \ \Delta(t) = \int_0^t \delta(u)du\ ; \ \ \Gamma(t) = \int_0^t \gamma(u)du\ ,
+\tag{5.12}
+\end{equation}<p>one finds that if $\Delta(t) \geq 0$ and $\Gamma(t) \geq 0$, then $L_t$ is a legitimate generator.
+The time evolution of $\rho$ has the following form: the off-diagonal elements evolve according to</p>
+$$\rho_{12} \ra e^{\Omega(t) + \frac 12 \Delta(t) + \Gamma(t)} \rho_{12}\ , $$<p>and diagonal elements</p>
+\begin{eqnarray*}
+  \rho_{11} &amp;\ra &amp; \rho_{11}\, e^{-\Delta(t)} + \mu_1 \Big[ 1 - e^{-\Delta(t)}  \Big] \ ,\\
+  \rho_{22} &amp;\ra &amp; \rho_{22}\, e^{-\Delta(t)} + \mu_2 \Big[ 1 - e^{-\Delta(t)}  \Big] \ .
+\end{eqnarray*}<p>If $\Delta(t) \ra \infty$ for $t\ra \infty$, then the dynamics possess an equilibrium state</p>
+$$  \rho_t \ \ \longrightarrow \ \ \left( \begin{array}{cc} \mu_1 &amp; 0 \\ 0 &amp; \mu_2 \end{array} \right) \ . $$
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-8-(Random-unitary-qubit-dynamics)-">Example 8 (Random unitary qubit dynamics) <a id="ex8" /><a class="anchor-link" href="#Example-8-(Random-unitary-qubit-dynamics)-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Consider the following time-dependent generator
+\begin{equation}\label{Pauli}
+    L_t(\rho) = \frac 12 \sum_{k=1}^3 \gamma_k(t) (\sigma_k \rho\, \sigma_k - \rho)\ ,
+\tag{5.13}
+\end{equation}</p>
+<p>where $\{\sigma_1,\sigma_2,\sigma_3\}$ are Pauli matrices.  It is easy to prove that $[L_t,L_u]=0$ and hence $L_t$ generates a legitimate dynamical map iff</p>
+$$  \Gamma_1(t) \geq 0 \ ; \ \ \Gamma_2(t) \geq 0 \ ; \ \ \Gamma_3(t) \geq 0 \ , $$<p>where $\Gamma_k(t) = \int_0^t \gamma_k(u)du$.  One finds that the corresponding dynamical map $\Lambda_t$ is given by</p>
+\begin{equation}\label{RU}
+    \Lambda_t(\rho) = \sum_{\alpha=0}^3 p_\alpha(t) \sigma_\alpha \rho\, \sigma_\alpha \ ,
+\tag{5.14}
+\end{equation}<p>where $\sigma_0 = \mathbb{I}_2$ and</p>
+\begin{eqnarray*}
+p_0(t) &amp;=&amp;\frac{1}{4}\, [1+ \lambda_3(t) + \lambda_2(t) + \lambda_1(t)] \ , \\
+p_1(t) &amp;=&amp;\frac{1}{4}\, [1- \lambda_3(t) - \lambda_2(t) + \lambda_1(t)] \ ,\\
+p_2(t) &amp;=&amp;\frac{1}{4}\, [1- \lambda_3(t) + \lambda_2(t) - \lambda_1(t)] \ ,\\
+p_3(t) &amp;=&amp;\frac{1}{4}\, [1+ \lambda_3(t) - \lambda_2(t) - \lambda_1(t)] \ ,
+\end{eqnarray*}<p>with
+$$ \lambda_1(t) = e^{-\Gamma_2(t) - \Gamma_3(t)}\ , $$</p>
+<p>and similarly for $\lambda_2(t)$ and $\lambda_3(t)$. Interestingly $\Lambda_t(\sigma_k)=\lambda_k(t)\sigma_k$.
+The formula (<a href="#mjx-eqn-RU">5.14</a>) defines so-called random unitary dynamics. Note that</p>
+$$ p_0(t) + p_1(t) + p_2(t) +  p_3(t)=1 \ . $$<p>Moreover, $p_\alpha(t) \geq 0$ for $\alpha=0,1,2,3$ iff $\Gamma_k(t) \geq 0$ for $k=1,2,3$. Note that $\Lambda_t$ is unital. Actually, in the case of qubits any unital dynamical map is random unitary, i.e.</p>
+\begin{equation}\label{}
+    \Lambda_t(\rho) = \sum_k p_k(t) U_k(t) \rho U_k^\dagger(t)\ ,
+\tag{5.15}
+\end{equation}<p>where $p_k(t)$ defines time-dependent probability distribution and $U_k(t)$ is a family of time-dependent unitary matrices. It is no longer true for $n$-level systems with $n&gt;2$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="IBM-Q-example:-Pauli-channel-">IBM Q example: Pauli channel <a id="IBMPauli" /><a class="anchor-link" href="#IBM-Q-example:-Pauli-channel-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The most general single-qubit open quantum system model is the time-dependent Pauli channel. The master equation in this case takes the form (see (<a href="#mjx-eqn-Pauli">5.13</a>)</p>
+\begin{equation}
+\frac{d\rho_{S} }{dt}(t)=\frac{1}{2}\sum_i\gamma_i(t)\left[\sigma_i\rho_{S}(t)\sigma_i-\rho_{S}(t)\right].
+\label{PauliME}
+\end{equation}
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Generally, the dynamics described by the master equation above is not phase-covariant [<a href="#3">3</a>], except for the case in which $\gamma_x(t)=\gamma_y(t)$. Moreover, since the decay rates may take negative values, conditions for complete positivity must be imposed, and they are given in terms of a set of inequalities involving all the three decay rates, as one can see, e.g., from Ref. [<a href="#4">4</a>].
+<!--
+**In Sec.~\ref{sec:discussion} we present the simulation of a specific form of time-dependent Pauli channel proposed in Ref.~\cite{Hall2014} and used as an example of eternal non-Markovianity, i.e.~an open quantum system dynamics for which the dynamical map is non-CP-divisible for all times $t$. More precisely, we use this experimental simulation to demonstrate a phenomenon predicted in Ref.~\cite{BognaWork}, namely the presence of oscillations in the extractable work. This shows an application of open quantum system simulation on the IBM Q Experience processors to fields other than quantum information theory, specifically quantum thermodynamics for the example here considered.** What? Is example Markovian or non-Markovian???? --></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At a specific time instant $t$, the Pauli channel can be written as
+\begin{equation} 
+ \mathcal{E} (\rho) = \sum_{i=0}^3 p_i \sigma_i \rho \sigma_i,
+\end{equation}</p>
+<p>with $0 \leq p_i \leq 1$ and $\sum_i p_i = 1$. The depolarizing channel is a special case of the Pauli channel where $p_1 = p_2 = p_3 = p/4$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is possible to implement the general Pauli channel with just two ancillary qubits, by preparing them in the suitable entangled state. The first qubit acts as the control for a controlled-$X$ (CNOT) gate, and the second one for a controlled-$Y$. Notice that applying both an X and a Y gates is effectively equivalent to applying a Z gate.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The state $|\psi \rangle$ of the ancillae needed for the Pauli channel can be implemented by the following circuit:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#############################</span>
+<span class="c1">#  Pauli channel on IBMQX2  #</span>
+<span class="c1">#############################</span>
+
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">QuantumCircuit</span>
+
+<span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit</span>
+<span class="n">pauli</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># Pauli channel acting on q_2</span>
+<span class="c1">## Qubit identification</span>
+<span class="n">system</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">a_0</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a_1</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1">## Define rotation angles</span>
+<span class="n">theta_1</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">theta_2</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">theta_3</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="c1">## Construct circuit</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta_1</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta_2</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta_3</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">cy</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/divisible_maps_22_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The circuit is parametrised by the three angles $\theta_1,\theta_2,\theta_3$. The state of the two ancillae is as follows:
+\begin{equation*}
+        \begin{split}
+        | \psi \rangle =&amp; (c_1 c_2 c_3 + s_1 s_2 s_3) | 00 \rangle + \\
+                    &amp; (c_1 c_2 s_3 - s_1 s_2 c_3) | 01 \rangle + \\
+                    &amp; (c_1 s_2 c_3 - s_1 c_2 s_3) | 10 \rangle + \\
+                    &amp; (s_1 c_2 c_3  + c_1 s_2 s_3) | 11 \rangle
+        \end{split}
+\end{equation*}</p>
+<p>where $c_i \equiv \cos \theta_i$ and $s_i \equiv \sin \theta_i$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The angles $\theta_i$ can be found by solving the following system of equations:</p>
+\begin{equation}\label{eq:pauli_equations}
+    \begin{cases}
+        p_0  = |\langle 00|\psi \rangle|^2 = (c_1 c_2 c_3 + s_1 s_2 s_3)^2 &amp; \\
+        p_1  = |\langle 01|\psi \rangle|^2 = (c_1 c_2 s_3 - s_1 s_2 c_3)^2 &amp; \\
+        p_2  = |\langle 10|\psi \rangle|^2 = (c_1 s_2 c_3 - s_1 c_2 s_3)^2 &amp; \\
+        p_3  = |\langle 11|\psi \rangle|^2 = (s_1 c_2 c_3 + c_1 s_2 s_3)^2 &amp; 
+    \end{cases}
+\end{equation}
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The above system of equations allows for multiple analytical solutions whose expressions are too cumbersome to be reported here. The choice of the solution to use in each case depends on a number of factors, such as the gate fidelity for the specific values of the parameters.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="IBM-Q-example:-Depolarising-channel-">IBM Q example: Depolarising channel <a id="IBMDep" /><a class="anchor-link" href="#IBM-Q-example:-Depolarising-channel-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The depolarizing channel is one of the most common models of qubit decoherence due to its nice symmetry properties. We can describe it by stating that, with probability $p$ the qubit remains intact, while with probability $1-p$ an error occurs. The error can be a bit flip error, described by the action of $\sigma_x$, a phase flip error, described by the action of $\sigma_z$, or both, described by the action of $\sigma_y$. The dynamical map of a Markovian open quantum system subjected to depolarizing noise can be written as</p>
+\begin{eqnarray}\label{depolarising_channel}
+\Phi_t \rho_S = \left[1-\frac 3 4 p(t)\right] \rho_S + \frac{p(t)}{4} \sum_i \sigma_i \rho_S \sigma_i,
+\end{eqnarray}<p>where $i=x,y,z$ and $p(t)=1 - e^{-\gamma t}$, with $\gamma$ the Markovian decay rate.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Please note that in Pauli channel example for $\gamma_i(t) = \gamma$, we recover the Markovian depolarizing channel.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">####################################</span>
+<span class="c1">#  Depolarizing channel on IBMQX2  #</span>
+<span class="c1">####################################</span>
+
+<span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit</span>
+<span class="n">depolarizing</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># Depolarizing channel acting on q_2</span>
+<span class="c1">## Qubit identification</span>
+<span class="n">system</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">a_0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">a_1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a_2</span> <span class="o">=</span> <span class="mi">4</span>
+
+
+<span class="c1">## Define rotation angles</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="c1">## Construct circuit</span>
+<span class="n">depolarizing</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">])</span>
+<span class="n">depolarizing</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">])</span>
+<span class="n">depolarizing</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_2</span><span class="p">])</span>
+<span class="n">depolarizing</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
+<span class="n">depolarizing</span><span class="o">.</span><span class="n">cy</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
+<span class="n">depolarizing</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_2</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">depolarizing</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/divisible_maps_29_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The depolarizing channel can be implemented, for any value of $p\equiv p(t) \in [0, 1]$, with the circuit shown in the figure above. 
+Three ancillary qubits are prepared in a state $| \psi_\theta \rangle = \cos \theta/2 | 0 \rangle + \sin \theta/2 | 1 \rangle$,
+and are used as controls for, respectively, a controlled-$X$ (CNOT), a controlled-$Y$ and a controlled-$Z$ rotation.
+This way, each gate will be applied with a probability $\sin^2 \theta/2$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The rotation angle $\theta$ must be chosen so that each of the gates is 
+applied with probability $p$. Notice that applying $X$ and then $Y$, 
+but not applying $Z$ is equivalent (up to global phases) to just applying $Z$, and so on. The resulting equation that binds $\theta$ to $p$ is thus</p>
+\begin{equation}
+    \sin^2 \frac \theta 2 \cos^4\frac\theta2 + \sin^4 \frac\theta 2 \cos^2 \frac \theta 2 = \frac p 4,
+\end{equation}<p>with solution $\theta(p) = \frac 12 \arccos(1 - 2 p)$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that the circuit for the Pauli channel can be used also for the depolarizing channel, instead of the three-qubit circuit of the figure above, but it proves to be less accurate on the IBM Q Experience devices, presumably because of the required entanglement between the two qubits.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One could also think to implement the Pauli channel by generalising the depolarizing channel circuit, specifically, by allowing for the three ancillae to be prepared in different states. One can see, however, that this cannot be done in the most general case.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id='fig_1'></a></p>
+<p><img src="images/fig_dep.png" width = 600></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In <a href="#fig_1">Figure 1</a>, we plot the qubit density matrix elements for various values of $p$, comparing the experimental data with the theoretical prediction. For exemplary purposes, we choose a specific initial state possessing non-zero coherences, but we have verified, by repeating the experiment for different initial states, that the agreement observed between experiment and theory is independent from the initial state chosen.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.2.-Markovian-evolution---divisible-dynamical-maps-">5.2. Markovian evolution - divisible dynamical maps <a id="div" /><a class="anchor-link" href="#5.2.-Markovian-evolution---divisible-dynamical-maps-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We call a dynamical map $\Lambda_t$ <strong><em>divisible</em></strong> if for any $t \geq s \geq 0$ one has the following decomposition</p>
+\begin{equation}
+    \Lambda_t = V_{t,s}\, \Lambda_s \ ,
+\tag{5.16}
+\end{equation}<p>with a completely positive propagator $V_{t,s}$. Note, that if $\Lambda_t$ is invertible then</p>
+\begin{equation}
+    V_{t,s} = \Lambda_t \, \Lambda_s^{-1} \ ,
+\tag{5.17}
+\end{equation}<p>and hence  $V_{t,s}$ satisfies an inhomogeneous composition law</p>
+\begin{equation}
+    V_{t,s} V_{s,u} = V_{t,u}\ ,
+\tag{5.18}
+\end{equation}<p>for any $t\geq s \geq u$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The above formula provides a generalization of the semi-group composition law (<a href="#mjx-eqn-c-low">4.2</a>). Here we assume the following extended definition of Markovian evolution: <strong>_a
+dynamical map $\Lambda_t$ corresponds to Markovian evolution if and only if it is divisible_</strong>.</p>
+<p>Interestingly, the property of being Markovian (or divisible) is fully characterized in terms of the local generator $L_t$. Note, that if $\Lambda_t$ satisfies (2.28) then $V_{t,s}$ satisfies
+\begin{equation}\label{Local-V}
+    \frac{d}{dt}\, V_{t,s} = L_t V_{t,s}\ ,     \ \ \ V_{s,s}=\mathbb{1}\ ,
+\tag{5.19}
+\end{equation}</p>
+<p>and the corresponding solution reads
+\begin{equation}
+ V_{t,s} = {\rm T} \, \exp\left( \int_s^t L_u du \right)\ .
+\tag{5.20}
+\end{equation}</p>
+<p>It is clear that $\Lambda_t = V_{t,0}$ which shows that divisibility puts very strong requirements upon the dynamical map $\Lambda_t$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One proves  the following</p>
+<p><strong>Theorem 5</strong></p>
+<blockquote><p>The map $\Lambda_t$ is divisible if and only if $L_t$ is a GKSL generator  for all $t$, that is,</p>
+\begin{equation}
+    L_t(\rho) = -i[H(t),\rho] + \frac 12 \sum_k \left( [V_k(t),\rho V^\dagger_k(t)] + [V_k(t)\rho,V^\dagger_k(t)] \right) \ ,
+\tag{5.21}
+\end{equation}<p>with time-dependent Hamiltonian $H(t)$ and noise operators $V_k(t)$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remark 3</strong></p>
+<blockquote><p>If
+\begin{equation}
+    L_t = \omega(t) L_0 + a_1(t) L_1 + \ldots + a_N(t) L_N\ ,
+\tag{5.22}
+\end{equation}</p>
+<p>where  $L_0(\rho) =  -i[H,\rho]$, and for $\alpha&gt;0$ the generators $L_\alpha$ are purely dissipative and linearly independent, then $L_t$ generates Markovian  evolution if and only if $a_1(t),\ldots,a_N(t) \geq 0$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-9-">Example 9 <a id="ex9" /><a class="anchor-link" href="#Example-9-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Consider a qubit generator
+\begin{equation}
+    L_t(\rho) = \frac 12 {\gamma(t)} L_3(\rho) = \frac 12 {\gamma(t)} (\sigma_z \rho \sigma_z - \rho)\ ,
+\tag{5.23}
+\end{equation}</p>
+<p>and introduce $   \Gamma(t) = \int_0^t \gamma(\tau)d\tau$, then it is clear that</p>
+\begin{equation}
+    \Lambda_t(\rho) = \frac 12 \Big[ 1+ e^{-\Gamma(t)} \Big]\, \rho + \frac 12 \Big[ 1- e^{-\Gamma(t)} \Big]\, \sigma_z \rho \sigma_z\ ,
+\tag{5.24}
+\end{equation}<p>and hence</p>
+<ol>
+<li>$L_t$ is a legitimate generator iff $\,\Gamma(t)\geq 0$,</li>
+<li>$L_t$ generates Markovian evolution iff $\gamma(t) \geq 0$,</li>
+<li>$L_t$ generates a Markovian semigroup iff $\gamma(t) = {\rm const.} &gt;0$.</li>
+</ol>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-10-">Example 10 <a id="ex10" /><a class="anchor-link" href="#Example-10-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Let us consider a qubit generator defined by $H = \frac \omega 2 \sigma_z$ and the following CP map</p>
+\begin{equation}
+    \Phi(\rho) = \gamma_1 \sigma_+ \rho\, \sigma_- + \gamma_2 \sigma_-  \rho\,\sigma_+ + \gamma \sigma_z  \rho\, \sigma_z\ ,
+\tag{5.25}
+\end{equation}<p>where $\sigma_+ = |2 \rangle \langle 1|$ and $\sigma_-=|1 \rangle \langle 2|=\sigma_+^\dagger$ are standard qubit raising and lowering operators. The corresponding generator reads $L(\rho) = - i[H,\rho] + L_D(\rho)$ with the dissipative part</p>
+\begin{equation}
+L_D = \frac{\gamma_1}{2}  L_1 + \frac{\gamma_2}{2}  L_2 + \frac{\gamma}{2} L_z\ ,
+\tag{5.26}
+\end{equation}<p>where <a id='LLL'></a>
+\begin{eqnarray} \label{LLL}
+    L_1(\rho) &amp;=&amp; [\sigma_+, \rho\sigma_-] + [\sigma_+ \rho, \sigma_-]  \ ,\nonumber \\
+    L_2(\rho) &amp;=&amp; [\sigma_-, \rho\sigma_+] + [\sigma_- \rho,\sigma_+] \ , \\
+    L_3(\rho) &amp;=&amp; \sigma_z \rho\sigma_z - \rho \ . \nonumber
+\tag{5.27}
+\end{eqnarray}</p>
+<p>$L_1$ corresponds to pumping (heating) process, $L_2$ corresponds to relaxation (cooling), and $L_3$ is responsible for  pure decoherence.
+To solve the master equation $\dot{\rho}_t = L\rho_t$ let us parameterize $\rho_t$ as follows</p>
+\begin{equation}
+    \rho_t = p_1(t) P_1 + p_2(t) P_2 + \alpha(t) \sigma_+ + \overline{\alpha(t)} \sigma_-\ ,
+\tag{5.28}
+\end{equation}<p>with $P_k=|k \rangle \langle k|$. Using the following relations</p>
+\begin{eqnarray*}
+  L(P_1) &amp;=&amp; {\gamma_1} (P_2 - P_1) = - \gamma_1\, \sigma_3\ , \\
+  L(P_2) &amp;=&amp; {\gamma_2} (P_1 - P_2) = \gamma_2\, \sigma_3 \ , \\
+  L(\sigma_+) &amp;=&amp; (i \omega - \eta)\, \sigma_+\ ,\\
+  L(\sigma_-) &amp;=&amp; (-i\omega - \eta)\, \sigma_-\ ,
+\end{eqnarray*}<p>where one finds the following Pauli master equations  for the probability distribution $(p_1(t),p_2(t))$</p>
+\begin{eqnarray}
+  \dot{p}_1(t)  &amp;=  &amp;- \gamma_1\, p_1(t) + \gamma_2\, p_2(t) \ ,
+\tag{5.29}
+\end{eqnarray}\begin{eqnarray}
+  \dot{p}_2(t)  &amp;=  &amp; \ \ \, \gamma_1\, p_1(t) - \gamma_2\, p_2(t) \ ,
+  \tag{5.30}
+\end{eqnarray}<p>together with $\alpha(t) = e^{(i \omega - \eta)t}\alpha(0)$. The corresponding solution reads</p>
+\begin{eqnarray}
+  p_1(t) &amp;=&amp; p_1(0)\, e^{-( \gamma_1 + \gamma_2)t} + p_1^* \Big[ 1 - e^{-( \gamma_1 + \gamma_1)t}  \Big] \ ,
+\tag{5.31}
+\end{eqnarray}\begin{eqnarray}
+  p_2(t) &amp;=&amp; p_2(0)\, e^{-( \gamma_1 + \gamma_2)t} + p_2^* \Big[ 1 - e^{-( \gamma_2 + \gamma_2)t}  \Big] \ ,
+\tag{5.32}
+\end{eqnarray}<p>where we introduced</p>
+\begin{equation}\label{p*}
+    p_1^* = \frac{\gamma_1}{\gamma_1 + \gamma_2}\ , \ \ \ \   p_2^* = \frac{\gamma_2}{\gamma_1 + \gamma_2}\ .
+\tag{5.33}
+\end{equation}<p>Hence, we have purely classical evolution of the probability vector $(p_1(t),p_2(t))$ on the diagonal of $\rho_t$ and very simple evolution of the off-diagonal element $\alpha(t)$. Note that asymptotically one obtains a completely decohered density operator</p>
+$$  \rho_t \ \ \longrightarrow \ \ \left( \begin{array}{cc} p_1^* &amp; 0 \\ 0 &amp; p_2^* \end{array} \right) \ . $$<p>In particular if $\gamma_1=\gamma_2$ a state $\rho_t$ relaxes to the maximally mixed state (a state becomes completely depolarized).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="IBM-Q-example:-Markovian-reservoir-engineering-">IBM Q example: Markovian reservoir engineering <a id="IBMMark" /><a class="anchor-link" href="#IBM-Q-example:-Markovian-reservoir-engineering-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Theory-">Theory <a id="theory" /><a class="anchor-link" href="#Theory-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For decades, noise induced by the environment has been considered the archetype enemy of quantum technologies. This is because very often the interaction between a quantum system and its surroundings leads to the fast disappearance of quantum properties, notoriously coherences and entanglement, playing a key role in providing quantum advantage.
+This point of view drastically changed as soon as physicists demonstrated that appropriate manipulation of an artificial environment (quantum reservoir engineering) would allow one to steer the open system towards, e.g., a maximally entangled state [<a href="#5">5</a>,<a href="#6">6</a>], hence turning upside down the perspective of the environment as an enemy.</p>
+<p>Following the lines of Ref. [<a href="#5">5</a>], we experimentally simulate a semigroup Markovian master equation for a two-qubit open system having as asymptotic stationary state the Bell state $|\Psi_- \rangle = \frac{1}{\sqrt{2} }(|01\rangle - |10\rangle)$, where we indicate with $|0\rangle$ and $|1\rangle$ the computational basis of each qubit and we use the notation $| 01\rangle = |0\rangle_1 |1\rangle _2$. This allows us to prepare a maximally entangled state as a result of the dissipative open system dynamics.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The four Bell states are:</p>
+\begin{align}
+|\Psi_- \rangle = \frac{1}{\sqrt{2} }(|01\rangle - |10\rangle) \\
+|\Psi_+ \rangle = \frac{1}{\sqrt{2} }(|01\rangle + |10\rangle) \\
+|\Phi_- \rangle = \frac{1}{\sqrt{2} }(|00\rangle - |11\rangle)  \\
+|\Phi_+ \rangle = \frac{1}{\sqrt{2} }(|00\rangle + |11\rangle) 
+\end{align}<p>Each of them is uniquely determined as an eigenstate with eigenvalues $\pm1$ with respect to $\sigma_z^{(1)} \otimes \sigma_z^{(2)}$ and  $\sigma_x^{(1)}\otimes\sigma_x^{(2)}$, where $\sigma_x^{(i)}$ and $\sigma_z^{(i)}$, with $i=1,2$, are the $x$ and $z$ Pauli operators of qubit 1 and 2.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The dissipative dynamics that pumps two qubits from an arbitrary initial state into the Bell state $|\Psi_- \rangle $ is realised by the composition of two channels that pump from
+the $+1$ into the $-1$ eigenspaces of the stabiliser operators $\sigma_z^{(1)} \otimes \sigma_z^{(2)}$ and  $\sigma_x^{(1)} \otimes \sigma_x^{(2)}$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Specifically, we consider the two $p$-parametrised families of CPTP maps $\Phi_{zz} \rho_S = E_{1z}  \rho_S  E_{1z}^{\dagger} + E_{2z}  \rho_S  E_{2z}^{\dagger} $, with</p>
+\begin{equation}\label{KrausZZ}
+\begin{aligned}
+E_{1z} &amp;=\sqrt{p} \mathbb{I}^{(1)} \otimes \sigma_x^{(2)} \frac{1}{2}\left( \mathbb{I}+ \sigma_z^{(1)} \otimes \sigma_z^{(2)} \right), \\
+E_{2z}  &amp;= \frac{1}{2} \left( \mathbb{I}-\sigma_z^{(1)}\otimes\sigma_z^{(2)} \right) \\
+&amp;+ \sqrt{1-p} \frac{1}{2} \left( \mathbb{I}+ \sigma_z^{(1)}\otimes\sigma_z^{(2)} \right),
+\end{aligned}
+\end{equation}<p>and $\Phi_{xx}\rho_S = E_{1x}  \rho_S  E_{1x}^{\dagger} + E_{2x}  \rho_S  E_{2x}^{\dagger} $, where $E_{1x}$ and $E_{2x}$ have the same form of  $E_{1z}$ and $E_{2z}$ in equations, provided that we replace $\sigma_x^{(2)}$ with $\sigma_z^{(2)}$ and $\sigma_z^{(1)}\otimes\sigma_z^{(2)}$ with $\sigma_x^{(1)}\otimes\sigma_x^{(2)}$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By changing the parameter $0 \le p \le 1$ we simulate different types of open quantum system dynamics. For $p\ll1$, the repeated application of, e.g., $\Phi_{zz}$ generates a master equation of Lindblad form with jump operator operator $V=\frac{1}{2}  \mathbb{I}^{(1)}\otimes\sigma_x^{(2)}\left( \mathbb{I}+ \sigma_z^{(1)} \otimes \sigma_z^{(2)} \right)$. For $p=1$, the map $\Phi_{xx} \circ \Phi_{zz}$ generates $|\Psi_- \rangle $ for any initial state.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Circuit-implementation-">Circuit implementation <a id="circuit" /><a class="anchor-link" href="#Circuit-implementation-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In Ref. [<a href="#5">5</a>], the authors provide the circuits for the implementation of the Bell-state pumping. However, these are composed of gates that are natural to the trapped-ions platform used in that work, so their direct implementation on the IBM Q Experience devices would result in far too long circuits. Therefore, we propose a different set of circuits that follow the same basic working principles, but have been designed specifically keeping in mind the characteristics of the IBM Q Experience platform.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The pumping circuits proposed in Ref. [<a href="#5">5</a>] are composed of four parts:</p>
+<ol>
+<li><p>The relevant information regarding the state of the system (that is, whether the system is in the $+1$ or the $-1$ eigenspaces of the stabiliser operators) is mapped into an ancilla.</p>
+</li>
+<li><p>The state of the system is modified depending on the state of the ancilla.</p>
+</li>
+<li><p>The mapping circuit is reversed.</p>
+</li>
+<li><p>At this stage, the system has been pumped, but if the ancilla is to be used again for a new pumping cycle, it needs to be reset, which is the fourth step.</p>
+</li>
+</ol>
+<p>We follow these same lines, designing circuits that perform these same steps while minimising the number of gates involved. Before we explain the resulting circuits, let us mention that, since the IBM Q Experience devices are not equipped with the reset operation, we must use a different ancilla for every pump.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The way we map the eigenspace information into an ancilla is by first applying a CNOT gate between the system qubits. Suppose that qubits $s_1$ and $s_2$ are initially in some Bell state, for instance, $| \phi^{\pm} \rangle = (| 00 \rangle \pm | 11 \rangle)/\sqrt{2}$. A CNOT gate controlled by $s_1$ transforms the state into $|\pm\rangle|0\rangle$. Instead, $| \psi^{\pm} \rangle$ would be transformed into $|\pm\rangle|1\rangle$. Hence, we see that the information regarding the $\sigma_x^{(1)}\otimes\sigma_x^{(2)}$ eigenspace (namely, the sign) is contained in the state of $s_1$ after the transformation, whereas the one corresponding to the $\sigma_z^{(1)}\otimes\sigma_z^{(2)}$ is in qubit $s_2$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, let us consider the circuit implementing the $\sigma_z^{(1)}\otimes\sigma_z^{(2)}$ pump:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#######################</span>
+<span class="c1">#  ZZ pump on IBMQX2  #</span>
+<span class="c1">#######################</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit  </span>
+<span class="n">zz</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># ZZ pump acting on system qubits</span>
+<span class="c1">## Qubit identification</span>
+<span class="n">system</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">a_zz</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1">## Define pump efficiency </span>
+<span class="c1">## and corresponding rotation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+
+<span class="c1">## Construct circuit</span>
+<span class="c1">### Map information to ancilla</span>
+<span class="n">zz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">zz</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_zz</span><span class="p">])</span>
+<span class="n">zz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_zz</span><span class="p">])</span>
+    
+<span class="c1">### Conditional rotation</span>
+<span class="n">zz</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_zz</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+<span class="c1">### Inverse mapping</span>
+<span class="n">zz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_zz</span><span class="p">])</span>
+<span class="n">zz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">zz</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/divisible_maps_57_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To map the eigenspace information into the environment ancilla $a_\textrm{ZZ}$, we apply a CNOT controlled by the relevant qubit, $s_2$. After these two gates (and considering that the initial state of the ancilla is $|1\rangle$), $a_\textrm{ZZ}$ will be in state $|1\rangle$ if the initial state of the system is $| \phi^{\pm} \rangle$ and $|0\rangle$ if it is $| \psi^{\pm} \rangle$. Therefore, the conditional rotation gate only acts in the former case, while it does not modify the state in the latter. The angle of the controlled rotation, in turn, controls the efficiency of the pump $p$ via the relation $\theta = 2 \arcsin{\sqrt{p} }$. Finally, the last two CNOT gates simply revert the mapping part of the circuit.</p>
+<p>The working principle of the $\sigma_x^{(1)}\otimes\sigma_x^{(2)}$ pump is essentially the same. However, we need to add an extra Hadamard gate to transform the state of $s_1$ before mapping the information to the ancilla $a_\textrm{XX}$:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#######################</span>
+<span class="c1">#  XX pump on IBMQX2  #</span>
+<span class="c1">#######################</span>
+
+<span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit  </span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># XX pump acting on system qubits</span>
+<span class="c1">## Qubit identification</span>
+<span class="n">system</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">a_xx</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1">## Define pump efficiency </span>
+<span class="c1">## and corresponding rotation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+
+<span class="c1">## Construct circuit</span>
+<span class="c1">### Map information to ancilla</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_xx</span><span class="p">])</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_xx</span><span class="p">])</span>
+    
+<span class="c1">### Conditional rotation</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_xx</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    
+<span class="c1">### Inverse mapping</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_xx</span><span class="p">])</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/divisible_maps_59_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As for the composite pump, we can simply concatenate the two circuits. Notice that in the direct concatenation there would be two consecutive CNOTs between the system qubits, which can be removed.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">###########################</span>
+<span class="c1">#  ZZ-XX pumps on IBMQX2  #</span>
+<span class="c1">###########################</span>
+
+<span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit  </span>
+<span class="n">zz_xx</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># ZZ and XX pumps acting on system qubits</span>
+<span class="c1">## Qubit identification</span>
+<span class="n">system</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">a_zz</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">a_xx</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1">## Define pump efficiency </span>
+<span class="c1">## and corresponding rotation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+
+<span class="c1">## Construct circuit</span>
+<span class="c1">## ZZ pump</span>
+<span class="c1">### Map information to ancilla</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_zz</span><span class="p">])</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_zz</span><span class="p">])</span>
+    
+<span class="c1">### Conditional rotation</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_zz</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+<span class="c1">### Inverse mapping</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_zz</span><span class="p">])</span>
+<span class="c1">#zz_xx.cx(q[system[0]], q[system[1]])</span>
+
+<span class="c1">## XX pump</span>
+<span class="c1">### Map information to ancilla</span>
+<span class="c1">#zz_xx.cx(q[system[0]], q[system[1]])</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_xx</span><span class="p">])</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_xx</span><span class="p">])</span>
+    
+<span class="c1">### Conditional rotation</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_xx</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    
+<span class="c1">### Inverse mapping</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_xx</span><span class="p">])</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">zz_xx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/divisible_maps_61_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the figure below we show the action of the dissipative pumping maps $\Phi_{xx}$, $\Phi_{zz}$ and their composition $\Phi_{xx} \circ \Phi_{zz}$ as a function of $p$, for a maximally mixed initial state. We compare the theoretical prediction (dashed lines) with the experimental data. Our results show a very good agreement between theory and experiment for the implementation of both the two families of maps and their composition. In the latter case, the results are more sensitive to errors because of the larger depth of the circuit implementing the composition of maps.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id='fig_2'></a></p>
+<p><img src="images/fig_mar_res_eng.png">
+Figure 2</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Regarding the measurement process, the IBM Q Experience platform only enables measurement in the computational basis. Hence, to assess the probabilities for each of the Bell states, we need to change basis by applying again a combination of CNOT and Hadamard to the system qubits, so $| \phi^{+} \rangle$ is mapped into $|00\rangle$, etc. Again, notice that this would result in repeated consecutive gates, the effect of which amounts to identity, so they can be removed from the circuits. Finally, in <a href="#fig_2">Figure 2</a> we show the results starting from the maximally mixed state. To do so, we simulated the circuits preparing the system in four different initial conditions, $| 00 \rangle$, $| 01 \rangle$, $| 10 \rangle$ and $| 11 \rangle$ and averaged the corresponding results.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References-">References <a id="ref" /><a class="anchor-link" href="#References-"> </a></h2><p>[1] <a href="https://doi.org/10.1063/1.522979">V. Gorini, A. Kossakowski, and E. C. G. Sudarshan, J. Math. Phys. <strong>17</strong>, 821 (1976)</a> <a id='1'></a></p>
+<p>[2] <a href="https://doi.org/10.1007/BF01608499">G. Lindblad, Comm. Math. Phys. <strong>48</strong>, 119 (1976)</a> <a id='2'></a></p>
+<p>[3] <a href="https://doi.org/10.1016/0034-4877(93">A. Holevo, Rep. Math. Phys. <strong>32</strong>, 211 (1993).</a>90014-6
+) <a id='3'></a></p>
+<p>[4] <a href="https://doi.org/10.1103/PhysRevLett.112.120404">D. Chruściński and S. Maniscalco, Phys. Rev. Lett. <strong>112</strong>, 120404 (2014)</a> <a id='4'></a></p>
+<p>[5] <a href="https://doi.org/10.1038/nature09801"> J. T. Barreiro, M. Müller, P. Schindler, D. Nigg, T. Monz, M. Chwalla, M. Hennrich, C. F. Roos, P. Zoller, and R. Blatt, Nature <strong>470</strong>, 486 (2011)</a> <a id='5'></a></p>
+<p>[6] <a href="https://doi.org/10.1038/nphys1781"> J. T. Barreiro, P. Schindler, O. Gühne, T. Monz, M. Chwalla, C. F. Roos, M. Hennrich, and R. Blatt, Nat. Phys. <strong>6</strong>, 943 (2010).</a> <a id='6'></a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
+            </div>
+            <div class="c-textbook__footer" id="textbook_footer">
+              
+<nav class="c-page__nav">
+  
+    
+    
+
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/oqs-jupyterbook/markovian_semigroups.html">
+      〈 <span class="u-margin-right-tiny"></span> Dynamical maps: Markovian semigroups
+    </a>
+  
+
+  
+    
+
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/oqs-jupyterbook/projection_operator_techniques.html">
+      Projection operator techniques <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+              <footer>
+  <p class="footer">This page was created by <a href="https://github.com/jupyter/jupyter-book/graphs/contributors">The Jupyter Book Community</a></p>
+</footer>
+
+            </div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

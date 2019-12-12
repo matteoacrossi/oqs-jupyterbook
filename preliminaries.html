@@ -1,0 +1,2925 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Preliminaries</title>
+  <meta name="description" content="        Preliminaries    2. Preliminaries: quantum states, channels and dynamical maps, and circuit design  Contents Preliminaries: quantum states, channels ...">
+
+  <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/preliminaries.html">
+  <link rel="alternate" type="application/rss+xml" title="Jupyter Book" href="https://matteoacrossi.github.io/oqs-jupyterbook/feed.xml">
+
+  <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/preliminaries.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Preliminaries" />
+<meta property="og:description" content="        Preliminaries    2. Preliminaries: quantum states, channels and dynamical maps, and circuit design  Contents Preliminaries: quantum states, channels ..." />
+<meta property="og:image"       content="https://matteoacrossi.github.io/oqs-jupyterbook/images/logo/logo.png" />
+
+<meta name="twitter:card" content="summary">
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/preliminaries.html",
+  "headline": "Preliminaries",
+  "datePublished": "2019-12-12T11:03:18+00:00",
+  "dateModified": "2019-12-12T11:03:18+00:00",
+  "description": "        Preliminaries    2. Preliminaries: quantum states, channels and dynamical maps, and circuit design  Contents Preliminaries: quantum states, channels ...",
+  "author": {
+    "@type": "Person",
+    "name": "The Jupyter Book Community"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/css/styles.css">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/oqs-jupyterbook/images/logo/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<!-- (mostly) copied from nbconvert configuration -->
+<!-- https://github.com/jupyter/nbconvert/blob/master/nbconvert/templates/html/mathjax.tpl -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    // Center justify equations in code and markdown cells. Elsewhere
+    // we use CSS to left justify single line equations in code cells.
+    displayAlign: 'center',
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}},
+        linebreaks: { automatic: true },
+    },
+    
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML' async></script>
+
+
+  <!-- DOM updating function -->
+  <script src="/oqs-jupyterbook/assets/js/page/dom-update.js"></script>
+
+  <!-- Selectors for elements on the page -->
+  <script src="/oqs-jupyterbook/assets/js/page/documentSelectors.js"></script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '/oqs-jupyterbook';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/anchors.js" async></script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+<!-- Display Thebelab button in each code cell -->
+<script>
+/**
+ * Set up thebelab button for code blocks
+ */
+
+const thebelabCellButton = id =>
+  `<a id="thebelab-cell-button-${id}" class="btn thebebtn o-tooltip--left" data-tooltip="Interactive Mode">
+    <img src="/oqs-jupyterbook/assets/images/edit-button.svg" alt="Start thebelab interactive mode">
+  </a>`
+
+
+const addThebelabButtonToCodeCells =  () => {
+
+  const codeCells = document.querySelectorAll('div.input_area > div.highlight:not(.output) pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("thebelab-cell-button-" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', thebelabCellButton(id));
+    }
+  })
+}
+
+initFunction(addThebelabButtonToCodeCells);
+</script>
+
+
+<script src="https://unpkg.com/thebelab@latest/lib/index.js" async></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+
+                // Clean up the language to make it work w/ CodeMirror and add it to the cell
+                dataLanguage = ""
+                dataLanguage = detectLanguage(dataLanguage);
+                codeCell.setAttribute('data-language', dataLanguage)
+                codeCell.setAttribute('data-executable', 'true')
+
+                // If the code cell is hidden, show it
+                var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
+                if (inputCheckbox !== null) {
+                    setCodeCellVisibility(inputCheckbox, 'visible');
+                }
+            });
+
+            // Remove the event listener from the page so keyboard press doesn't
+            // Change page
+            document.removeEventListener('keydown', initPageNav)
+            keyboardListener = false;
+
+            // Init thebelab
+            thebelab.bootstrap();
+
+            // Remove copy buttons since they won't work anymore
+            const copyAndThebeButtons = document.querySelectorAll('.copybtn, .thebebtn')
+            copyAndThebeButtons.forEach((button, index) => {
+                button.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+
+            // Find any cells with an initialization tag and ask ThebeLab to run them when ready
+            var thebeInitCells = document.querySelectorAll('div.tag_thebelab-init');
+            thebeInitCells.forEach((cell) => {
+                console.log("Initializing ThebeLab with cell: " + cell.id);
+                cell.querySelector('.thebelab-run-button').click();
+            });
+        }
+
+        // Add event listener for the function to modify code cells
+        const thebelabButtons = document.querySelectorAll('[id^=thebelab], [id$=thebelab]')
+        thebelabButtons.forEach((thebelabButton,index) => {
+            if (thebelabButton === null) {
+                setTimeout(initThebelab, 250)
+                return
+            };
+            thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        });
+    }
+
+    // Initialize Thebelab
+    initFunction(initThebelab);
+
+// Helper function to munge the language name
+var detectLanguage = (language) => {
+    if (language.indexOf('python') > -1) {
+        language = "python";
+    }
+    return language;
+}
+</script>
+
+
+
+  <!-- Load the auto-generating TOC (non-async otherwise the TOC won't load w/ turbolinks) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.8.1/tocbot.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/tocbot.js"></script>
+
+  <!-- Google analytics -->
+  
+
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script>
+
+  <!-- Load custom website scripts -->
+  <script src="/oqs-jupyterbook/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/oqs-jupyterbook/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return dict2param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
+    // If the link is an internal link...
+    if (href.search("https://matteoacrossi.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['jupyterhub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'jupyterhub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    jupyterHubUrl = rest['jupyterhub'];
+    var hubType = null;
+    var hubUrl = null;
+    if (jupyterHubUrl !== undefined) {
+      hubType = 'jupyterhub';
+      hubUrl = jupyterHubUrl;
+    }
+
+    if (hubType !== null) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      var interactButtons = document.querySelectorAll("button.interact-button")
+      var lastButton = interactButtons[interactButtons.length-1];
+      var link = lastButton.parentElement;
+
+      // If we've already run this, skip the link updating
+      if (link.nextElementSibling !== null) {
+        return;
+      }
+
+      // Update the link and add context div
+      var href = link.getAttribute('href');
+      if (lastButton.id === 'interact-button-binder') {
+        // If binder links exist, we need to re-work them for jupyterhub
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+          first = [hubUrl, 'git-sync'].join('/')
+        } else {
+          first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+        }
+        href = first + '?' + binder2Jupyterhub(href);
+      } else {
+        // If interact button isn't binderhub, assume it's jupyterhub
+        // If JupyterHub links, we only need to replace the hub url
+        href = href.replace("", hubUrl);
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // Assume we're working from a local Jupyter server and remove `/hub`
+          href = href.replace("/hub/user-redirect", "");
+        }
+      }
+      link.setAttribute('href', decodeURIComponent(href));
+
+      // Add text after interact link saying where we're launching
+      hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+      link.insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
+
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
+
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js" async></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+
+  <!-- Load JS that depends on site variables -->
+  <script src="/oqs-jupyterbook/assets/js/page/copy-button.js" async></script>
+
+  <!-- Hide cell code -->
+  <script src="/oqs-jupyterbook/assets/js/page/hide-cell.js" async></script>
+
+  <!-- Printing the screen -->
+  <!-- Include nbinteract for interactive widgets -->
+<script src="https://printjs-4de6.kxcdn.com/print.min.js" async></script>
+<script>
+printContent = () => {
+    // MathJax displays a second version of any math for assistive devices etc.
+    // This prevents double-rendering in the PDF output.
+    var ignoreAssistList = [];
+    assistives = document.querySelectorAll('.MathJax_Display span.MJX_Assistive_MathML').forEach((element, index) => {
+        var thisId = 'MathJax-assistive-' + index.toString();
+        element.setAttribute('id', thisId);
+        ignoreAssistList.push(thisId)
+    });
+
+    // Print the actual content object
+    printJS({
+        printable: 'textbook_content',
+        type: 'html',
+        css: "/oqs-jupyterbook/assets/css/styles.css",
+        style: "#textbook_content {padding-top: 40px};",
+        scanStyles: false,
+        targetStyles: ["*"],
+        ignoreElements: ignoreAssistList,
+        documentTitle: "Made with Jupyter Book"
+    })
+};
+
+initPrint = () => {
+    document.querySelector('#interact-button-print').addEventListener('click', printContent)
+}
+
+initFunction(initPrint)
+</script>
+
+</head>
+
+  <body>
+    <!-- Include the ThebeLab config so it gets reloaded on each page -->
+    <script type="text/x-thebe-config">{
+    requestKernel: true,
+    binderOptions: {
+    repo: "jupyter/jupyter-book",
+    ref: "gh-pages",
+    },
+    codeMirrorConfig: {
+    theme: "abcdef",
+    mode: "python"
+    },
+    kernelOptions: {
+    kernelName: "python3",
+    path: "content"
+    }
+}
+</script>
+
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://jupyterbook.org/intro.html"><img src="/oqs-jupyterbook/images/logo/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">Jupyter Book</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="index">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/index.html"
+        >
+          
+            1.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="introduction">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/introduction.html"
+        >
+          
+            2.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="preliminaries">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/preliminaries.html"
+        >
+          
+            3.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="microscopic_derivation_of_the_markovian_master_equation">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html"
+        >
+          
+            4.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="markovian_semigroups">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/markovian_semigroups.html"
+        >
+          
+            5.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="divisible_maps">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/divisible_maps.html"
+        >
+          
+            6.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="projection_operator_techniques">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/projection_operator_techniques.html"
+        >
+          
+            7.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="jaynes_cummings_with_losses">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/jaynes_cummings_with_losses.html"
+        >
+          
+            8.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="non-markovian_quantum_dynamics">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/non-markovian_quantum_dynamics.html"
+        >
+          
+            9.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="">
+        <a class="c-sidebar__entry"
+          href=".html"
+        >
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+        
+
+        
+
+        <ul class="c-sidebar__sections">
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-depolarizing_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-depolarizing_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-reservoir-engineering">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-reservoir-engineering.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-pauli_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-pauli_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-amplitude_damping">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-amplitude_damping.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+        </ul>
+      
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</nav>
+
+      
+      <div class="c-topbar" id="top-navbar">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <div class="c-topbar__buttons">
+    <button
+      id="js-sidebar-toggle"
+      class="hamburger hamburger--arrowalt is-active"
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="buttons">
+<div class="download-buttons-dropdown">
+    <button id="dropdown-button-trigger" class="interact-button"><img src="/oqs-jupyterbook/assets/images/download-solid.svg" alt="Download" /></button>
+    <div class="download-buttons">
+        <a href="/oqs-jupyterbook/content/preliminaries.ipynb" download>
+        <button id="interact-button-download" class="interact-button">.ipynb</button>
+        </a>
+        
+        <a id="interact-button-print"><button id="interact-button-download" class="interact-button">.pdf</button></a>
+    </div>
+</div>
+
+
+  <button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+  
+  
+
+
+
+
+
+
+<a href="https://mybinder.org/v2/gh/jupyter/jupyter-book/gh-pages?filepath=content%2Fpreliminaries.ipynb"><button class="interact-button" id="interact-button-binder"><img class="interact-button-logo" src="/oqs-jupyterbook/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
+  
+
+
+</div>
+
+  </div>
+  <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+  <aside class="sidebar__right">
+    <header><h4 class="nav__title"><img src="/oqs-jupyterbook/assets/images/list-solid.svg" alt="Search" />   On this page</h4></header>
+    <nav class="onthispage">
+    </nav>
+  </aside>
+  <a href="/oqs-jupyterbook/search.html" class="topbar-right-button" id="search-button">
+    <img src="/oqs-jupyterbook/assets/images/search-solid.svg" alt="Search" />
+  </a>
+</div>
+
+      <main class="c-textbook__page" tabindex="-1">
+            <div class="c-textbook__content" id="textbook_content">
+                  <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Preliminaries</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="2.-Preliminaries:-quantum-states,-channels-and-dynamical-maps,-and-circuit-design-">2. Preliminaries: quantum states, channels and dynamical maps, and circuit design <a id="preliminaries" /><a class="anchor-link" href="#2.-Preliminaries:-quantum-states,-channels-and-dynamical-maps,-and-circuit-design-"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents"> </a></h2><ol>
+<li><p><a href="#preliminaries">Preliminaries: quantum states, channels and dynamical maps</a></p>
+<ol>
+<li><a href="#states">The structure of quantum states</a><ul>
+<li><a href="#ex1">Example 1</a></li>
+<li><a href="#exercise211">Exercise 2.1.1</a></li>
+</ul>
+</li>
+<li><a href="#maps">Positive and completely positive maps</a><ul>
+<li><a href="#ex2">Example 2</a></li>
+<li><a href="#exercise221">Exercise 2.2.1</a></li>
+<li><a href="#ex3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#evolution">How to describe quantum evolution</a></li>
+<li><a href="#gencon">General considerations for circuit implementation and Qiskit tools</a><ol>
+<li><a href="#cirdesign">Circuit design and implementation on IBM Q Experience processors</a></li>
+<li><a href="#noise">Noise mitigation</a></li>
+<li><a href="#tom">Quantum state tomography</a><ul>
+<li><a href="#exercise241">Exercise 2.4.1</a></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p><a href="#ref">References</a></p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\newcommand{\Mn}{M_n(\mathbb{C})}$
+$\newcommand{\Mq}{M_2(\mathbb{C})}$
+$\newcommand{\Mk}{M_k(\mathbb{C})}$
+$\newcommand{\Mm}{M_m(\mathbb{C})}$
+$\newcommand{\Mnm}{M_{n \times m}(\mathbb{C})}$
+$\newcommand{\Mnp}{M_n^+(\mathbb{C})}$
+$\newcommand{\ra}{\,\rightarrow\,}$
+$\newcommand{\id}{\mbox{id} }$
+$\newcommand{\ot}{ {\,\otimes\,} }$
+$\newcommand{\Cd}{ {\mathbb{C}^d} }$
+$\newcommand{\Rn}{ {\mathbb{R}^n} }$</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This section closely follows Dariusz Chruściński's Lecture Notes presented at the school "Open Quantum Systems", Torun, June 20-24, 2012 and published as <a href="https://doi.org/10.1142/S1230161214400046"><em>On time-local generators of quantum evolution</em>, Open Syst. Inf. Dyn. <strong>21</strong>, 1440004 (2014)</a>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We begin by introducing basic notation and terminology.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.1.-The-structure-of-quantum-states-">2.1. The structure of quantum states <a id="states" /><a class="anchor-link" href="#2.1.-The-structure-of-quantum-states-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we discussed in <strong>Chapter 1</strong>, only pure states can be represented as vectors in Hilbert space, but that does not apply to all physically possible states. As an example, consider the situation depicted in the following figure.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit</span>
+<span class="n">bell</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># Create a Bell state</span>
+<span class="n">bell</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">bell</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">bell</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">bell</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">bell</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/preliminaries_7_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The state of the two qubits in the circuit is the Bell state $| \psi^- \rangle = \frac{1}{\sqrt{2} } \left( |01\rangle - |10\rangle \right)$, which is maximally entangled. If we were to describe the state of either of the two qubits alone, no single vector in their corresponding Hilbert spaces would faithfully characterize it. Indeed, it is easy to see that, regardless of which single-qubit unitary we apply to e.g. $q_0$, the probability of its measurement yielding zero is $1/2$, contrarily to the predictions for any pure state $\alpha |0 \rangle + \beta | 1 \rangle$. Instead, these probabilities are consistent with the situation in which one tosses a fair coin and prepares the qubit in states $|0\rangle$ or $|1\rangle$ depending on the outcome. In fact, <em>any</em> quantum state can be represented as such statistical mixture.</p>
+<p>Mathematically, statistical mixtures are represented by density operators. From any pure state $| \psi \rangle$, one can construct the corresponding projection operator $| \psi \rangle \langle \psi |$, which promotes the mathematical description of the state from vector to operator, but is otherwise equivalent. The reason why using operators becomes essential is that they admit a <em>convex sum</em>, that is, the operator $p_1 | \psi_1 \rangle \langle \psi_1 | + p_2 | \psi_2 \rangle \langle \psi_2 |$ results in a physical state if $p_1 + p_2 = 1$ and $| \psi_1 \rangle$, $| \psi_2 \rangle$ are normalized. Therefore, they can accomodate statistical mixtures of states in a very natural way. As a final remark, one usually finds the terms density matrix and density operator. While density matrix in principle refers to the matrix representing the density operator in some particular basis, it is common to use both terms indistinctly.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, let us define the concept formally. Consider a quantum system living in a finite-dimensional Hilbert space $\mathcal{H}$ isomorphic to $\mathbb{C}^n$. Fixing an orthonormal basis $\{e_1,\ldots,e_n\}$ in $\mathcal{H}$ any linear operator in $\mathcal{H}$ may be identified with an $n \times n$ complex matrix, i.e. an element from $M_n(\mathbb{C})$.  A mixed state of such system is represented by a density matrix, i.e. a matrix $\rho$ from $ M_n(\mathbb{C})$ such that $\,  \rho \geq 0$ (that is, it has real non-negative eigenvalues) and  ${\rm Tr}\, \rho=1$. The space of states $\mathfrak{S}_n$ of the $n$-level quantum system defines an $(n^2-1)$-dimensional convex set.  Pure states correspond to rank-1 projectors $|\psi \rangle \langle \psi|$ and define extremal elements of $\mathfrak{S}_n$. Any mixed state $\rho$ can be decomposed as</p>
+\begin{equation}
+    \rho  = \sum_k w_k |\psi_k \rangle \langle \psi_k| \ ,
+\tag{2.1}    
+\end{equation}<p>with $w_k &gt; 0$ and $\sum_k w_k =1$, i.e. $w_k$ provides a probability distribution. It should be stressed that the above decomposition is highly non-unique.</p>
+<p>To illustrate the concept of density operator let us consider the following example.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-1-">Example 1 <a id="ex1" /><a class="anchor-link" href="#Example-1-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>A 2-level system (qubit) living in $\mathbb{C}^2$. Any hermitian operator $\rho$ may be decomposed as follows</p>
+\begin{equation}
+    \rho = \frac 12 ( \mathbb{I}_2 + \sum_{k=1}^3 x_k \sigma_k) \ ,
+\tag{2.2}
+\end{equation}<p>where $\mathbf{x}=(x_1,x_2,x_3) \in \mathbb{R}^3$ and $\{\sigma_1,\sigma_2,\sigma_3\}$ are Pauli matrices. As usual $\mathbb{I}_n$ denotes the unit matrix in $M_n(\mathbb{C})$. It is, therefore, clear that $\rho$ is entirely characterized by the Bloch vector $\mathbf{x}$.
+This representation already guaranties that ${\rm Tr}\, \rho=1$. Hence, $\rho$ represents a density operator if and only if the corresponding eigenvalues $\{\lambda_-,\lambda_+\}$ are non-negative. One easily finds</p>
+\begin{equation}\label{}
+    \lambda_- = \frac 12 (1 - |\mathbf{x}|) \ , \ \ \  \lambda_+ = \frac 12 (1 + |\mathbf{x}|) \ ,
+\tag{2.3}
+\end{equation}<p>and hence $\rho \geq 0$ if and only if $|\mathbf{x}|=\sqrt{x_1^2 + x_2^2 + x_3^2} \leq 1$. This condition defines a unit ball in $\mathbb{R}^3$ known as a Bloch ball. A state is pure if $\rho$ defines a rank-1 projector, i.e. $\lambda_-=0$ and $\lambda_+=1$. This shows that pure states belong to Bloch sphere corresponding to $|\mathbf{x}|=1$. Unfortunately, this simple geometric picture is much more complicated if $n &gt;2$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For any $A \in M_n(\mathbb{C})$ we denote by $||A||_1 := {\rm Tr} |A|  = {\rm Tr}\sqrt{AA^\dagger}$ the trace-norm of $A$. If $\lambda_1,\ldots\lambda_n$ are the (necessarily nonnegative) eigenvalues of $AA^\dagger$, then
+$$   ||A||_1 = \sqrt{\lambda_1} + \ldots + \sqrt{\lambda_n} \ . $$</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The space of states $\mathfrak{S}_n$ is equipped with a natural metric structure: given two states $\rho,\sigma \in \mathfrak{S}_n$ one defines the corresponding distance</p>
+\begin{equation}
+    D[\rho,\sigma] = \frac 12 \,||\rho - \sigma||_1\ .
+\tag{2.4}
+\end{equation}
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This quantity  measures distinguishability between $\rho$ and $\sigma$. It is clear that $D[\rho,\sigma] =0$, i.e. $\rho$ and $\sigma$ are indistinguishable, if and only if $\rho=\sigma$. Note, that if $\rho$ and $\sigma$ are orthogonally supported, then
+$$ D[\rho,\sigma] = \frac 12 ( ||\rho||_1 + ||\sigma||_1) = 1\ , $$
+since $||\rho||_1=1$ for any density matrix $\rho$. In this case $\rho$ and $\sigma$ are perfectly distinguishable. Hence</p>
+\begin{equation}
+    0 \leq D[\rho,\sigma] \leq 1\ .
+\tag{2.5}    
+\end{equation}
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In particular, if $\rho$ and $\sigma$ are two states of a qubit and $\mathbf{x}$ and $\mathbf{y}$ are corresponding Bloch vectors then</p>
+\begin{equation}
+    D[\rho,\sigma] = \frac 12 \, |\mathbf{x} - \mathbf{y}|  \ ,
+\tag{2.6}
+\end{equation}<p>reproduces the standard Euclidean distance in $\mathbb{R}^3$.  For more information about the structure of quantum states see [7,8].</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When considering multipartite systems, one often needs to calculate the reduced state of some of its parts. This is done via the so-called partial trace. Suppose that we have a bipartite state, with parts $A$ and $B$, in a joint state $\rho_{AB}$. The state $\rho_A$ of part $A$ is obtained by tracing out over $B$'s degrees of freedom,
+\begin{equation}
+\rho_A = \mathrm{Tr}_{B} \left(\rho_{AB}\right) = \sum\limits_{i=1}^{D} \langle i | \rho_{AB} | i \rangle,
+\end{equation}
+where $\left\lbrace | i \rangle \right\rbrace$ is any orthogonal basis of $B$'s Hilbert space and $D$ is its dimension.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-2.1.1-">Exercise 2.1.1 <a id="exercise211" /><a class="anchor-link" href="#Exercise-2.1.1-"> </a></h3><p>Consider the following circuit</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit</span>
+<span class="n">entangled</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># Entangled state</span>
+<span class="n">entangled</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">entangled</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">entangled</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">entangled</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">entangled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/preliminaries_18_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Write the resulting two-qubit quantum state $\rho_{q_0,q_1} = | \psi \rangle \langle \psi |$.</li>
+<li>Compute the partial trace to obtain the reduced density matrix $\rho_{q_0}$ of $q_0$.</li>
+<li>Determine the Bloch vector $\mathbf{x}$ of $\rho_{q_0}$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.2.-Positive-and-completely-positive-maps-">2.2. Positive and completely positive maps <a id="maps" /><a class="anchor-link" href="#2.2.-Positive-and-completely-positive-maps-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In many situations, one needs to describe the change of the state of the system, for instance, when studying temporal evolution or to characterize the effect of a measurement. The general (linear) mathematical object used to map operators into operators is called a <em>map</em>. However, not all maps map density operators (aka states) into density operators. A map which does is called a <em>quantum channel</em>. Notice that a channel need not be a unitary transformation in general, but can map a pure state into a statistical mixture. For example, consider the following circuit, which implements a channel on qubit $q_0$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit</span>
+<span class="n">channel</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># CNOT gate</span>
+<span class="n">channel</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">channel</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/preliminaries_22_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If the initial state of $q_0$ is pure and in a coherent superposition of $|0\rangle$ and $|1\rangle$, the resulting state will no longer be pure.</p>
+<p>The requirements for a map to be a channel must obviously include the preservation of Hermiticity, positivity and the trace, since a state must have real-valued non-negative eigenvalues adding up to one. However, as we will see in what follows, there is a less obvious requirement that any channel must fulfil: <em>complete positivity</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Consider a linear map $\Phi : M_n(\mathbb{C}) \rightarrow M_n(\mathbb{C})$ and let  $M_n^+(\mathbb{C}) = \{ A \in M_n(\mathbb{C})\, |\, A\geq 0 \} \subset M_n(\mathbb{C})$ be a convex subset of positive matrices. One calls a linear map $\Phi$</p>
+<ul>
+<li>Hermicity-preserving  iff $\Phi(A^\dagger) = [\Phi(A)]^\dagger$,</li>
+<li>positive iff $\Phi(M_n^+(\mathbb{C}))\subset M_n^+(\mathbb{C})$,</li>
+<li>trace-preserving iff ${\rm Tr}\, \Phi(A) = {\rm Tr}\, A$,</li>
+<li>unital iff $\Phi(\mathbb{I}_n) = \mathbb{I}_n$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is easy to show that a positive map is necessarily Hermicity-preserving. Moreover, observing that $\mathfrak{S}_n = \{ A\in \Mnp\, |\ {\rm Tr}\, A=1\}$, it is clear that if $\Phi$ is positive and trace preserving then it maps density matrices into density matrices, i.e. $\Phi(\mathfrak{S}_n) \subset \mathfrak{S}_n$. If $\Phi$ is a linear map then one defines a dual map $\Phi^* : \Mn \ra \Mn$ by</p>
+\begin{equation}
+    {\rm Tr}[A \Phi^*(B)] = {\rm Tr}[\Phi(A)B]\ ,
+\tag{2.7}
+\end{equation}<p>for all $A,B\in \Mn$. $\Phi$ is trace-preserving iff $\Phi^*$ is unital [<a href="#1">1</a>-<a href="#3">3</a>].</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-2-">Example 2 <a id="ex2" /><a class="anchor-link" href="#Example-2-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Consider a transposition $T_n : M_n(\mathbb{C})\ra \Mn$, i.e. $T_n(\rho) = \rho^T$. Since transposition does not affect the spectrum of $A$ it is clear that $A^T \geq 0$ whenever $A\geq 0$. Note that $T_n$ is trace-preserving and unital.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Positive trace-preserving maps possess the following fundamental property</p>
+<p><strong>Proposition 1 ([<a href="#1">1</a>-<a href="#3">3</a>])</strong></p>
+<blockquote><p>If $\Phi$ is positive and trace-preserving, then</p>
+\begin{equation}
+    || \Phi(X)||_1 \leq ||X||_1\ ,
+\tag{2.8}
+\end{equation}<p>for all $X \in \Mn$, that is, $\Phi$ is a contraction in trace-norm. Hence</p>
+\begin{equation}
+    D[\Phi(\rho),\Phi(\sigma)] \leq D[\rho,\sigma]\ ,
+\tag{2.9}
+\end{equation}<p>which means that the distinguishability of $\rho$ and $\sigma$ never increases under the action of a positive and trace-preserving map.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It turns out that the positivity property is not sufficient to describe the dynamics of open quantum systems. The reason stems from the properties of composed systems. Composing two systems living in  $\mathcal{H}_1$ and $\mathcal{H}_2$, respectively, one obtains a system living in $\mathcal{H}=\mathcal{H}_1 \ot \mathcal{H}_2$. Let ${\rm dim}\, \mathcal{H}_1 = n$,  ${\rm dim}\, \mathcal{H}_2 = m$ and consider two linear maps
+$$ \Phi_1 : \Mn \ra  \Mn\ , \ \ \ \ \Phi_2 : \Mm \ra  \Mm\ \ . $$</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recalling that $\Mnm = \Mn \ot \Mm$ one defines a tensor product</p>
+$$ \Phi_1 \ot \Phi_2 : \Mnm \ra  \Mnm\ ,$$<p>as follows: for a fixed  orthonormal basis $\{e_1,\ldots,e_n\}$ in $\mathcal{H}_1$ let us define $e_{ij} := |e_i \rangle \langle e_j| \in \Mn$. Elements $\{e_{ij}\}$ for $i,j=1,\ldots,n$ define an orthonormal basis in $\Mn$ with respect to the standard inner product $(A,B) = {\rm tr}(A^\dagger B)$. Now, any matrix $A \in \Mnm$ may be represented in the following block form
+\begin{equation}
+    A = \sum_{i,j=1}^n e_{ij} \ot A_{ij}\ ,
+\tag{2.10}
+\end{equation}
+with $A_{ij} \in \Mm$. For example if $n=2$ one has
+\begin{equation}
+    A = \sum_{i,j=1}^2 e_{ij} \ot A_{ij} = \left( \begin{array}{c|c} A_{11} &amp; A_{12} \\ \hline A_{21} &amp; A_{22} \end{array} \right)\ .
+\tag{2.11}
+\end{equation}</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hence the action of $\Phi_1 \ot \Phi_2$ is given by
+\begin{equation}
+    [\Phi_1 \ot \Phi_2](A) := \sum_{i,j=1}^n \Phi_1(e_{ij}) \ot \Phi_2(A_{ij})\ .
+\tag{2.12}
+\end{equation}</p>
+<p>In particular if $n=2$ and $\Phi_1 = \mathbb{1}_2$, where $\mathbb{1}_n : \Mn \ra \Mn$ denotes an identity map defined by $\mathbb{1}_n(X) = X$, then</p>
+\begin{equation}
+   [\mathbb{1}_2 \ot \Phi](A) = \sum_{i,j=1}^2 e_{ij} \ot \Phi(A_{ij}) = \left( \begin{array}{c|c} \Phi(A_{11}) &amp; \Phi(A_{12}) \\ \hline \Phi(A_{21}) &amp; \Phi(A_{22}) \end{array} \right) \ .
+\tag{2.13}
+\end{equation}<p>Now comes a surprise: even if $\Phi_1$ and $\Phi_2$ are positive $\Phi_1 \ot \Phi_2$ need not be a positive map.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-3-">Example 3 <a id="ex3" /><a class="anchor-link" href="#Example-3-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Interestingly, the transposition map considered in <strong>Example 2</strong> loses its positivity when tensored with  another positive map. This map is evidently positive and trace-preserving. Consider $\mathbb{1}_2 \ot T_2$. It turns out that this maps is not positive in $M_4(\mathbb{C})$. Indeed, let</p>
+\begin{equation}\label{}
+     P^+_2 = \frac 12 \sum_{i,j=1}^2 e_{ij} \ot e_{ij} = \frac 12 \left( \begin{array}{cc|cc} 1 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ \hline   0 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 1 \end{array} \right) \ ,
+\tag{2.14}
+\end{equation}<p>be a state in $\mathbb{C}^2 \ot \mathbb{C}^2$. Note that $P^+_2 = |\psi^+_2 \rangle \langle \psi^+_2|$ with $\psi^+_2 = (e_1 \ot e_1 + e_2 \ot e_2)/\sqrt{2}$ being one of the well-known Bell states of two qubits. One finds</p>
+\begin{equation}\label{}
+    [\mathbb{1}_2 \ot T_2]( P^+_2) = \frac 12 \sum_{i,j=1}^2 e_{ij} \ot e_{ji} = \frac 12 \left( \begin{array}{cc|cc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ \hline   0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{array} \right) \ ,
+\tag{2.15}
+\end{equation}<p>Note that $[\mathbb{1}_2 \ot T_2]( P^+_2)$ has one negative eigenvalue and hence it is not a positive map.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This example proves that  quantum physics of composed systems  needs a more refined notion of positivity.  Consider again a linear map $\Phi : \Mn \ra \Mn$. One calls $\Phi$ $k$-positive if</p>
+\begin{equation}
+\mathbb{1}_k \ot \Phi : \Mk \ot \Mn \ra \Mk \ot \Mn \ ,
+\tag{2.16}
+\end{equation}<p>is positive. Clearly 1-positive is just positive and $k$-positivity implies $\ell$-positivity for $\ell &lt; k$. Finally, $\Phi$ is called <strong><em>completely positive (CP)</em></strong> if it is $k$-positive for $k=1,2,\ldots$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Interestingly, one has the following characterization:</p>
+<p><strong>Proposition 2 (Choi [<a href="#4">4</a>])</strong></p>
+<blockquote><p>If ${\rm dim}\, \mathcal{H} = n$, then $\Phi$ is CP if and only if $\Phi$ is $n$-positive.</p>
+</blockquote>
+<p>Denoting by $\mathcal{P}_k$ a convex set of $k$-positive maps one has the following chain of inclusions</p>
+\begin{equation}
+    {\rm CP} \equiv \mathcal{P}_n \subset \ldots \subset \mathcal{P}_2 \subset \mathcal{P}_1 \equiv {\rm Positive\ maps} \ .
+\end{equation}
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let $\{e_1,\ldots,e_n\}$ be a fixed orthonormal basis in $\mathcal{H}$ and let
+\begin{equation}
+ |\psi^+_n \rangle = \frac{1}{\sqrt{n} }\, \sum_{k=1}^n e_k \ot e_k\ ,
+\tag{2.17}
+\end{equation}</p>
+<p>denote a maximally entangled state in $\mathcal{H} \ot \mathcal{H}$. Moreover,  let $P^+_n = |\psi^+_n \rangle \langle \psi^+_n|$ denote the corresponding rank-1 projector.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Proposition 3 (Choi [<a href="#4">4</a>])</strong></p>
+<blockquote><p>$\Phi$ is CP if and only if $[\mathbb{1}_n \ot \Phi](P^+_n) \geq 0$.</p>
+</blockquote>
+<p>This beautiful result states that in order to prove that $\Phi$ is CP, or equivalently that $\mathbb{1}_n \ot \Phi$ is positive, it is enough to check whether $\mathbb{1}_n \ot \Phi$ is positive on one particular projector $P^+_n$. Positivity of $[\mathbb{1}_n \ot \Phi](P^+_n)$ guaranties that $[\mathbb{1}_n \ot \Phi](X) \geq 0$ for all positive $X \in \Mn \ot \Mn$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Corollary 1</strong></p>
+<blockquote><p>If $\Phi_1$ and $\Phi_2$ are CP maps, then $\Phi_1 \ot \Phi_2$ is always CP as well.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This analysis shows that the motivation to use CP maps is deeply rooted in physics and it is not just a mathematical trick! The very presence of quantum entangled states enforces us to use maps which are not only positive but also completely positive. The following result provides the most important characterization of CP maps.</p>
+<p><strong>Theorem 1 (Kraus form [<a href="#1">1</a>, <a href="#2">2</a>, <a href="#4">4</a>, <a href="#5">5</a>])</strong></p>
+<blockquote><p>A map $\Phi : \Mn \ra \Mn$ is CP if and only if</p>
+\begin{equation} \label{Kraus}
+\Phi(X) = \sum_\alpha\, K_\alpha X\, K_\alpha^\dagger\ ,
+\tag{2.18}
+\end{equation}<p>for $X \in M_n(\mathbb{C})$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Formula (<a href="#mjx-eqn-Kraus">2.18</a>) is usually called the <strong><em>Kraus</em></strong> or <strong><em>Operator Sum Representation</em></strong> of $\Phi$ and $K_\alpha$ are called Kraus operators. Actually, the above formula  appeared already in the Sudarshan et. al. paper [<a href="#6">6</a>]. It should be stressed that the Kraus representation is highly non unique. A completely positive trace preserving map (CPTP) is called a <strong><em>quantum channel</em></strong>. A CP map possessing a Kraus representation is trace-preserving iff</p>
+\begin{equation}
+ \sum_\alpha\, K_\alpha^\dagger \, K_\alpha = \mathbb{I}_n\ .
+\tag{2.19}
+\end{equation}
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following result shows the origin of a genuine quantum channel.</p>
+<p><strong>Theorem 2 (Unitary dilation)</strong></p>
+<blockquote><p>Any quantum channel $\Phi$ may be constructed as follows</p>
+\begin{equation}
+    \Phi(\rho) = {\rm Tr}_E \big[ U (\rho \ot \omega) U^\dagger \big]\ ,
+\label{200}
+\tag{2.20}
+\end{equation}<p>where $U$ is a unitary operator in $\mathcal{H}\ot \mathcal{H}_E$, $\omega$ is a density operator in $\mathcal{H}_E$, and ${\rm Tr}_E$ denotes the partial trace over $\mathcal{H}_E$.</p>
+</blockquote>
+<p>One usually interprets $\mathcal{H}_E$ as a Hilbert space of the environment and $\omega$ as its fixed state.
+Let</p>
+$$ \omega |E_k \rangle =  \lambda_k |E_k \rangle\  , $$<p>with $\lambda_k \geq 0$.  Moreover,  let $U = \sum_{k,l} U_{kl} \ot |E_k\rangle \langle E_l|$. Formula (<a href="#mjx-eqn-200">2.20</a>) implies</p>
+\begin{eqnarray*}
+    \Phi(\rho) &amp;=&amp; \sum_{m,n} \sum_{i,j} \sum_k \lambda_k \, {\rm Tr}_E \big[ (U_{ij} \ot |E_i \rangle \langle E_j|)  (\rho \ot |E_k \rangle \langle E_k|) (U_{mn}^\dagger \ot |E_n \rangle \langle E_m|) \big] \nonumber \\ &amp;=&amp; \sum_{m,n} \sum_{i,j} \sum_k \lambda_k \, {\rm Tr} [ |E_i \rangle \langle E_j|E_k \rangle \langle E_k|E_n \rangle \langle E_m|]\, U_{ij} \rho U_{mn}^\dagger \ .
+\end{eqnarray*}
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using ${\rm Tr} [ |E_i \rangle \langle E_j|E_k \rangle \langle E_k|E_n \rangle \langle E_m| ] = \delta_{im} \delta_{jk} \delta_{kn}$ and introducing $K_\alpha := K_{mn} = \sqrt{\lambda_n}\, U_{mn}$ one arrives at the Kraus representation $\Phi(\rho) = \sum_\alpha\, K_\alpha \rho\, K_\alpha^\dagger$ which proves that $\Phi$ defined <em>via</em> formula (<a href="#mjx-eqn-200">2.20</a>) is completely positive. One easily proves that $\Phi$ is also trace preserving and hence defines a quantum channel.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is worth stressing the importance of this last theorem for the digital simulation of OQS. It implies that <em>any</em> quantum channel can be simulated by using auxiliary degrees of freedom living in Hilbert space $\mathcal{H}_E$, preparing them in the appropriate state, and applying a unitary transformation to the total system. We will often use this strategy in our simulations, given that universal quantum computers are designed to apply only unitary transformations among the qubits.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-2.2.1-">Exercise 2.2.1 <a id="exercise221" /><a class="anchor-link" href="#Exercise-2.2.1-"> </a></h3><p>Consider the following circuit</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit</span>
+<span class="n">channel</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># CNOT gate</span>
+<span class="n">channel</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">channel</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">channel</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">channel</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/preliminaries_45_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Calculate the outcoming state of $q_0$ for the following incoming states: $\alpha |0\rangle + \beta |1\rangle$ with $|\alpha|^2 + |\beta|^2 = 1$, $p_1 |+ \rangle \langle +| + p_2 | - \rangle \langle - |$ with $p_1 + p_2 = 1$.</li>
+<li>Verify that the channel is completely positive using proposition 2 (consider a third ancillary qubit $q_2$ maximally entangled with $q_0$).</li>
+<li>Determine the Kraus representation of the channel.</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.3.-How-to-describe-quantum-evolution-">2.3. How to describe quantum evolution <a id="evolution" /><a class="anchor-link" href="#2.3.-How-to-describe-quantum-evolution-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If $\rho$ is an initial state of an $n$-level quantum system, then by its evolution we mean a trajectory $\rho_t$ for $t \geq 0$ starting at $\rho$. The simplest example of quantum evolution is provided by the von Neumann equation (in units of $\hbar$)</p>
+\begin{equation}\label{v-N}
+    i\dot{\rho}_t = [H,\rho_t]\ ,
+\tag{2.21}
+\end{equation}<p>with the corresponding solution</p>
+\begin{equation}\label{}
+    \rho_t = \mathcal{U}_t (\rho)\ ,
+\tag{2.22}
+\end{equation}<p>where the map $\mathcal{U}_t : \Mn \ra \Mn$ is defined by
+\begin{equation}\label{UUU}
+    \mathcal{U}_t(\rho) := U_t \rho U_t^\dagger\ ,
+\tag{2.23}
+\end{equation}</p>
+<p>with $U_t = e^{-iHt}$. Note that (<a href="#mjx-eqn-UUU">2.23</a>) defines a family of quantum channels.</p>
+<p>Let us observe that the 1-parameter unitary group $U_t$ implies the following composition law</p>
+\begin{equation}\label{U-t-s}
+    \mathcal{U}_t \, \mathcal{U}_s = \mathcal{U}_{t+s}\ ,
+\tag{2.24}
+\end{equation}<p>for all $t,s \in \mathbb{R}$. Hence $\mathcal{U}_t$ defines a 1-parameter group of CP maps.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Equation (<a href="#mjx-eqn-v-N">2.21</a>) may be transformed into the following equation for $\mathcal{U}_t$</p>
+\begin{equation}\label{v-N-U}
+    \dot{\mathcal{U} }_t  = L \,\mathcal{U}_t\ , \ \ \ \mathcal{U}_0 = \mathbb{1}\ ,
+\tag{2.25}
+\end{equation}<p>where the generator $L : \Mn \ra \Mn$ is defined by</p>
+\begin{equation}\label{}
+L(X) = -i [H,X]\ ,
+\tag{2.26}
+\end{equation}<p>for any $X \in \Mn$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now come the natural questions:</p>
+<ol>
+<li><p>how to generalize the unitary evolution defined by (<a href="#mjx-eqn-UUU">2.23</a>), valid for closed systems, to open quantum systems?</p>
+</li>
+<li><p>how to generalize the corresponding equation of motion (<a href="#mjx-eqn-v-N-U">2.25</a>)?</p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Definition 1</strong></p>
+<blockquote><p>By a general quantum evolution we mean a dynamical map, i.e. a family of quantum channels $\Lambda_t : \Mn \ra \Mn$ for $t \geq 0$ such that $\Lambda_0 = \mathbb{1}_n$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A dynamical map $\Lambda_t$ maps an initial state $\rho$ into a current state $\rho_t := \Lambda_t(\rho)$ and hence provides the natural generalization of the unitary evolution $\rho_t = \mathcal{U}_t(\rho)$. Assuming that $\rho_t$ satisfies a linear equation and that the initial state $\rho$ provides all necessary information to uniquely determine $\rho_t$ we expect that $\rho_t$ satisfies the following equation</p>
+\begin{equation}\label{}
+    \dot{\rho}_t = L_t(\rho_t)\ ,
+\tag{2.27}
+\end{equation}<p>or equivalently</p>
+\begin{equation}\label{ME}
+    \dot{\Lambda}_t = L_t\Lambda_t\ ,\ \ \ \Lambda_0 = \mathbb{1}_n\ ,
+\tag{2.28}
+\end{equation}<p>where $L_t : \Mn \ra \Mn$ denotes a time-dependent generator. This equation provides a natural generalization of (<a href="#mjx-eqn-v-N-U">2.25</a>).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The formal solution of (<a href="#mjx-eqn-ME">2.28</a>) may be written as follows
+\begin{equation}\label{Lambda-t}
+    \Lambda_t = {\rm T} \exp\left( \int_0^t L_\tau\, d\tau\right)\ ,
+\tag{2.29}
+\end{equation}</p>
+<p>where T denotes the chronological ordering operator. The above formula is defined by the following Dyson series</p>
+\begin{equation}\label{Dyson}
+    \Lambda_t = \mathbb{1}_n + \int_0^t dt_1\,  L_{t_1} + \int_0^{t} dt_1 \int_0^{t_1} dt_2 \,  L_{t_1} \,  L_{t_2} + \ldots \ ,
+\tag{2.30}
+\end{equation}<p>provided that it converges.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.4.-General-considerations-for-circuit-implementation-and-Qiskit-tools-">2.4. General considerations for circuit implementation and Qiskit tools <a id="gencon" /><a class="anchor-link" href="#2.4.-General-considerations-for-circuit-implementation-and-Qiskit-tools-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.4.1.-Circuit-design-and-implementation-on-IBM-Q-Experience-processors-">2.4.1. Circuit design and implementation on IBM Q Experience processors <a id="cirdesign" /><a class="anchor-link" href="#2.4.1.-Circuit-design-and-implementation-on-IBM-Q-Experience-processors-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this section, we will briefly discuss the main aspects to take into account when designing a circuit to be implemented on a real device from the IBM Q Experience in order to reduce the noise in the experiment. As we introduced in <strong>Chapter 1</strong> and briefly again in the discussion of the <em>dilation theorem</em>, the general strategy consists in using some qubits to play the role of the system and other qubits for the environment and then applying the appropriate unitary gates among them to simulate the dynamics. In fact, we will even use extra ancillary qubits to quantify some dynamical properties of some dynamical evolutions in <strong>Chapter 7</strong>. In any case, there are many choices for the roles of the qubits, as well as of unitaries, that would be equivalent in principle. However, due to the noisy nature of the current NISQ devices, not all of them yield equally good results.</p>
+<p>Given the large number of experimental runs allowed by the devices ($N = 8192$), the errors due to statistical fluctuations, of order $\mathcal{O}(1/\sqrt{N}) \approx 0.011$, are generally far less significant than other sources of error. The discrepancy between the experimental points and the theoretical predictions, on the other hand, often come from systematic errors induced by various factors in the hardware implementation. First, the qubits undergo relaxation and decoherence due to external noise. This error becomes more relevant when increasing the depth of the circuit. As we add more gates, the circuit takes longer to run, hence being more susceptible to these effects. Second, the gates have errors due to cross-talk and unwanted interactions between qubits when addressing them with pulses. In particular, the error rate of CNOT gates is about 10 times larger than single-qubit unitaries. Finally, there is a readout error affecting the quantum measurement, although this can be mitigated to some extent, as we discuss later on. The error rates and noise parameters on IBM Q devices are characterized on a daily basis using randomized benchmarking techniques. Since there are various, interdependent sources of noise, modeling and predicting the deviations in the experimental data is a non-trivial matter, beyond the scope of this book. Let us discuss some general guidelines targeted at minimising the aforementioned inaccuracies.</p>
+<p>Since the IBM Q Experience devices are universal quantum computers, they enable the implementation of any unitary transformation of their constituent qubits; once a quantum circuit is provided for its execution, it is compiled into an equivalent circuit involving only the machine's basis gates (that is, those realisable experimentally). However, if the circuit requires a multi-qubit gate among qubits that are not physically connected [<a href="#1">1</a>], the corresponding gate will be replaced with a longer circuit in which the states are swapped to neighbouring qubits in the compiled circuit. Since every swap gate includes a minimum of three CNOT gates, and these introduce considerable noise to the execution, it is crucial to assign the relevant qubits involved in the simulation (e.g. system, environment and ancillae) to the machine's qubits so that the number of CNOT gates between
+disconnected qubits is minimised. Furthermore, the devices are calibrated daily and the errors of the basis gates are reported. This information can also be taken into account in the qubit assignment, as using the CNOT gates with smaller errors is preferable. The figure below shows the connectivity layout of <code>ibmq_16_melbourne</code>, IBM Q's 14-qubit device.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="images/layout.png" width="500" height="50"></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In addition to the gate errors, the qubits' readout errors characterising the discrepancies between the qubit state and the measurement outcome probabilities are also provided. In the IBM Q Experience devices, there are considerable differences in the readout errors of the different qubits, so this information should also be taken into account in the qubit-assignment process: if possible, it is preferable to assign the system (and any auxiliary ancillae whose measurement is required) to low readout-error qubits, while qubits with large readout errors  can still be used to simulate the environment or other ancillae that need not be measured. In any case, Qiskit provides post-processing error-mitigation tools that generally improve the experimental
+results under the package \texttt{ignis}. We will explain how to use it in the next subsection.</p>
+<p><a id='1'></a> [1]: The basis gates for the IBM Q Experience devices include any single-qubit rotation, whereas the only
+multi-qubit gates are CNOTs. Two qubits are connected in a given device if there is a basis CNOT between them.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.4.2-Noise-mitigation-">2.4.2 Noise mitigation <a id="noise" /><a class="anchor-link" href="#2.4.2-Noise-mitigation-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we prepare a qubit in state e.g. $|0\rangle$ and measure it in a NISQ device, we will not obtain the outcome 0 with probability one due to imperfections in the measurement process. Nevertheless, Qiskit's <code>Ignis</code> provides a tool to mitigate these errors that is very easy to use.</p>
+<p>The working principle is the following. We first prepare all possible computational-basis states $| 0\cdots 0 \rangle, | 0\cdots 1 \rangle, \ldots, | 1\cdots 1 \rangle$ and measure their corresponding outcome probabilities (notice that it is only necessary to include the qubits whose measurement outcomes are needed). Once these are known, they can be used to correct any other experimental result by finding, via likelihood maximization, the experimental outcome that is most congruent with the observed measurement deviations. All the data shown in the book have been mitigated as described above.</p>
+<p>The snippet below contains an example of the code needed to use the noise mitigation tool.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">IBMQ</span><span class="p">,</span> <span class="n">execute</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span><span class="p">,</span> <span class="n">plot_state_city</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">IBMQ</span><span class="o">.</span><span class="n">load_account</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;AccountProvider for IBMQ(hub=&#39;ibm-q&#39;, group=&#39;open&#39;, project=&#39;main&#39;)&gt;</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">IBMQ</span><span class="o">.</span><span class="n">get_provider</span><span class="p">()</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibmqx2&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># qiskit-ignis provides tools for noise mitigation</span>
+<span class="kn">from</span> <span class="nn">qiskit.ignis.mitigation.measurement</span> <span class="kn">import</span> <span class="n">complete_meas_cal</span><span class="p">,</span> <span class="n">CompleteMeasFitter</span><span class="p">,</span> <span class="n">MeasurementFilter</span>
+
+<span class="c1"># For visualizing the circuits</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Suppose we have a 5-qubit quantum computer, and we want to perform measurements on qubits 0 and 2</span>
+
+<span class="c1"># We first initialize a 5-qubit quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Next, we generate the calibration circuits</span>
+<span class="n">meas_calibs</span><span class="p">,</span> <span class="n">state_labels</span> <span class="o">=</span> <span class="n">complete_meas_cal</span><span class="p">(</span><span class="n">qubit_list</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">qr</span><span class="o">=</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># We can plot them </span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">circuit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">meas_calibs</span><span class="p">):</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State labels:&quot;</span><span class="p">,</span><span class="n">state_labels</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>State labels: [&#39;00&#39;, &#39;01&#39;, &#39;10&#39;, &#39;11&#39;]
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="images/preliminaries_64_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We now perform the calibration on the real device</span>
+<span class="n">job_calibration</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">meas_calibs</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">cal_results</span> <span class="o">=</span> <span class="n">job_calibration</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We now calculate the calibration matrix from the outcomes</span>
+<span class="n">meas_fitter</span> <span class="o">=</span> <span class="n">CompleteMeasFitter</span><span class="p">(</span><span class="n">cal_results</span><span class="p">,</span> <span class="n">state_labels</span><span class="p">)</span>
+<span class="n">meas_fitter</span><span class="o">.</span><span class="n">plot_calibration</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="images/preliminaries_66_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The element $(i, j)$ of the calibration matrix is the probability that the prepared state $j$ (columns) is measured to be in $i$ (rows). In a perfect, noiseless situation, it would be equal to the identity matrix.</p>
+<p>In the real devices, we can see that, for example, there is a certain probability that the state $|01\rangle$ is actually measured to be $|00\rangle$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># What is the measurement fidelity?</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Measurement Fidelity: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">meas_fitter</span><span class="o">.</span><span class="n">readout_fidelity</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Average Measurement Fidelity: 0.953369
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The calibration matrix is used for mitigating the measurement counts. Let's see it in action in an example where we generate a Bell state.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make a 2Q Bell state between Q0 and Q2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">bell</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="n">bell</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">bell</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">bell</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">bell</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">meas</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="n">meas</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">meas</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">bell</span> <span class="o">+</span> <span class="n">meas</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/preliminaries_70_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We execute the circuit</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We also simulate the circuit in a noiseless case</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">Aer</span>
+<span class="n">simjob</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;qasm_simulator&#39;</span><span class="p">),</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">simresults</span> <span class="o">=</span> <span class="n">simjob</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We get the raw counts</span>
+<span class="n">raw_counts</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">sim_counts</span> <span class="o">=</span> <span class="n">simresults</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+
+<span class="c1"># ... and the mitigated counts</span>
+<span class="c1"># First we need to get the measurement filter object</span>
+<span class="n">meas_filter</span> <span class="o">=</span> <span class="n">meas_fitter</span><span class="o">.</span><span class="n">filter</span>
+<span class="c1"># and then we apply it to the results</span>
+<span class="n">mitigated_results</span> <span class="o">=</span> <span class="n">meas_filter</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">mitigated_counts</span> <span class="o">=</span> <span class="n">mitigated_results</span><span class="o">.</span><span class="n">get_counts</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_histogram</span><span class="p">([</span><span class="n">sim_counts</span><span class="p">,</span> <span class="n">raw_counts</span><span class="p">,</span> <span class="n">mitigated_counts</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;simulated&#39;</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">,</span> <span class="s1">&#39;mitigated&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/preliminaries_74_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see that, thanks to mitigation, spurious counts for the '00' and '11' states are filtered out. The counts for '01' and '10' are still deviating from the expected ones because of other sources of noise other than measurements (gate errors, decoherence...).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For more detailed information, please refer to the <code>qiskit</code> documentation and to the Ignis <a href="https://github.com/Qiskit/qiskit-iqx-tutorials/blob/master/qiskit/advanced/ignis/4_measurement_error_mitigation.ipynb">measurement mitigation tutorial notebook</a>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.4.3-Quantum-state-tomography-">2.4.3 Quantum state tomography <a id="tom" /><a class="anchor-link" href="#2.4.3-Quantum-state-tomography-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>State tomography is the process of reconstructing the density operator of a quantum system by performing a set of measurements on identical preparations of its state. To be able to uniquely identify the state, the measurements must be <strong><em>tomographically complete</em></strong>, meaning that the measurement operators must form an operator basis on the Hilbert space of the system, so that full information of the state can be obtained.</p>
+<p>State tomography is very useful for the characterization of devices, in particular for determining the actual state of qubits under the action of noise.</p>
+<h4 id="How-does-it-work?">How does it work?<a class="anchor-link" href="#How-does-it-work?"> </a></h4><p>Since the Pauli matrices form a tomographically complete set of measurements, and they are natural choice of measurement operators for a digital quantum computer, we will focus on those.</p>
+<p>Given a qubit in the state $\rho$, the expectation values of the Pauli matrices are given by</p>
+$$ \langle \sigma_i \rangle = \text{Tr}[\rho \sigma_i], \qquad i=1,2,3 $$<p>where we identify $\sigma_0 = \mathbb{I}$, $\sigma_1 = \sigma_x$, $\sigma_2 =\sigma_y$, and $\sigma_3 = \sigma_z$. 
+By performing a large number of measurements of $\sigma_x$, $\sigma_y$, $\sigma_z$, one obtains an <em>estimate</em> of the expectation values of the operators, let's call them $\overline{\sigma_i}$ and could then write the density operator of the system as</p>
+$$ \rho = \frac 12 \left(\mathbb{I} + \sum_{i=1}^3 \overline{\sigma_i} \sigma_i \right).$$<p>This method would work if $\overline{\sigma_i} = \langle \sigma_i \rangle$, but, since this is not the case with a finite number of measurement shots, the equation above can give states that are not physical.</p>
+<p>In order to obtain a physical density operator, a <strong><em>maximum-likelihood method</em></strong> is employed: among all possible density operators, the one that maximizes the probability to give $\overline{\sigma_i}$ as expectation values is chosen as the result of the tomography process.</p>
+<p>For reconstructing a state of $n$ qubits, all possible combinations of the Pauli matrices $\sigma_{i_1} \otimes \ldots \otimes \sigma_{i_n}$ are needed, with $i_{j} = 0,\ldots,3$, meaning $3^n-1$ measurement (the case $\sigma_0 ^{\otimes n}$ doesn't need to be measured).</p>
+<p><code>qiskit</code> implements the maximum-likelihood state tomography in the <code>qiskit-ignis</code> package. 
+Here we will see an example with the Bell state prepared above</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We import the required classes from ignis.</span>
+<span class="kn">from</span> <span class="nn">qiskit.ignis.verification.tomography</span> <span class="kn">import</span> <span class="n">state_tomography_circuits</span><span class="p">,</span> <span class="n">StateTomographyFitter</span>
+
+<span class="kn">from</span> <span class="nn">qiskit.tools.qi.qi</span> <span class="kn">import</span> <span class="n">partial_trace</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">job_state_vec</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">bell</span><span class="p">,</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">))</span>
+<span class="n">state_vec</span> <span class="o">=</span> <span class="n">partial_trace</span><span class="p">(</span><span class="n">job_state_vec</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">plot_state_city</span><span class="p">(</span><span class="n">state_vec</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/preliminaries_80_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The bar plot above shows the real (left) and imaginary (right) parts of the density matrix of the Bell state. 
+Now let's perform a two-qubit tomography on the real device</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We construct all the tomographic circuits</span>
+<span class="n">qst</span> <span class="o">=</span> <span class="n">state_tomography_circuits</span><span class="p">(</span><span class="n">bell</span><span class="p">,</span> <span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+
+<span class="c1"># We can plot them</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">circuit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">qst</span><span class="p">):</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">3</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="images/preliminaries_82_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We execute the tomography circuits on the real device</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">qst</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We create a StateTomographyFitter from the job result and the tomography circuit</span>
+<span class="n">tomo_fitter</span> <span class="o">=</span> <span class="n">StateTomographyFitter</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">(),</span> <span class="n">qst</span><span class="p">)</span>
+
+<span class="c1"># To obtain the </span>
+<span class="n">rho_tomo</span> <span class="o">=</span> <span class="n">tomo_fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_state_city</span><span class="p">(</span><span class="n">rho_tomo</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/preliminaries_85_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_state_city</span><span class="p">(</span><span class="n">state_vec</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/preliminaries_86_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-2.4.1-">Exercise 2.4.1 <a id="exercise241" /><a class="anchor-link" href="#Exercise-2.4.1-"> </a></h3><p>In order to measure quantitatively how "close" the experimental state tomography is to the expected state of the system, we can employ <a href="https://en.wikipedia.org/wiki/Fidelity_of_quantum_states">quantum state fidelity</a>:</p>
+$$ {\displaystyle F(\rho ,\sigma )=\left[\operatorname {Tr} {\sqrt { {\sqrt {\rho } }\sigma {\sqrt {\rho } }} }\right]^{2} }$$<p>The fidelity goes from one, in the case $\rho = \sigma$, to zero (when $\rho$ and $\sigma$ are orthogonal).
+Qiskit contains an implementation of state fidelity.</p>
+<blockquote><p><em>TASKS:</em></p>
+<ol>
+<li>Measure the fidelity of <code>rho_tomo</code> to <code>state_vec</code></li>
+<li>Perform the state tomography after applying the measurement error mitigation. Is the fidelity higher?</li>
+</ol>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import the state_fidelity function</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">state_fidelity</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Exercise code:</span>
+<span class="c1"># ...</span>
+<span class="c1"># ...</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References-">References <a id="ref" /><a class="anchor-link" href="#References-"> </a></h2><p>[1] <a href="https://doi.org/10.1017/CBO9780511546631">V. Paulsen, <em>Completely Bounded Maps and Operator Algebras</em>, Cambridge University Press, 2003</a> <a id='1'></a></p>
+<p>[2] <a href="https://www.springer.com/gp/book/9781461277385">R. V. Kadison and J. R. Ringrose, <em>Fundamentals of the theory of operator algebras</em>, vol I &amp; II. Graduate Studies in Mathematics, American Mathematical Society, 1997</a> <a id='2'></a></p>
+<p>[3] <a href="https://press.princeton.edu/books/paperback/9780691168258/positive-definite-matrices">R. Bhatia, <em>Positive Deﬁnite Matrices</em>, Princeton University Press, 2006</a> <a id='3'></a></p>
+<p>[4] <a href="https://doi.org/10.1016/0024-3795(75">M.-D. Choi, Lin. Alg. Appl. <strong>10</strong>, 285 (1975)</a>90075-0) <a id='4'></a></p>
+<p>[5] <a href="https://doi.org/10.1007/3-540-12732-1">K. Kraus, <em>States, Eﬀects and Operations: Fundamental Notions of Quantum Theory</em>, Springer Verlag, 1983</a></p>
+<p>[6] <a href="https://doi.org/10.1103/PhysRev.121.920">E. C. G. Sudarshan, P. Mathews, and J. Rau, Phys. Rev. <strong>121</strong>, 920 (1961)</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
+            </div>
+            <div class="c-textbook__footer" id="textbook_footer">
+              
+<nav class="c-page__nav">
+  
+    
+    
+
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/oqs-jupyterbook/introduction.html">
+      〈 <span class="u-margin-right-tiny"></span> Introduction
+    </a>
+  
+
+  
+    
+
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html">
+      Microscopic derivation of the mast... <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+              <footer>
+  <p class="footer">This page was created by <a href="https://github.com/jupyter/jupyter-book/graphs/contributors">The Jupyter Book Community</a></p>
+</footer>
+
+            </div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

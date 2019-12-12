@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Dynamical maps: Markovian semigroups</title>
+  <meta name="description" content="        Dynamical maps: Markovian semigroups    4. Dynamical maps: Markovian semigroups  Contents Dynamical maps: Markovian semigroupsExample 4Example 5Refer...">
+
+  <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/markovian_semigroups.html">
+  <link rel="alternate" type="application/rss+xml" title="Jupyter Book" href="https://matteoacrossi.github.io/oqs-jupyterbook/feed.xml">
+
+  <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/markovian_semigroups.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Dynamical maps: Markovian semigroups" />
+<meta property="og:description" content="        Dynamical maps: Markovian semigroups    4. Dynamical maps: Markovian semigroups  Contents Dynamical maps: Markovian semigroupsExample 4Example 5Refer..." />
+<meta property="og:image"       content="https://matteoacrossi.github.io/oqs-jupyterbook/images/logo/logo.png" />
+
+<meta name="twitter:card" content="summary">
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/markovian_semigroups.html",
+  "headline": "Dynamical maps: Markovian semigroups",
+  "datePublished": "2019-12-12T11:03:18+00:00",
+  "dateModified": "2019-12-12T11:03:18+00:00",
+  "description": "        Dynamical maps: Markovian semigroups    4. Dynamical maps: Markovian semigroups  Contents Dynamical maps: Markovian semigroupsExample 4Example 5Refer...",
+  "author": {
+    "@type": "Person",
+    "name": "The Jupyter Book Community"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/css/styles.css">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/oqs-jupyterbook/images/logo/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<!-- (mostly) copied from nbconvert configuration -->
+<!-- https://github.com/jupyter/nbconvert/blob/master/nbconvert/templates/html/mathjax.tpl -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    // Center justify equations in code and markdown cells. Elsewhere
+    // we use CSS to left justify single line equations in code cells.
+    displayAlign: 'center',
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}},
+        linebreaks: { automatic: true },
+    },
+    
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML' async></script>
+
+
+  <!-- DOM updating function -->
+  <script src="/oqs-jupyterbook/assets/js/page/dom-update.js"></script>
+
+  <!-- Selectors for elements on the page -->
+  <script src="/oqs-jupyterbook/assets/js/page/documentSelectors.js"></script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '/oqs-jupyterbook';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/anchors.js" async></script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+<!-- Display Thebelab button in each code cell -->
+<script>
+/**
+ * Set up thebelab button for code blocks
+ */
+
+const thebelabCellButton = id =>
+  `<a id="thebelab-cell-button-${id}" class="btn thebebtn o-tooltip--left" data-tooltip="Interactive Mode">
+    <img src="/oqs-jupyterbook/assets/images/edit-button.svg" alt="Start thebelab interactive mode">
+  </a>`
+
+
+const addThebelabButtonToCodeCells =  () => {
+
+  const codeCells = document.querySelectorAll('div.input_area > div.highlight:not(.output) pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("thebelab-cell-button-" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', thebelabCellButton(id));
+    }
+  })
+}
+
+initFunction(addThebelabButtonToCodeCells);
+</script>
+
+
+<script src="https://unpkg.com/thebelab@latest/lib/index.js" async></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+
+                // Clean up the language to make it work w/ CodeMirror and add it to the cell
+                dataLanguage = ""
+                dataLanguage = detectLanguage(dataLanguage);
+                codeCell.setAttribute('data-language', dataLanguage)
+                codeCell.setAttribute('data-executable', 'true')
+
+                // If the code cell is hidden, show it
+                var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
+                if (inputCheckbox !== null) {
+                    setCodeCellVisibility(inputCheckbox, 'visible');
+                }
+            });
+
+            // Remove the event listener from the page so keyboard press doesn't
+            // Change page
+            document.removeEventListener('keydown', initPageNav)
+            keyboardListener = false;
+
+            // Init thebelab
+            thebelab.bootstrap();
+
+            // Remove copy buttons since they won't work anymore
+            const copyAndThebeButtons = document.querySelectorAll('.copybtn, .thebebtn')
+            copyAndThebeButtons.forEach((button, index) => {
+                button.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+
+            // Find any cells with an initialization tag and ask ThebeLab to run them when ready
+            var thebeInitCells = document.querySelectorAll('div.tag_thebelab-init');
+            thebeInitCells.forEach((cell) => {
+                console.log("Initializing ThebeLab with cell: " + cell.id);
+                cell.querySelector('.thebelab-run-button').click();
+            });
+        }
+
+        // Add event listener for the function to modify code cells
+        const thebelabButtons = document.querySelectorAll('[id^=thebelab], [id$=thebelab]')
+        thebelabButtons.forEach((thebelabButton,index) => {
+            if (thebelabButton === null) {
+                setTimeout(initThebelab, 250)
+                return
+            };
+            thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        });
+    }
+
+    // Initialize Thebelab
+    initFunction(initThebelab);
+
+// Helper function to munge the language name
+var detectLanguage = (language) => {
+    if (language.indexOf('python') > -1) {
+        language = "python";
+    }
+    return language;
+}
+</script>
+
+
+
+  <!-- Load the auto-generating TOC (non-async otherwise the TOC won't load w/ turbolinks) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.8.1/tocbot.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/tocbot.js"></script>
+
+  <!-- Google analytics -->
+  
+
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script>
+
+  <!-- Load custom website scripts -->
+  <script src="/oqs-jupyterbook/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/oqs-jupyterbook/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return dict2param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
+    // If the link is an internal link...
+    if (href.search("https://matteoacrossi.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['jupyterhub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'jupyterhub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    jupyterHubUrl = rest['jupyterhub'];
+    var hubType = null;
+    var hubUrl = null;
+    if (jupyterHubUrl !== undefined) {
+      hubType = 'jupyterhub';
+      hubUrl = jupyterHubUrl;
+    }
+
+    if (hubType !== null) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      var interactButtons = document.querySelectorAll("button.interact-button")
+      var lastButton = interactButtons[interactButtons.length-1];
+      var link = lastButton.parentElement;
+
+      // If we've already run this, skip the link updating
+      if (link.nextElementSibling !== null) {
+        return;
+      }
+
+      // Update the link and add context div
+      var href = link.getAttribute('href');
+      if (lastButton.id === 'interact-button-binder') {
+        // If binder links exist, we need to re-work them for jupyterhub
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+          first = [hubUrl, 'git-sync'].join('/')
+        } else {
+          first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+        }
+        href = first + '?' + binder2Jupyterhub(href);
+      } else {
+        // If interact button isn't binderhub, assume it's jupyterhub
+        // If JupyterHub links, we only need to replace the hub url
+        href = href.replace("", hubUrl);
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // Assume we're working from a local Jupyter server and remove `/hub`
+          href = href.replace("/hub/user-redirect", "");
+        }
+      }
+      link.setAttribute('href', decodeURIComponent(href));
+
+      // Add text after interact link saying where we're launching
+      hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+      link.insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
+
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
+
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js" async></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+
+  <!-- Load JS that depends on site variables -->
+  <script src="/oqs-jupyterbook/assets/js/page/copy-button.js" async></script>
+
+  <!-- Hide cell code -->
+  <script src="/oqs-jupyterbook/assets/js/page/hide-cell.js" async></script>
+
+  <!-- Printing the screen -->
+  <!-- Include nbinteract for interactive widgets -->
+<script src="https://printjs-4de6.kxcdn.com/print.min.js" async></script>
+<script>
+printContent = () => {
+    // MathJax displays a second version of any math for assistive devices etc.
+    // This prevents double-rendering in the PDF output.
+    var ignoreAssistList = [];
+    assistives = document.querySelectorAll('.MathJax_Display span.MJX_Assistive_MathML').forEach((element, index) => {
+        var thisId = 'MathJax-assistive-' + index.toString();
+        element.setAttribute('id', thisId);
+        ignoreAssistList.push(thisId)
+    });
+
+    // Print the actual content object
+    printJS({
+        printable: 'textbook_content',
+        type: 'html',
+        css: "/oqs-jupyterbook/assets/css/styles.css",
+        style: "#textbook_content {padding-top: 40px};",
+        scanStyles: false,
+        targetStyles: ["*"],
+        ignoreElements: ignoreAssistList,
+        documentTitle: "Made with Jupyter Book"
+    })
+};
+
+initPrint = () => {
+    document.querySelector('#interact-button-print').addEventListener('click', printContent)
+}
+
+initFunction(initPrint)
+</script>
+
+</head>
+
+  <body>
+    <!-- Include the ThebeLab config so it gets reloaded on each page -->
+    <script type="text/x-thebe-config">{
+    requestKernel: true,
+    binderOptions: {
+    repo: "jupyter/jupyter-book",
+    ref: "gh-pages",
+    },
+    codeMirrorConfig: {
+    theme: "abcdef",
+    mode: "python"
+    },
+    kernelOptions: {
+    kernelName: "python3",
+    path: "content"
+    }
+}
+</script>
+
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://jupyterbook.org/intro.html"><img src="/oqs-jupyterbook/images/logo/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">Jupyter Book</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="index">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/index.html"
+        >
+          
+            1.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="introduction">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/introduction.html"
+        >
+          
+            2.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="preliminaries">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/preliminaries.html"
+        >
+          
+            3.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="microscopic_derivation_of_the_markovian_master_equation">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html"
+        >
+          
+            4.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="markovian_semigroups">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/markovian_semigroups.html"
+        >
+          
+            5.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="divisible_maps">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/divisible_maps.html"
+        >
+          
+            6.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="projection_operator_techniques">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/projection_operator_techniques.html"
+        >
+          
+            7.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="jaynes_cummings_with_losses">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/jaynes_cummings_with_losses.html"
+        >
+          
+            8.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="non-markovian_quantum_dynamics">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/non-markovian_quantum_dynamics.html"
+        >
+          
+            9.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="">
+        <a class="c-sidebar__entry"
+          href=".html"
+        >
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+        
+
+        
+
+        <ul class="c-sidebar__sections">
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-depolarizing_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-depolarizing_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-reservoir-engineering">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-reservoir-engineering.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-pauli_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-pauli_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-amplitude_damping">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-amplitude_damping.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+        </ul>
+      
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</nav>
+
+      
+      <div class="c-topbar" id="top-navbar">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <div class="c-topbar__buttons">
+    <button
+      id="js-sidebar-toggle"
+      class="hamburger hamburger--arrowalt is-active"
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="buttons">
+<div class="download-buttons-dropdown">
+    <button id="dropdown-button-trigger" class="interact-button"><img src="/oqs-jupyterbook/assets/images/download-solid.svg" alt="Download" /></button>
+    <div class="download-buttons">
+        <a href="/oqs-jupyterbook/content/markovian_semigroups.ipynb" download>
+        <button id="interact-button-download" class="interact-button">.ipynb</button>
+        </a>
+        
+        <a id="interact-button-print"><button id="interact-button-download" class="interact-button">.pdf</button></a>
+    </div>
+</div>
+
+
+  <button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+  
+  
+
+
+
+
+
+
+<a href="https://mybinder.org/v2/gh/jupyter/jupyter-book/gh-pages?filepath=content%2Fmarkovian_semigroups.ipynb"><button class="interact-button" id="interact-button-binder"><img class="interact-button-logo" src="/oqs-jupyterbook/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
+  
+
+
+</div>
+
+  </div>
+  <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+  <aside class="sidebar__right">
+    <header><h4 class="nav__title"><img src="/oqs-jupyterbook/assets/images/list-solid.svg" alt="Search" />   On this page</h4></header>
+    <nav class="onthispage">
+    </nav>
+  </aside>
+  <a href="/oqs-jupyterbook/search.html" class="topbar-right-button" id="search-button">
+    <img src="/oqs-jupyterbook/assets/images/search-solid.svg" alt="Search" />
+  </a>
+</div>
+
+      <main class="c-textbook__page" tabindex="-1">
+            <div class="c-textbook__content" id="textbook_content">
+                  <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Dynamical maps: Markovian semigroups</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="4.-Dynamical-maps:-Markovian-semigroups-">4. Dynamical maps: Markovian semigroups <a id="Mark" /><a class="anchor-link" href="#4.-Dynamical-maps:-Markovian-semigroups-"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents"> </a></h2><ol>
+<li><p><a href="#Mark">Dynamical maps: Markovian semigroups</a></p>
+<ul>
+<li><a href="#ex4">Example 4</a></li>
+<li><a href="#ex5">Example 5</a></li>
+</ul>
+<p><a href="#ref">References</a></p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\newcommand{\Mn}{M_n(\mathbb{C})}$
+$\newcommand{\Mq}{M_2(\mathbb{C})}$
+$\newcommand{\Mk}{M_k(\mathbb{C})}$
+$\newcommand{\Mm}{M_m(\mathbb{C})}$
+$\newcommand{\Mnm}{M_{n \times m}(\mathbb{C})}$
+$\newcommand{\Mnp}{M_n^+(\mathbb{C})}$
+$\newcommand{\ra}{\,\rightarrow\,}$
+$\newcommand{\id}{\mbox{id} }$
+$\newcommand{\ot}{ {\,\otimes\,} }$
+$\newcommand{\Cd}{ {\mathbb{C}^d} }$
+$\newcommand{\Rn}{ {\mathbb{R}^n} }$
+$\newcommand{\asterisk}{*}$</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Starting from a microscopic description of system, environment and their interaction, and performing a number of approximations, the most notable of which are the weak-coupling, the Markovian and the rotating-wave (secular) approximations, we have derived a master equation in a specific operatorial form, known as the Gorini, Kossakowski, Sudarshan, Lindblad (GKSL) form, often referred to as the Lindblad form. The importance of this master equation is connected to its particularly useful properties that guarantee, for a physical initial density operator, the time evolution remains physical at all subsequent times. In other words the dissipator $L$ is the generator of a  CPTP dynamical map.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this section we recall the celebrated result derived independently by Gorini, Kossakowski and Sudarshan [<a href="#1">1</a>] and Lindblad [<a href="#2">2</a>].
+Consider the simplest case of a time independent generator $L$
+\begin{equation}\label{ME0}
+\dot{\Lambda}_t = L\Lambda_t\ ,\ \ \ \Lambda_0 = \mathbb{1}_n\ .
+\tag{4.1} 
+\end{equation}</p>
+<p>The formal solution is given by $\Lambda_t = e^{tL}$ for $t \geq 0$ and hence satisfies the following composition law</p>
+\begin{equation}\label{c-low}
+\Lambda_t \, \Lambda_s = \Lambda_{t+s}\ ,
+\tag{4.2}
+\end{equation}<p>for $t,s \geq 0$. This proves that $\Lambda_t$ provides a semigroup of linear maps (it is a semigroup since the inverse $\Lambda_t^{-1}$ need not be  CP).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The properties of $L$ are summarized in the following</p>
+<p><strong>Theorem 3 ([<a href="#1">1</a>, <a href="#2">2</a>])</strong></p>
+<blockquote><p>A linear map $L : \Mn \ra \Mn$ generates a legitimate dynamical semigroup if and only if</p>
+\begin{equation}\label{MAIN}
+L(\rho) = -i[H,\rho] + \Phi(\rho) - \frac 12 \{ \Phi^*(\mathbb{I}_n),\rho\} \ ,
+\tag{4.3}
+\end{equation}<p>where $\Phi : \Mn \ra \Mn$ is CP, $\Phi^\asterisk$ denotes the dual map, and $H=H^\dagger \in \Mn$.</p>
+</blockquote>
+<p>In what follows we call  $L$ satisfying (<a href="#mjx-eqn-MAIN">4.3</a>) a GKSL generator.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remark 1</strong></p>
+<blockquote><p>If $\Phi$ is only a positive map, then $L$ generates a semigroup of positive maps $\Lambda_t$ which need not be CP.</p>
+</blockquote>
+<p>Let
+\begin{equation}\label{kr}
+\Phi(\rho) = \sum_k V_k \rho V_k^\dagger\ ,
+\tag{4.4}
+\end{equation}</p>
+<p>be a Kraus representation of $\Phi$. Its dual is represented by $ \Phi^*(X) = \sum_k V_k^\dagger X V_k$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Corollary 2</strong></p>
+<blockquote><p>A generator of a dynamical semigroup can be written in the following form</p>
+\begin{equation}
+L(\rho) = -i[H,\rho] +  \sum_k \left( V_k\rho V_k^\dagger - \frac 12 \{   V_k^\dagger V_k, \rho\} \right) \ ,
+\tag{4.5}
+\end{equation}<p>or equivalently</p>
+\begin{equation}
+L(\rho) = -i[H,\rho] + \frac 12 \sum_k \left( [V_k,\rho V_k^\dagger] + [V_k\rho,V_k^\dagger] \right) \ .
+\tag{4.6}
+\end{equation}
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remark 2</strong></p>
+<blockquote><p>Note, that if $\Phi$ is CP and trace preserving (i.e. a quantum channel), then $\Phi^*(\mathbb{I}_n) = \mathbb{I}_n$ and hence the formula (<a href="#mjx-eqn-MAIN">4.3</a>) simplifies to</p>
+\begin{equation}\label{MAIN1}
+L(\rho) = -i[H,\rho] + \Phi(\rho) - \rho\ .
+\tag{4.7}
+\end{equation}
+</blockquote>
+<p>Note that the dual map $L^*$ defines the generator of  quantum evolution in the Heisenberg picture</p>
+\begin{equation}
+L^*(X) = i[H,X] + \Phi^*(X) - \frac 12 \{ \Phi^*(\mathbb{I}_n),X\} \ ,
+\tag{4.8}
+\end{equation}<p>or using the Kraus representation (<a href="#mjx-eqn-kr">4.4</a>)</p>
+\begin{equation}\label{}
+L^*(X) = i[H,X] + \frac 12 \sum_k \left( [V^\dagger_k,X V_k] + [V_k^\dagger X,V_k] \right) \ .
+\tag{4.9}
+\end{equation}
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us consider simple examples of Markovian semigroups $\Lambda_t$ and corresponding generators $L$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-4-">Example 4 <a id="ex4" /><a class="anchor-link" href="#Example-4-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Suppose that $\Phi : \Mn \ra \Mn$ is a quantum channel such that $\Phi$ is a CP projector, i.e. $\Phi^2=\Phi$,  and consider</p>
+\begin{equation} \label{L-Phi}
+    L = \gamma (\Phi - \mathbb{1}_n)\ ,
+\tag{4.10}
+\end{equation}<p>where $\gamma &gt;0$ and we have assumed $H=0$. One finds  the corresponding solution</p>
+\begin{eqnarray}
+    \Lambda_t &amp;=&amp; e^{tL} = e^{-\gamma t} e^{\gamma t\Phi} = e^{-\gamma t} \left(  \mathbb{1}_n + \gamma t \Phi  + \frac 12 (\gamma t)^2 \Phi + \ldots  \right)  \nonumber \\
+    &amp;=&amp;  e^{-\gamma t} \mathbb{1}_n + (1-e^{-\gamma t}) \Phi\ ,
+\tag{4.11}
+\end{eqnarray}<p>that is, $\Lambda_t$ is a convex combination of two quantum channels: $\mathbb{1}_n$ and $\Phi$. A typical example of a completely positive projector is given by</p>
+\begin{equation}
+    \Phi(\rho) = \sum_{k=1}^n P_k \rho P_{k}\ ,
+\tag{4.12}
+\end{equation}<p>where $P_k = |k \rangle \langle k|$, i.e. $\Phi$ projects $\rho$ onto the diagonal: $\Phi(\rho) = \sum_k \rho_{kk} P_k$.  Hence</p>
+\begin{eqnarray}
+    \rho_t = e^{-\gamma t} \rho  + (1-e^{-\gamma t}) \sum_{k=1}^n P_k \rho\, P_{k} \ ,
+\tag{4.13}
+\end{eqnarray}<p>which shows that diagonal elements $\rho_{kk}$ remain invariant and off-diagonal $\rho_{kl}$ are multiplied by the damping factor $e^{-\gamma t}$. It is, therefore, clear that these dynamics describe pure decoherence with respect to an orthonormal basis $\{|1\rangle,\ldots,|n\rangle \}$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-5-">Example 5 <a id="ex5" /><a class="anchor-link" href="#Example-5-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Suppose that $\Phi : \Mn \ra \Mn$ is a quantum channel such that $\Phi^2=\mathbb{1}_n$ and consider $L$ defined by (<a href="#mjx-eqn-L-Phi">4.10</a>). One finds  the corresponding solution</p>
+\begin{eqnarray}
+    \Lambda_t &amp;=&amp; e^{tL} = e^{-\gamma t} e^{\gamma t \Phi} = e^{-\gamma t} \left(  \mathbb{1}_n + \gamma t \Phi  + \frac 12 (\gamma t)^2 \mathbb{1}_n  + \frac{1}{3!} (\gamma t)^3 \Phi + \ldots  \right)  \nonumber \\
+    &amp;=&amp;  e^{-\gamma t} \Big[ \cosh(\gamma t) \mathbb{1}_n + \sinh(\gamma t) \Phi \Big]\ ,
+\end{eqnarray}<p>or equivalently</p>
+\begin{equation}
+    \Lambda_t = \frac 12 ( 1+ e^{-2\gamma t}) \mathbb{1}_n + \frac 12 (1- e^{-2\gamma t}) \Phi\ ,
+\end{equation}<p>which is another convex combination of $\mathbb{1}_n$ and $\Phi$. To illustrate this class consider $n=2$ and let $\Phi(\rho) = \sigma_z \rho \sigma_z$ which gives rise to the following generator
+\begin{equation}
+    L(\rho) = \gamma ( \sigma_z \rho \sigma_z - \rho)\ .
+\end{equation}</p>
+<p>One finds $\, \Phi^2(\rho) = \sigma_z(\sigma_z \rho \sigma_z)\sigma_z = \rho$ and hence the corresponding evolution is given by</p>
+\begin{equation}
+    \rho_t = \Lambda_t(\rho) = \frac 12 ( 1+ e^{-2\gamma t})\, \rho + \frac 12 ( 1- e^{-2\gamma t})\, \sigma_z \rho \sigma_z\ .
+\end{equation}<p>Again this corresponds to a pure decoherence: $\rho_{12} \ra e^{-2 \gamma t}\rho_{12}$ while the diagonal elements $\rho_{11}$ and $\rho_{22}$ remain invariant.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References-">References <a id="ref" /><a class="anchor-link" href="#References-"> </a></h2><p>[1] <a href="https://doi.org/10.1063/1.522979">V. Gorini, A. Kossakowski, and E. C. G. Sudarshan, J. Math. Phys. <strong>17</strong>, 821 (1976)</a> <a id='1'></a></p>
+<p>[2] <a href="https://doi.org/10.1007/BF01608499">G. Lindblad, Comm. Math. Phys. <strong>48</strong>, 119 (1976)</a> <a id='2'></a></p>
+<p>[3] <a href="https://doi.org/10.1016/0034-4877(93">A. Holevo, Rep. Math. Phys. <strong>32</strong>, 211 (1993).</a>90014-6
+) <a id='3'></a></p>
+<p>[4] <a href="https://doi.org/10.1103/PhysRevLett.112.120404">D. Chruściński and S. Maniscalco, Phys. Rev. Lett. <strong>112</strong>, 120404 (2014)</a> <a id='4'></a></p>
+<p>[5] <a href="https://doi.org/10.1038/nature09801"> J. T. Barreiro, M. Müller, P. Schindler, D. Nigg, T. Monz, M. Chwalla, M. Hennrich, C. F. Roos, P. Zoller, and R. Blatt, Nature <strong>470</strong>, 486 (2011)</a> <a id='5'></a></p>
+<p>[6] <a href="https://doi.org/10.1038/nphys1781"> J. T. Barreiro, P. Schindler, O. Gühne, T. Monz, M. Chwalla, C. F. Roos, M. Hennrich, and R. Blatt, Nat. Phys. <strong>6</strong>, 943 (2010).</a> <a id='6'></a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
+            </div>
+            <div class="c-textbook__footer" id="textbook_footer">
+              
+<nav class="c-page__nav">
+  
+    
+    
+
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html">
+      〈 <span class="u-margin-right-tiny"></span> Microscopic derivation of the mast...
+    </a>
+  
+
+  
+    
+
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/oqs-jupyterbook/divisible_maps.html">
+      Dynamical maps: divisibility <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+              <footer>
+  <p class="footer">This page was created by <a href="https://github.com/jupyter/jupyter-book/graphs/contributors">The Jupyter Book Community</a></p>
+</footer>
+
+            </div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

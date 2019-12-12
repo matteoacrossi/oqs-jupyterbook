@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Project 2: Pauli channel</title>
+  <meta name="description" content="        Project 2: Pauli channel    In this project we will implement the general Pauli channel in qiskit.As an application, we will evaluate a quantity that...">
+
+  <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/project_2-pauli_channel.html">
+  <link rel="alternate" type="application/rss+xml" title="Jupyter Book" href="https://matteoacrossi.github.io/oqs-jupyterbook/feed.xml">
+
+  <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/project_2-pauli_channel.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Project 2: Pauli channel" />
+<meta property="og:description" content="        Project 2: Pauli channel    In this project we will implement the general Pauli channel in qiskit.As an application, we will evaluate a quantity that..." />
+<meta property="og:image"       content="https://matteoacrossi.github.io/oqs-jupyterbook/images/logo/logo.png" />
+
+<meta name="twitter:card" content="summary">
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/project_2-pauli_channel.html",
+  "headline": "Project 2: Pauli channel",
+  "datePublished": "2019-12-12T11:03:18+00:00",
+  "dateModified": "2019-12-12T11:03:18+00:00",
+  "description": "        Project 2: Pauli channel    In this project we will implement the general Pauli channel in qiskit.As an application, we will evaluate a quantity that...",
+  "author": {
+    "@type": "Person",
+    "name": "The Jupyter Book Community"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/css/styles.css">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/oqs-jupyterbook/images/logo/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<!-- (mostly) copied from nbconvert configuration -->
+<!-- https://github.com/jupyter/nbconvert/blob/master/nbconvert/templates/html/mathjax.tpl -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    // Center justify equations in code and markdown cells. Elsewhere
+    // we use CSS to left justify single line equations in code cells.
+    displayAlign: 'center',
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}},
+        linebreaks: { automatic: true },
+    },
+    
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML' async></script>
+
+
+  <!-- DOM updating function -->
+  <script src="/oqs-jupyterbook/assets/js/page/dom-update.js"></script>
+
+  <!-- Selectors for elements on the page -->
+  <script src="/oqs-jupyterbook/assets/js/page/documentSelectors.js"></script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '/oqs-jupyterbook';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/anchors.js" async></script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+<!-- Display Thebelab button in each code cell -->
+<script>
+/**
+ * Set up thebelab button for code blocks
+ */
+
+const thebelabCellButton = id =>
+  `<a id="thebelab-cell-button-${id}" class="btn thebebtn o-tooltip--left" data-tooltip="Interactive Mode">
+    <img src="/oqs-jupyterbook/assets/images/edit-button.svg" alt="Start thebelab interactive mode">
+  </a>`
+
+
+const addThebelabButtonToCodeCells =  () => {
+
+  const codeCells = document.querySelectorAll('div.input_area > div.highlight:not(.output) pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("thebelab-cell-button-" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', thebelabCellButton(id));
+    }
+  })
+}
+
+initFunction(addThebelabButtonToCodeCells);
+</script>
+
+
+<script src="https://unpkg.com/thebelab@latest/lib/index.js" async></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+
+                // Clean up the language to make it work w/ CodeMirror and add it to the cell
+                dataLanguage = ""
+                dataLanguage = detectLanguage(dataLanguage);
+                codeCell.setAttribute('data-language', dataLanguage)
+                codeCell.setAttribute('data-executable', 'true')
+
+                // If the code cell is hidden, show it
+                var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
+                if (inputCheckbox !== null) {
+                    setCodeCellVisibility(inputCheckbox, 'visible');
+                }
+            });
+
+            // Remove the event listener from the page so keyboard press doesn't
+            // Change page
+            document.removeEventListener('keydown', initPageNav)
+            keyboardListener = false;
+
+            // Init thebelab
+            thebelab.bootstrap();
+
+            // Remove copy buttons since they won't work anymore
+            const copyAndThebeButtons = document.querySelectorAll('.copybtn, .thebebtn')
+            copyAndThebeButtons.forEach((button, index) => {
+                button.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+
+            // Find any cells with an initialization tag and ask ThebeLab to run them when ready
+            var thebeInitCells = document.querySelectorAll('div.tag_thebelab-init');
+            thebeInitCells.forEach((cell) => {
+                console.log("Initializing ThebeLab with cell: " + cell.id);
+                cell.querySelector('.thebelab-run-button').click();
+            });
+        }
+
+        // Add event listener for the function to modify code cells
+        const thebelabButtons = document.querySelectorAll('[id^=thebelab], [id$=thebelab]')
+        thebelabButtons.forEach((thebelabButton,index) => {
+            if (thebelabButton === null) {
+                setTimeout(initThebelab, 250)
+                return
+            };
+            thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        });
+    }
+
+    // Initialize Thebelab
+    initFunction(initThebelab);
+
+// Helper function to munge the language name
+var detectLanguage = (language) => {
+    if (language.indexOf('python') > -1) {
+        language = "python";
+    }
+    return language;
+}
+</script>
+
+
+
+  <!-- Load the auto-generating TOC (non-async otherwise the TOC won't load w/ turbolinks) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.8.1/tocbot.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/tocbot.js"></script>
+
+  <!-- Google analytics -->
+  
+
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script>
+
+  <!-- Load custom website scripts -->
+  <script src="/oqs-jupyterbook/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/oqs-jupyterbook/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return dict2param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
+    // If the link is an internal link...
+    if (href.search("https://matteoacrossi.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['jupyterhub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'jupyterhub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    jupyterHubUrl = rest['jupyterhub'];
+    var hubType = null;
+    var hubUrl = null;
+    if (jupyterHubUrl !== undefined) {
+      hubType = 'jupyterhub';
+      hubUrl = jupyterHubUrl;
+    }
+
+    if (hubType !== null) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      var interactButtons = document.querySelectorAll("button.interact-button")
+      var lastButton = interactButtons[interactButtons.length-1];
+      var link = lastButton.parentElement;
+
+      // If we've already run this, skip the link updating
+      if (link.nextElementSibling !== null) {
+        return;
+      }
+
+      // Update the link and add context div
+      var href = link.getAttribute('href');
+      if (lastButton.id === 'interact-button-binder') {
+        // If binder links exist, we need to re-work them for jupyterhub
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+          first = [hubUrl, 'git-sync'].join('/')
+        } else {
+          first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+        }
+        href = first + '?' + binder2Jupyterhub(href);
+      } else {
+        // If interact button isn't binderhub, assume it's jupyterhub
+        // If JupyterHub links, we only need to replace the hub url
+        href = href.replace("", hubUrl);
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // Assume we're working from a local Jupyter server and remove `/hub`
+          href = href.replace("/hub/user-redirect", "");
+        }
+      }
+      link.setAttribute('href', decodeURIComponent(href));
+
+      // Add text after interact link saying where we're launching
+      hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+      link.insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
+
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
+
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js" async></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+
+  <!-- Load JS that depends on site variables -->
+  <script src="/oqs-jupyterbook/assets/js/page/copy-button.js" async></script>
+
+  <!-- Hide cell code -->
+  <script src="/oqs-jupyterbook/assets/js/page/hide-cell.js" async></script>
+
+  <!-- Printing the screen -->
+  <!-- Include nbinteract for interactive widgets -->
+<script src="https://printjs-4de6.kxcdn.com/print.min.js" async></script>
+<script>
+printContent = () => {
+    // MathJax displays a second version of any math for assistive devices etc.
+    // This prevents double-rendering in the PDF output.
+    var ignoreAssistList = [];
+    assistives = document.querySelectorAll('.MathJax_Display span.MJX_Assistive_MathML').forEach((element, index) => {
+        var thisId = 'MathJax-assistive-' + index.toString();
+        element.setAttribute('id', thisId);
+        ignoreAssistList.push(thisId)
+    });
+
+    // Print the actual content object
+    printJS({
+        printable: 'textbook_content',
+        type: 'html',
+        css: "/oqs-jupyterbook/assets/css/styles.css",
+        style: "#textbook_content {padding-top: 40px};",
+        scanStyles: false,
+        targetStyles: ["*"],
+        ignoreElements: ignoreAssistList,
+        documentTitle: "Made with Jupyter Book"
+    })
+};
+
+initPrint = () => {
+    document.querySelector('#interact-button-print').addEventListener('click', printContent)
+}
+
+initFunction(initPrint)
+</script>
+
+</head>
+
+  <body>
+    <!-- Include the ThebeLab config so it gets reloaded on each page -->
+    <script type="text/x-thebe-config">{
+    requestKernel: true,
+    binderOptions: {
+    repo: "jupyter/jupyter-book",
+    ref: "gh-pages",
+    },
+    codeMirrorConfig: {
+    theme: "abcdef",
+    mode: "python"
+    },
+    kernelOptions: {
+    kernelName: "python3",
+    path: "content"
+    }
+}
+</script>
+
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://jupyterbook.org/intro.html"><img src="/oqs-jupyterbook/images/logo/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">Jupyter Book</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="index">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/index.html"
+        >
+          
+            1.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="introduction">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/introduction.html"
+        >
+          
+            2.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="preliminaries">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/preliminaries.html"
+        >
+          
+            3.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="microscopic_derivation_of_the_markovian_master_equation">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html"
+        >
+          
+            4.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="markovian_semigroups">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/markovian_semigroups.html"
+        >
+          
+            5.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="divisible_maps">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/divisible_maps.html"
+        >
+          
+            6.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="projection_operator_techniques">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/projection_operator_techniques.html"
+        >
+          
+            7.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="jaynes_cummings_with_losses">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/jaynes_cummings_with_losses.html"
+        >
+          
+            8.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="non-markovian_quantum_dynamics">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/non-markovian_quantum_dynamics.html"
+        >
+          
+            9.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="">
+        <a class="c-sidebar__entry"
+          href=".html"
+        >
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+        
+
+        
+
+        <ul class="c-sidebar__sections">
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-depolarizing_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-depolarizing_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-reservoir-engineering">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-reservoir-engineering.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-pauli_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-pauli_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-amplitude_damping">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-amplitude_damping.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+        </ul>
+      
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</nav>
+
+      
+      <div class="c-topbar" id="top-navbar">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <div class="c-topbar__buttons">
+    <button
+      id="js-sidebar-toggle"
+      class="hamburger hamburger--arrowalt is-active"
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="buttons">
+<div class="download-buttons-dropdown">
+    <button id="dropdown-button-trigger" class="interact-button"><img src="/oqs-jupyterbook/assets/images/download-solid.svg" alt="Download" /></button>
+    <div class="download-buttons">
+        <a href="/oqs-jupyterbook/content/project_2-pauli_channel.ipynb" download>
+        <button id="interact-button-download" class="interact-button">.ipynb</button>
+        </a>
+        
+        <a id="interact-button-print"><button id="interact-button-download" class="interact-button">.pdf</button></a>
+    </div>
+</div>
+
+
+  <button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+  
+  
+
+
+
+
+
+
+<a href="https://mybinder.org/v2/gh/jupyter/jupyter-book/gh-pages?filepath=content%2Fproject_2-pauli_channel.ipynb"><button class="interact-button" id="interact-button-binder"><img class="interact-button-logo" src="/oqs-jupyterbook/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
+  
+
+
+</div>
+
+  </div>
+  <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+  <aside class="sidebar__right">
+    <header><h4 class="nav__title"><img src="/oqs-jupyterbook/assets/images/list-solid.svg" alt="Search" />   On this page</h4></header>
+    <nav class="onthispage">
+    </nav>
+  </aside>
+  <a href="/oqs-jupyterbook/search.html" class="topbar-right-button" id="search-button">
+    <img src="/oqs-jupyterbook/assets/images/search-solid.svg" alt="Search" />
+  </a>
+</div>
+
+      <main class="c-textbook__page" tabindex="-1">
+            <div class="c-textbook__content" id="textbook_content">
+                  <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Project 2: Pauli channel</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this project we will implement the general <strong>Pauli channel</strong> in qiskit.</p>
+<p>As an application, we will evaluate a quantity that is relevant in quantum thermodynamics, known as extractable work, trying to reproduce the result of the paper <a href="https://arxiv.org/abs/1906.07099"><em>G. García-Pérez et al., arXiv:1906.07099</em></a>.</p>
+<p>We introduced the Pauli channel in Chapter 5 where we showed the circuit that implements it.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit</span> <span class="kn">import</span> <span class="n">Parameter</span>
+
+<span class="c1">#############################</span>
+<span class="c1">#  Pauli channel on IBMQX2  #</span>
+<span class="c1">#############################</span>
+
+<span class="c1"># Quantum register</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">)</span>
+
+<span class="c1"># Quantum circuit</span>
+<span class="n">pauli</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># Pauli channel acting on q_2</span>
+<span class="c1">## Qubit identification</span>
+<span class="n">system</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">a_0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">a_1</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># ## Define rotation angles</span>
+<span class="n">theta_1</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;θ1&#39;</span><span class="p">)</span>
+<span class="n">theta_2</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;θ2&#39;</span><span class="p">)</span>
+<span class="n">theta_3</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;θ3&#39;</span><span class="p">)</span>
+
+<span class="c1">## Construct circuit</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta_1</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta_2</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta_3</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">cy</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
+
+<span class="c1"># Draw circuit</span>
+<span class="n">pauli</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="images/project_2-pauli_channel_1_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At a specific time instant $t$, the Pauli channel can be written as
+\begin{equation} 
+ \mathcal{E} (\rho) = \sum_{i=0}^3 p_i \sigma_i \rho \sigma_i,
+\end{equation}
+with $0 \leq p_i \leq 1$ and $\sum_i p_i = 1$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Task-1">Task 1<a class="anchor-link" href="#Task-1"> </a></h2><p>The depolarizing channel is a special case of the Pauli channel where $p_1 = p_2 = p_3 = p/4$. It can thus be implemented using the circuit above (This is one of the homework assignments). But why can't a general Pauli channel be implemented with the circuit used in the previous project, if we allow each of the three ancillary qubits to be rotated by a different angle $\theta$?</p>
+<p>Find a counterexample of Pauli channel that can't be implemented with the circuit used in Project 1.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Task-2">Task 2<a class="anchor-link" href="#Task-2"> </a></h2><p>The crucial part of the circuit implementation of the Pauli channel is the inversion of the system of equations</p>
+\begin{equation}\label{eq:pauli_equations}
+    \begin{cases}
+        p_1  = |\langle 01|\psi \rangle|^2 = (c_1 c_2 s_3 - s_1 s_2 c_3)^2 &amp; \\
+        p_2  = |\langle 10|\psi \rangle|^2 = (c_1 s_2 c_3 - s_1 c_2 s_3)^2 &amp; \\
+        p_3  = |\langle 11|\psi \rangle|^2 = (s_1 c_2 c_3 + c_1 s_2 s_3)^2 &amp;
+    \end{cases}
+\end{equation}<p>where $c_i \equiv \cos 2\theta_i$ and $s_i \equiv \sin 2\theta_i$, that gives us the three angles $\theta_1$, $\theta_2$ and $\theta_3$.</p>
+<p>The system allows for multiple solutions, but we just need to find one (we can restrict to angles between 0 and $2\pi$.</p>
+<ol>
+<li><em>Find such a solution, either analytically (e.g. by using Mathematica) or numerically (e.g. using <code>scipy.optimize.root</code>)</em></li>
+<li><em>Implement a function that returns the circuit implementing the Pauli Channel for a list of values <code>[p_1, p_2, p_3]</code>.</em></li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pauli_channel</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">pauli_ancillae</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply the Pauli channel to system with probabilities p</span>
+<span class="sd">        </span>
+<span class="sd">    Args:</span>
+<span class="sd">    q (QuantumRegister): the quantum register for the circuit</span>
+<span class="sd">    system (int): index of the system qubit</span>
+<span class="sd">    pauli_ancillae (list): list of indices of the ancillary qubits</span>
+<span class="sd">    p (list): list of probabilities [p_1, p_2, p_3] for the Pauli channel</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    A QuantumCircuit implementing the Pauli channel</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># Write code</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Task-3">Task 3<a class="anchor-link" href="#Task-3"> </a></h2><p>We are going to evaluate the amount of work that can be extracted by erasure in our system qubit prepared in an initially entangled state with a quantum memory Q. This quantity is relevant in quantum thermodynamics. It was introduced in <em>L. del Rio et al., Nature 474, 61 (2011)</em> and also studied in the context of non-Markovian dynamics, <a href="https://www.nature.com/articles/srep27989"><em>B. Bylicka et al., Sci. Rep. 6, 27989 (2016)</em></a> (an experimental implementation on IBM Q devices is here: <a href="https://arxiv.org/abs/1906.07099"><em>G. García-Pérez et al., arXiv:1906.07099</em></a>.</p>
+<p>We are going to implement a function that evaluates Eq. (4) of <a href="https://www.nature.com/articles/srep27989"><em>B. Bylicka et al., Sci. Rep. 6, 27989 (2016)</em></a>.</p>
+<p><em>For that, we first need a <code>conditional_entropy</code> function that takes a two-qubit state vector or density operator</em> and returns the conditional entropy $S(A|B) = S(AB) - S(B)$ where $S$ denotes the von-Neumann entropy.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Suggested imports...</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.qi.qi</span> <span class="kn">import</span> <span class="n">entropy</span><span class="p">,</span> <span class="n">partial_trace</span>
+
+<span class="k">def</span> <span class="nf">conditional_entropy</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">qubit_a</span><span class="p">,</span> <span class="n">qubit_b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Conditional entropy S(A|B) = S(AB) - S(B)</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        state: a vector or density operator</span>
+<span class="sd">        qubit_a: 0-based index of the qubit A</span>
+<span class="sd">        qubit_b: 0-based index of the qubit B</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        int: the conditional entropy</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Write code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And now you can implement the <code>extractable_work</code> function, that also takes a two-qubit system and returns the amount of extractable work.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">extractable_work</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">system_qubit</span><span class="p">,</span> <span class="n">memory_qubit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extractable work from a two-qubit state</span>
+<span class="sd">    =</span>
+<span class="sd">    Cfr. Eq. (4) Bylicka et al., Sci. Rep. 6, 27989 (2016)</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        qubit_a: 0-based index of the system qubit S</span>
+<span class="sd">        qubit_b: 0-based index of the memory qubit M</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Write code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Task-4">Task 4<a class="anchor-link" href="#Task-4"> </a></h2><p>We are now going to implement two different types of dynamics, i.e. functions that return the values of p as function of time. One is a non-CP-divisible map (see <a href="https://matteoacrossi.github.io/open_quantum_systems_course/non-markovian_quantum_dynamics.html">Chapter 8</a>)</p>
+
+<pre><code>p_ncp =  [1/4 * (1 - np.exp(-2 * t *eta)), 
+          1/4 * (1 - np.exp(-2 * t *eta)),
+          1/4 * (1 + np.exp(-2 * t * eta) - 2 *np.exp(-t *eta) * np.cosh(t *omega))]
+
+</code></pre>
+<p>and the other is eternally non-Markovian (cf. <a href="https://arxiv.org/abs/1906.07099"><em>G. García-Pérez et al., arXiv:1906.07099</em></a>)</p>
+
+<pre><code>p_enm = [1/4 * (1 - np.exp(-2 * t *eta)), 
+         1/4 * (1 - np.exp(-2 * t *eta)),
+         1/4 * (1 + np.exp(-2 * t * eta) - 2 *np.exp(-t *eta) * np.cos(t *omega))]
+
+</code></pre>
+<ol>
+<li>Write the functions <code>p_ncp(t)</code> and <code>p_enm(t)</code> that return the circuit simulating the Pauli channel at time $t$ for the two dynamics above.</li>
+<li>Write a circuit in which you prepare two qubits (the system and memory) in a $|\Psi^-\rangle$ state.</li>
+<li><p>Let's use the following time steps and parameters for the dynamics.</p>
+
+<pre><code> t_values = np.linspace(0, 3, 11)
+
+ params_ncp = {'eta': 0.1, 'omega': 2.0}
+ params_enm = {'eta': 1.0, 'omega': 0.5}
+
+</code></pre>
+<p>write the circuits implementing the dynamics for each of the <code>t_values</code>, and append two-qubit tomography circuits (for the system and memory qubit) to them.</p>
+</li>
+<li><p>Execute the circuits on the simulator, collect the results and plot the extractable work as a function of time for both dynamics.</p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Homework">Homework<a class="anchor-link" href="#Homework"> </a></h2><ol>
+<li><p>Use the circuit of the general Pauli channel to implement the depolarizing channel on the real machine, and compare the experimental outcome with the ones from the previous project. Which one has higher fidelities?</p>
+</li>
+<li><p>Run the code above on a real device and compare it with the simulation.</p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
+            </div>
+            <div class="c-textbook__footer" id="textbook_footer">
+              
+<nav class="c-page__nav">
+  
+    
+    
+
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/oqs-jupyterbook/project_3-solution.html">
+      〈 <span class="u-margin-right-tiny"></span> Project 3: Markovian reservoir eng...
+    </a>
+  
+
+  
+    
+
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/oqs-jupyterbook/project_2-solution.html">
+      Project 2: Pauli channel¶ <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+              <footer>
+  <p class="footer">This page was created by <a href="https://github.com/jupyter/jupyter-book/graphs/contributors">The Jupyter Book Community</a></p>
+</footer>
+
+            </div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

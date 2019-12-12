@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Microscopic derivation of the master equation</title>
+  <meta name="description" content="        Microscopic derivation of the master equation    3. Microscopic derivation of the master equation  Contents Microscopic derivation of the master equa...">
+
+  <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html">
+  <link rel="alternate" type="application/rss+xml" title="Jupyter Book" href="https://matteoacrossi.github.io/oqs-jupyterbook/feed.xml">
+
+  <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Microscopic derivation of the master equation" />
+<meta property="og:description" content="        Microscopic derivation of the master equation    3. Microscopic derivation of the master equation  Contents Microscopic derivation of the master equa..." />
+<meta property="og:image"       content="https://matteoacrossi.github.io/oqs-jupyterbook/images/logo/logo.png" />
+
+<meta name="twitter:card" content="summary">
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html",
+  "headline": "Microscopic derivation of the master equation",
+  "datePublished": "2019-12-12T11:03:18+00:00",
+  "dateModified": "2019-12-12T11:03:18+00:00",
+  "description": "        Microscopic derivation of the master equation    3. Microscopic derivation of the master equation  Contents Microscopic derivation of the master equa...",
+  "author": {
+    "@type": "Person",
+    "name": "The Jupyter Book Community"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/css/styles.css">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/oqs-jupyterbook/images/logo/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<!-- (mostly) copied from nbconvert configuration -->
+<!-- https://github.com/jupyter/nbconvert/blob/master/nbconvert/templates/html/mathjax.tpl -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    // Center justify equations in code and markdown cells. Elsewhere
+    // we use CSS to left justify single line equations in code cells.
+    displayAlign: 'center',
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}},
+        linebreaks: { automatic: true },
+    },
+    
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML' async></script>
+
+
+  <!-- DOM updating function -->
+  <script src="/oqs-jupyterbook/assets/js/page/dom-update.js"></script>
+
+  <!-- Selectors for elements on the page -->
+  <script src="/oqs-jupyterbook/assets/js/page/documentSelectors.js"></script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '/oqs-jupyterbook';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/anchors.js" async></script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+<!-- Display Thebelab button in each code cell -->
+<script>
+/**
+ * Set up thebelab button for code blocks
+ */
+
+const thebelabCellButton = id =>
+  `<a id="thebelab-cell-button-${id}" class="btn thebebtn o-tooltip--left" data-tooltip="Interactive Mode">
+    <img src="/oqs-jupyterbook/assets/images/edit-button.svg" alt="Start thebelab interactive mode">
+  </a>`
+
+
+const addThebelabButtonToCodeCells =  () => {
+
+  const codeCells = document.querySelectorAll('div.input_area > div.highlight:not(.output) pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("thebelab-cell-button-" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', thebelabCellButton(id));
+    }
+  })
+}
+
+initFunction(addThebelabButtonToCodeCells);
+</script>
+
+
+<script src="https://unpkg.com/thebelab@latest/lib/index.js" async></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+
+                // Clean up the language to make it work w/ CodeMirror and add it to the cell
+                dataLanguage = ""
+                dataLanguage = detectLanguage(dataLanguage);
+                codeCell.setAttribute('data-language', dataLanguage)
+                codeCell.setAttribute('data-executable', 'true')
+
+                // If the code cell is hidden, show it
+                var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
+                if (inputCheckbox !== null) {
+                    setCodeCellVisibility(inputCheckbox, 'visible');
+                }
+            });
+
+            // Remove the event listener from the page so keyboard press doesn't
+            // Change page
+            document.removeEventListener('keydown', initPageNav)
+            keyboardListener = false;
+
+            // Init thebelab
+            thebelab.bootstrap();
+
+            // Remove copy buttons since they won't work anymore
+            const copyAndThebeButtons = document.querySelectorAll('.copybtn, .thebebtn')
+            copyAndThebeButtons.forEach((button, index) => {
+                button.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+
+            // Find any cells with an initialization tag and ask ThebeLab to run them when ready
+            var thebeInitCells = document.querySelectorAll('div.tag_thebelab-init');
+            thebeInitCells.forEach((cell) => {
+                console.log("Initializing ThebeLab with cell: " + cell.id);
+                cell.querySelector('.thebelab-run-button').click();
+            });
+        }
+
+        // Add event listener for the function to modify code cells
+        const thebelabButtons = document.querySelectorAll('[id^=thebelab], [id$=thebelab]')
+        thebelabButtons.forEach((thebelabButton,index) => {
+            if (thebelabButton === null) {
+                setTimeout(initThebelab, 250)
+                return
+            };
+            thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        });
+    }
+
+    // Initialize Thebelab
+    initFunction(initThebelab);
+
+// Helper function to munge the language name
+var detectLanguage = (language) => {
+    if (language.indexOf('python') > -1) {
+        language = "python";
+    }
+    return language;
+}
+</script>
+
+
+
+  <!-- Load the auto-generating TOC (non-async otherwise the TOC won't load w/ turbolinks) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.8.1/tocbot.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/tocbot.js"></script>
+
+  <!-- Google analytics -->
+  
+
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script>
+
+  <!-- Load custom website scripts -->
+  <script src="/oqs-jupyterbook/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/oqs-jupyterbook/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return dict2param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
+    // If the link is an internal link...
+    if (href.search("https://matteoacrossi.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['jupyterhub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'jupyterhub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    jupyterHubUrl = rest['jupyterhub'];
+    var hubType = null;
+    var hubUrl = null;
+    if (jupyterHubUrl !== undefined) {
+      hubType = 'jupyterhub';
+      hubUrl = jupyterHubUrl;
+    }
+
+    if (hubType !== null) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      var interactButtons = document.querySelectorAll("button.interact-button")
+      var lastButton = interactButtons[interactButtons.length-1];
+      var link = lastButton.parentElement;
+
+      // If we've already run this, skip the link updating
+      if (link.nextElementSibling !== null) {
+        return;
+      }
+
+      // Update the link and add context div
+      var href = link.getAttribute('href');
+      if (lastButton.id === 'interact-button-binder') {
+        // If binder links exist, we need to re-work them for jupyterhub
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+          first = [hubUrl, 'git-sync'].join('/')
+        } else {
+          first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+        }
+        href = first + '?' + binder2Jupyterhub(href);
+      } else {
+        // If interact button isn't binderhub, assume it's jupyterhub
+        // If JupyterHub links, we only need to replace the hub url
+        href = href.replace("", hubUrl);
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // Assume we're working from a local Jupyter server and remove `/hub`
+          href = href.replace("/hub/user-redirect", "");
+        }
+      }
+      link.setAttribute('href', decodeURIComponent(href));
+
+      // Add text after interact link saying where we're launching
+      hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+      link.insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
+
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
+
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js" async></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+
+  <!-- Load JS that depends on site variables -->
+  <script src="/oqs-jupyterbook/assets/js/page/copy-button.js" async></script>
+
+  <!-- Hide cell code -->
+  <script src="/oqs-jupyterbook/assets/js/page/hide-cell.js" async></script>
+
+  <!-- Printing the screen -->
+  <!-- Include nbinteract for interactive widgets -->
+<script src="https://printjs-4de6.kxcdn.com/print.min.js" async></script>
+<script>
+printContent = () => {
+    // MathJax displays a second version of any math for assistive devices etc.
+    // This prevents double-rendering in the PDF output.
+    var ignoreAssistList = [];
+    assistives = document.querySelectorAll('.MathJax_Display span.MJX_Assistive_MathML').forEach((element, index) => {
+        var thisId = 'MathJax-assistive-' + index.toString();
+        element.setAttribute('id', thisId);
+        ignoreAssistList.push(thisId)
+    });
+
+    // Print the actual content object
+    printJS({
+        printable: 'textbook_content',
+        type: 'html',
+        css: "/oqs-jupyterbook/assets/css/styles.css",
+        style: "#textbook_content {padding-top: 40px};",
+        scanStyles: false,
+        targetStyles: ["*"],
+        ignoreElements: ignoreAssistList,
+        documentTitle: "Made with Jupyter Book"
+    })
+};
+
+initPrint = () => {
+    document.querySelector('#interact-button-print').addEventListener('click', printContent)
+}
+
+initFunction(initPrint)
+</script>
+
+</head>
+
+  <body>
+    <!-- Include the ThebeLab config so it gets reloaded on each page -->
+    <script type="text/x-thebe-config">{
+    requestKernel: true,
+    binderOptions: {
+    repo: "jupyter/jupyter-book",
+    ref: "gh-pages",
+    },
+    codeMirrorConfig: {
+    theme: "abcdef",
+    mode: "python"
+    },
+    kernelOptions: {
+    kernelName: "python3",
+    path: "content"
+    }
+}
+</script>
+
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://jupyterbook.org/intro.html"><img src="/oqs-jupyterbook/images/logo/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">Jupyter Book</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="index">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/index.html"
+        >
+          
+            1.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="introduction">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/introduction.html"
+        >
+          
+            2.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="preliminaries">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/preliminaries.html"
+        >
+          
+            3.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="microscopic_derivation_of_the_markovian_master_equation">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html"
+        >
+          
+            4.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="markovian_semigroups">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/markovian_semigroups.html"
+        >
+          
+            5.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="divisible_maps">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/divisible_maps.html"
+        >
+          
+            6.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="projection_operator_techniques">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/projection_operator_techniques.html"
+        >
+          
+            7.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="jaynes_cummings_with_losses">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/jaynes_cummings_with_losses.html"
+        >
+          
+            8.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="non-markovian_quantum_dynamics">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/non-markovian_quantum_dynamics.html"
+        >
+          
+            9.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="">
+        <a class="c-sidebar__entry"
+          href=".html"
+        >
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+        
+
+        
+
+        <ul class="c-sidebar__sections">
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-depolarizing_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-depolarizing_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-reservoir-engineering">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-reservoir-engineering.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-pauli_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-pauli_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-amplitude_damping">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-amplitude_damping.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+        </ul>
+      
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</nav>
+
+      
+      <div class="c-topbar" id="top-navbar">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <div class="c-topbar__buttons">
+    <button
+      id="js-sidebar-toggle"
+      class="hamburger hamburger--arrowalt is-active"
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="buttons">
+<div class="download-buttons-dropdown">
+    <button id="dropdown-button-trigger" class="interact-button"><img src="/oqs-jupyterbook/assets/images/download-solid.svg" alt="Download" /></button>
+    <div class="download-buttons">
+        <a href="/oqs-jupyterbook/content/microscopic_derivation_of_the_markovian_master_equation.ipynb" download>
+        <button id="interact-button-download" class="interact-button">.ipynb</button>
+        </a>
+        
+        <a id="interact-button-print"><button id="interact-button-download" class="interact-button">.pdf</button></a>
+    </div>
+</div>
+
+
+  <button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+  
+  
+
+
+
+
+
+
+<a href="https://mybinder.org/v2/gh/jupyter/jupyter-book/gh-pages?filepath=content%2Fmicroscopic_derivation_of_the_markovian_master_equation.ipynb"><button class="interact-button" id="interact-button-binder"><img class="interact-button-logo" src="/oqs-jupyterbook/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
+  
+
+
+</div>
+
+  </div>
+  <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+  <aside class="sidebar__right">
+    <header><h4 class="nav__title"><img src="/oqs-jupyterbook/assets/images/list-solid.svg" alt="Search" />   On this page</h4></header>
+    <nav class="onthispage">
+    </nav>
+  </aside>
+  <a href="/oqs-jupyterbook/search.html" class="topbar-right-button" id="search-button">
+    <img src="/oqs-jupyterbook/assets/images/search-solid.svg" alt="Search" />
+  </a>
+</div>
+
+      <main class="c-textbook__page" tabindex="-1">
+            <div class="c-textbook__content" id="textbook_content">
+                  <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Microscopic derivation of the master equation</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3.-Microscopic-derivation-of-the-master-equation-">3. Microscopic derivation of the master equation <a id="topic" /><a class="anchor-link" href="#3.-Microscopic-derivation-of-the-master-equation-"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents"> </a></h2><ol>
+<li><p><a href="#topic">Microscopic derivation of the master equation</a></p>
+<ol>
+<li><a href="#approach">Microscopic approach</a><ul>
+<li><a href="#ex">Examples</a></li>
+</ul>
+</li>
+</ol>
+<p><a href="#ref">References</a></p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\newcommand{\Mn}{M_n(\mathbb{C})}$
+$\newcommand{\Mq}{M_2(\mathbb{C})}$
+$\newcommand{\Mk}{M_k(\mathbb{C})}$
+$\newcommand{\Mm}{M_m(\mathbb{C})}$
+$\newcommand{\Mnm}{M_{n \times m}(\mathbb{C})}$
+$\newcommand{\Mnp}{M_n^+(\mathbb{C})}$
+$\newcommand{\ra}{\,\rightarrow\,}$
+$\newcommand{\id}{\mbox{id} }$
+$\newcommand{\ot}{ {\,\otimes\,} }$
+$\newcommand{\Cd}{ {\mathbb{C}^d} }$
+$\newcommand{\Rn}{ {\mathbb{R}^n} }$</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This section is based on the Breuer-Petruccione book, see Ref. [<a href="#1">1</a>].</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An open quantum system is a system $S$ which is coupled to an environment $B$. It is therefore a subsystem of the total system $S+B$. The total system is usually considered a closed system, i.e., its evolution follows Hamiltonian dynamics. The state of the system $S$ will change due to both its internal dynamics and the interaction with the environment $B$. Due to the establishment of system-environment correlations the dynamics of $S$ cannot be considered unitary anymore. The dynamics of $S$ induced by the total system dynamics is called reduced system dynamics and $S$ is also known as reduced system. The density matrix of the reduced system $\varrho_{S}$ is obtained from the density matrix of the total system $\varrho_{SB}$ by performing a partial trace over the environmental degrees of freedom $\varrho_{S}\equiv \textrm{Tr}_{B}[\varrho_{SB}]$.
+If we indicate with $\mathcal{H}_S$ and $\mathcal{H}_B$ the Hilbert spaces of system and environment, respectively, and with $\{ \vert e_j \rangle \}$ an orthonormal basis of $\mathcal{H}_B$, then 
+\begin{eqnarray}
+\varrho_{S}\equiv {\rm Tr}_{B}[\varrho_{SB}] = \sum_j \langle e_j \vert \varrho_{SB} \vert e_j \rangle .
+\tag{3.1}
+ \end{eqnarray}</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.1.-Microscopic-approach-">3.1. Microscopic approach <a id="approach" /><a class="anchor-link" href="#3.1.-Microscopic-approach-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the microscopic approach to open quantum systems dynamics we start by modeling the total closed system, whose Hilbert space is $\mathcal{H}_S  \otimes  \mathcal{H}_B$, by means of the microscopic Hamiltonian
+\begin{eqnarray}
+H=H_{S} \otimes  {\rm I} _B +H_{B}  \otimes  {\rm I} _S +H_{I},
+\tag{3.2}
+\end{eqnarray}</p>
+<p>where $H_{S}$ and $H_{B}$ are the free Hamiltonians of the system and of the environment, respectively, and $H_{I}$ is the interaction term.
+ Generally, the initial state of the total system, i.e. the state of the total system at $t=0$, is assumed to be of the form $\varrho_{SB} (0) = \varrho_{S} (0) \otimes \varrho_{B}$. This means that no correlations between system and environment are initially present. As the total system is closed, we can write its unitary evolution as</p>
+\begin{equation}
+\varrho_{SB} (t) = U(t) \varrho_{SB} (0) U^{\dagger} (t),
+\tag{3.3}
+\end{equation}<p>with $U(t)= \exp [-i H t]$. If we now take the partial trace over the environment in the equation above, we have:</p>
+\begin{equation}
+\varrho_{S} (t) = {\rm Tr}_B \{ U(t) \varrho_{SB} (0) U^{\dagger} (t)\} =  {\rm Tr}_B \{ U(t) \ \varrho_{S} (0) \otimes \varrho_{B} U^{\dagger} (t)\} \equiv \Lambda_t   \varrho_{S} (0) .
+\tag{3.4}
+\end{equation}<p>where $\Lambda_t$  is the dynamical map.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the following we will describe the assumptions that allow us, starting from a microscopic description of system plus environment, to derive a master equation which is physically meaningful. These are not the minimal assumptions, however. Namely, there exist physically meaningful master equations that are more general than the type we are going to derive in the following. We will examine the more general cases later during the course. For now, let us focus on what are known as Markovian master equations and let us describe the assumptions that are needed to derive them following a microscopic approach. It is important to stress that Markovian master equations have played a prominent role in the advancement of fields of importance such as quantum optics and quantum information theory as they are very good approximations in a number of physical scenarios  (e.g., for trapped ions and cavity QED systems).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us consider the dynamics of the overall density operator $\varrho_{SB}$ given by the von Neumann equation which, in units of $\hbar$ and in the interaction picture, reads as follows
+\begin{equation}
+\frac{d{\varrho}_{SB} (t)}{dt}=-i[H_{I}(t),\varrho_{SB} (t)], \label{eq:1}
+\tag{3.5}
+\end{equation}</p>
+<p>where we omit for simplicity of notation the subscript $I$ which we should use to indicate the density matrix in the interaction picture.
+The integral form of this equation is 
+\begin{equation}
+\varrho_{SB}(t)= \varrho_{SB}(0) - i \int_{0}^{t}ds [H_{I}(s),\varrho_{SB}(s)]. 
+\label{eq:2}
+\tag{3.6}
+\end{equation}</p>
+<p>Inserting Eq. (<a href="#mjx-eqn-eq:2">3.6</a>) into Eq. (<a href="#mjx-eqn-eq:1">3.5</a>) and taking the partial trace over the environmental degrees of freedom we get</p>
+\begin{equation}
+\frac{d\varrho_{S} }{dt}(t)=-\int_{0}^{t}ds\textrm{Tr}_{B}\{[H_{I}(t),[H_{I}(s),\varrho_{SB}(s)]]\},
+\label{micro1}
+\tag{3.7}
+\end{equation}<p>where we have assumed $\textrm{Tr}_{B}[H_{I}(t),\varrho_{SB}(0)]=0$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We assume now that system and environment are weakly coupled (Born approximation). This approximation amounts to assuming that the correlations established between system and environment are negligible at all times (remember that they were initially zero), i.e.,</p>
+$$
+ \varrho_{SB}(t)\approx\varrho_{S}(t)\otimes\varrho_{B} .
+$$<p>Within this approximation we get a closed integro-differential equation for $\varrho_{S}(t)$</p>
+\begin{equation}
+\frac{d\varrho_{S} (t)}{dt}=-\int_{0}^{t}ds\textrm{Tr}_{B}\{[H_{I}(t),[H_{I}(s),\varrho_{S}(s)\otimes\varrho_{B}]]\} .
+\label{micro2}
+\tag{3.8}
+\end{equation}<p>Note that, in the equation above, the future evolution of the system, described by $\frac{d\varrho_{s} }{dt}(t)$, depends on the past states of the system $\varrho_{S}(s)$ for times $s &lt; t$ through the integral.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A further simplification to this equation is obtained by assuming that we can replace $\varrho_{S}(s)$ appearing inside the integral with its value at time $t$, $\varrho_{S}(t)$. This is possible if the density matrix does not change sensibly in the interval of time $0 \le s \le t$. But $t$ here is a variable so one may think that this approximation gets worse and worse for bigger and bigger values of time $t$. This reasoning would be correct if the integrand of Eq. (<a href="#mjx-eqn-micro2">3.8</a>) were, e.g., constant in time. However, in many physical situations this integrand (or rather that part of it describing the environment correlations) quickly decays to zero after a short characteristic correlation time $\tau_B$. This time scale quantifies the memory time of the reservoir. Hence, if the density matrix of the system does not change sensibly in the correlation time $\tau_B$, then we can approximate $\varrho_{S}(s)$ with $\varrho_{S}(t)$ in Eq. (<a href="#mjx-eqn-micro2">3.8</a>). The resulting equation is known as the Redfield equation</p>
+\begin{equation}
+\frac{d\varrho_{S} (t)}{dt}=-\int_{0}^{t}ds\textrm{Tr}_{B}\{[H_{I}(t),[H_{I}(s),\varrho_{S}(t)\otimes\varrho_{B}]]\}.
+\label{micro4}
+\tag{3.9}
+\end{equation}<p>Equation (<a href="#mjx-eqn-micro4">3.9</a>) is local in time, i.e., the future evolution of the state of the system does not depend on its past state. However, it still retains memory of the initial state $\varrho_{S} (0)$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Until now we have assumed the the density matrix does not change much within the correlation time $\tau_B$. The next step will be to neglect such a change altogether, by performing a coarse-graining in time. This is mathematically achieved by replacing the upper limit of the integral in Eq. (<a href="#mjx-eqn-micro4">3.9</a>)  with $\infty$:</p>
+\begin{equation}
+\frac{d\varrho_{S} }{dt}(t)=-\int_{0}^{\infty}ds\textrm{Tr}_{B}\{[H_{I}(t),[H_{I}(t-s),\varrho_{S}(t)\otimes\varrho_{B}]]\},
+\label{micro44}
+\tag{3.10}
+\end{equation}<p>where we have replaced for the sake of convenience $s$ with $t-s$.</p>
+<p>The two-step approximation described in Eqs. (<a href="#mjx-eqn-micro4">3.9</a>) and (<a href="#mjx-eqn-micro44">3.10</a>) is known as the Markov approximation. So we say that  Eq. (<a href="#mjx-eqn-micro44">3.10</a>) is derived from a microscopic model under the Born-Markov approximation, i.e., for weak coupling and quickly decaying reservoir correlations (memoryless dynamics).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us decompose the interaction Hamiltonian $H_{I}$ in terms of operators of the system and of the environment:</p>
+$$
+H_{I}=\sum_{\alpha}A_{\alpha}\otimes B_{\alpha}
+$$<p>with $A_{\alpha} (B_{\alpha})$ Hermitian operators of the system (environment).</p>
+<p>Let us assume that $H_{S}$ has a discrete spectrum and let us indicate with $\epsilon$ the eigenvalues and with $\Pi(\epsilon)$ the corresponding projectors into the corresponding eigenspace. We define the eigenoperators of the system as follows</p>
+\begin{equation} 
+A_{\alpha}(\omega)=\sum_{\epsilon'-\epsilon=\omega}\Pi(\epsilon)A_{\alpha}\Pi(\epsilon').
+\tag{3.11}
+\end{equation}<p>These operators have some important properties:</p>
+<ul>
+<li>$[H_{S},A_{\alpha}(\omega)]=-\omega A_{\alpha}(\omega)$; ($A_{\alpha}$ is an eigenoperator of $H_S$ with eigenvalue $- \omega$).</li>
+<li>$[H_{S},A_{\alpha}^{\dagger}(\omega)]=\omega A_{\alpha}^{\dagger}(\omega)$; ($A_{\alpha}$ is an eigenoperator of $H_S$ with eigenvalue $ \omega$).</li>
+<li>Eigenoperators in the interaction picture: $A_{\alpha}^{\textrm{I} }(\omega)=e^{-i\omega t}A_{\alpha}(\omega), A_{\alpha}^{\dagger\textrm{I} }(\omega)=e^{i\omega t}A_{\alpha}^{\dagger}(\omega)$.</li>
+<li>$A_{\alpha}^{\dagger}(\omega)=A_{\alpha}(-\omega)$.</li>
+<li>Completeness: $\sum_{\omega}A_{\alpha}(\omega)=\sum_{\omega}A_{\alpha}^{\dagger}(\omega)=A_{\alpha}$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can rewrite the interaction Hamiltonian in terms of eigenoperators of $H_{S}$, and then pass to the interaction picture exploiting the fact that the system eigenoperators have a simple time dependency in this picture. The environment operator in the interaction picture are simply given by $B_{\alpha}(t) = e^{i H_B t} B_{\alpha}  e^{- i H_B t}.$</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>After some algebra, we can rewrite the master equation in the following form</p>
+\begin{equation}
+\frac{d\varrho_{s} }{dt}(t)=\sum_{\omega,\omega'}\sum_{\alpha,\beta}e^{i(\omega'-\omega)t}\Gamma_{\alpha\beta}(\omega)[A_{\beta}(\omega)\varrho_{S}(t)A_{\alpha}^{\dagger}(\omega')-A_{\alpha}^{\dagger}(\omega')A_{\beta}(\omega)\varrho_{S}(t)]+\textrm{h.c.}
+\label{micro5}
+\tag{3.12}
+\end{equation}<p>where we introduced
+$$
+\Gamma_{\alpha\beta}(\omega)\equiv\int_{0}^{\infty}dse^{i\omega s}\langle B_{\alpha}^{\dagger}(t)B_{\beta}(t-s)\rangle ,
+$$</p>
+<p>with the reservoir correlation functions given by
+$$
+\langle B_{\alpha}^{\dagger}(t)B_{\beta}(t-s)\rangle\equiv\textrm{Tr}_{B}\{B_{\alpha}^{\dagger}(t)B_{\beta}(t-s)\varrho_{B}\}.
+$$</p>
+<p>Such correlation functions are homogeneous in time if the reservoir is stationary, i.e.</p>
+$$
+\langle B_{\alpha}^{\dagger}(t)B_{\beta}(t-s)\rangle=\langle B_{\alpha}^{\dagger}(s)B_{\beta}(0)\rangle.
+$$
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now make the last approximation, known as the secular approximation. First we define $\tau_{S}$ as the characteristic intrinsic evolution time of the system. This timescale is generally of the order of $\tau_{S}\approx|\omega'-\omega|^{-1}, \omega'\ne\omega$. We indicate with $\tau_{R}$ the relaxation time of the open system. If $\tau_{S}\gg\tau_{R}$ we can neglect all the exponential terms oscillating at frequency $|\omega'-\omega| \ne0$ as they oscillate very rapidly (averaging out to zero) over the time scale $\tau_R$ over which $\varrho_{S}$ changes appreciably. We then decompose the environment correlation functions into its real and imaginary parts</p>
+$$
+\Gamma_{\alpha\beta}(\omega)=\frac{1}{2}\gamma_{\alpha\beta}(\omega)+iS_{\alpha\beta}(\omega),
+$$<p>where, for fixed $\omega$, 
+$$
+\gamma_{\alpha\beta}(\omega)=\Gamma_{\alpha\beta}(\omega)+\Gamma_{\beta\alpha}^{*}(\omega)=\int_{-\infty}^{+\infty}dse^{i\omega s}\langle B_{\alpha}^{\dagger}(s)B_{\beta}(0)\rangle,
+$$</p>
+<p>form a positive matrix and 
+$$
+S_{\alpha\beta}(\omega)=\frac{1}{2i} [\Gamma_{\alpha\beta}(\omega)-\Gamma_{\beta\alpha}^{*}(\omega)],
+$$
+form a Hermitian matrix.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With these definitions we finally arrive at the interaction picture master equation</p>
+\begin{equation}
+\frac{d\varrho_{S} }{dt}(t)=-i[H_{LS},\varrho_{S}(t)]+L\varrho_{S}(t)
+\label{micro6}
+\tag{3.13}
+\end{equation}<p>where
+$$
+H_{LS}=\sum_{\omega}\sum_{\alpha,\beta}S_{\alpha\beta}(\omega)A_{\alpha}^{\dagger}(\omega)A_{\beta}(\omega)
+$$
+is a Lamb-Shift term which provides a Hamiltonian contribution to the dynamics and</p>
+$$
+L\varrho_{S}=\sum_{\omega}\sum_{\alpha,\beta}\gamma_{\alpha\beta}\left[A_{\beta}(\omega)\varrho_{S}A_{\alpha}^{\dagger}(\omega)-\frac{1}{2}\{A_{\alpha}^{\dagger}(\omega)A_{\beta}(\omega),\varrho_{S}\}\right].
+$$<p></p>
+<p>This form of the dissipator (generator of the dynamics) $L$ is know as first standard form. Diagonalizing the real positive matrix $\gamma_{\alpha\beta}(\omega)$ we get the Gorini, Kossakowski, Sudarshan, Lindblad (GKSL) Markovian master equation</p>
+$$
+L\varrho_{S}=\sum_{\omega}\sum_{\alpha}\gamma_{\alpha}(\omega)\left[\bar{A}_{\alpha}(\omega)\varrho_{S}\bar{A}_{\alpha}^{\dagger}(\omega)-\frac{1}{2}\{\bar{A}_{\alpha}^{\dagger}(\omega)\bar{A}_{\alpha}(\omega),\varrho_{S}\}\right].
+$$
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Examples-">Examples <a id="ex" /><a class="anchor-link" href="#Examples-"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>1) Two-level atom in the vacuum (spontaneous emission)</p>
+\begin{equation}
+\frac{d\varrho}{dt}=-i[H,\varrho]+\Gamma\left[\sigma_{-}\varrho\sigma_{+}-\frac{1}{2}\{\sigma_{+}\sigma_{-},\varrho\}\right]
+\label{spontem}
+\tag{3.14}
+\end{equation}<p>where<br>
+$$
+H=\omega_{0}\sigma_{z} .
+$$</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>2) Lossy quantum harmonic oscillator (electromagnetic field in a cavity)</p>
+\begin{equation}
+\frac{d\varrho}{dt}=-i[H,\varrho]+\gamma(N+1)\left[a\varrho a^{\dagger}-\frac{1}{2}\{a^{\dagger}a,\varrho\}\right]+\gamma N\left[a^{\dagger}\varrho a-\frac{1}{2}\{aa^{\dagger},\varrho\}\right]
+\label{qharmosc}
+\tag{3.15}
+\end{equation}<p>where<br>
+$$
+H=\omega_{0}a^{\dagger}a .
+$$</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References-">References <a id="ref" /><a class="anchor-link" href="#References-"> </a></h2><p>[1] <a href="https://dx.doi.org/10.1093/acprof:oso/9780199213900.001.0001">H.-P. Breuer and F. Petruccione, <em>The Theory of Open Quantum Systems</em> (Oxford Univ. Press, Oxford, 2007)</a> <a id='1'></a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
+            </div>
+            <div class="c-textbook__footer" id="textbook_footer">
+              
+<nav class="c-page__nav">
+  
+    
+    
+
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/oqs-jupyterbook/preliminaries.html">
+      〈 <span class="u-margin-right-tiny"></span> Preliminaries
+    </a>
+  
+
+  
+    
+
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/oqs-jupyterbook/markovian_semigroups.html">
+      Dynamical maps: Markovian semigroups <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+              <footer>
+  <p class="footer">This page was created by <a href="https://github.com/jupyter/jupyter-book/graphs/contributors">The Jupyter Book Community</a></p>
+</footer>
+
+            </div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Introduction</title>
+  <meta name="description" content="        Introduction    Introduction to Open Quantum Systems Contents Open Quantum Systems: What and why?WhatWhyDigital simulation of open quantum systems in...">
+
+  <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/introduction.html">
+  <link rel="alternate" type="application/rss+xml" title="Jupyter Book" href="https://matteoacrossi.github.io/oqs-jupyterbook/feed.xml">
+
+  <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/introduction.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Introduction" />
+<meta property="og:description" content="        Introduction    Introduction to Open Quantum Systems Contents Open Quantum Systems: What and why?WhatWhyDigital simulation of open quantum systems in..." />
+<meta property="og:image"       content="https://matteoacrossi.github.io/oqs-jupyterbook/images/logo/logo.png" />
+
+<meta name="twitter:card" content="summary">
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/introduction.html",
+  "headline": "Introduction",
+  "datePublished": "2019-12-12T11:03:18+00:00",
+  "dateModified": "2019-12-12T11:03:18+00:00",
+  "description": "        Introduction    Introduction to Open Quantum Systems Contents Open Quantum Systems: What and why?WhatWhyDigital simulation of open quantum systems in...",
+  "author": {
+    "@type": "Person",
+    "name": "The Jupyter Book Community"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://matteoacrossi.github.io/oqs-jupyterbook",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/css/styles.css">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/oqs-jupyterbook/images/logo/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<!-- (mostly) copied from nbconvert configuration -->
+<!-- https://github.com/jupyter/nbconvert/blob/master/nbconvert/templates/html/mathjax.tpl -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    // Center justify equations in code and markdown cells. Elsewhere
+    // we use CSS to left justify single line equations in code cells.
+    displayAlign: 'center',
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}},
+        linebreaks: { automatic: true },
+    },
+    
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML' async></script>
+
+
+  <!-- DOM updating function -->
+  <script src="/oqs-jupyterbook/assets/js/page/dom-update.js"></script>
+
+  <!-- Selectors for elements on the page -->
+  <script src="/oqs-jupyterbook/assets/js/page/documentSelectors.js"></script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '/oqs-jupyterbook';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/anchors.js" async></script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+<!-- Display Thebelab button in each code cell -->
+<script>
+/**
+ * Set up thebelab button for code blocks
+ */
+
+const thebelabCellButton = id =>
+  `<a id="thebelab-cell-button-${id}" class="btn thebebtn o-tooltip--left" data-tooltip="Interactive Mode">
+    <img src="/oqs-jupyterbook/assets/images/edit-button.svg" alt="Start thebelab interactive mode">
+  </a>`
+
+
+const addThebelabButtonToCodeCells =  () => {
+
+  const codeCells = document.querySelectorAll('div.input_area > div.highlight:not(.output) pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("thebelab-cell-button-" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', thebelabCellButton(id));
+    }
+  })
+}
+
+initFunction(addThebelabButtonToCodeCells);
+</script>
+
+
+<script src="https://unpkg.com/thebelab@latest/lib/index.js" async></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+
+                // Clean up the language to make it work w/ CodeMirror and add it to the cell
+                dataLanguage = ""
+                dataLanguage = detectLanguage(dataLanguage);
+                codeCell.setAttribute('data-language', dataLanguage)
+                codeCell.setAttribute('data-executable', 'true')
+
+                // If the code cell is hidden, show it
+                var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
+                if (inputCheckbox !== null) {
+                    setCodeCellVisibility(inputCheckbox, 'visible');
+                }
+            });
+
+            // Remove the event listener from the page so keyboard press doesn't
+            // Change page
+            document.removeEventListener('keydown', initPageNav)
+            keyboardListener = false;
+
+            // Init thebelab
+            thebelab.bootstrap();
+
+            // Remove copy buttons since they won't work anymore
+            const copyAndThebeButtons = document.querySelectorAll('.copybtn, .thebebtn')
+            copyAndThebeButtons.forEach((button, index) => {
+                button.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+
+            // Find any cells with an initialization tag and ask ThebeLab to run them when ready
+            var thebeInitCells = document.querySelectorAll('div.tag_thebelab-init');
+            thebeInitCells.forEach((cell) => {
+                console.log("Initializing ThebeLab with cell: " + cell.id);
+                cell.querySelector('.thebelab-run-button').click();
+            });
+        }
+
+        // Add event listener for the function to modify code cells
+        const thebelabButtons = document.querySelectorAll('[id^=thebelab], [id$=thebelab]')
+        thebelabButtons.forEach((thebelabButton,index) => {
+            if (thebelabButton === null) {
+                setTimeout(initThebelab, 250)
+                return
+            };
+            thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        });
+    }
+
+    // Initialize Thebelab
+    initFunction(initThebelab);
+
+// Helper function to munge the language name
+var detectLanguage = (language) => {
+    if (language.indexOf('python') > -1) {
+        language = "python";
+    }
+    return language;
+}
+</script>
+
+
+
+  <!-- Load the auto-generating TOC (non-async otherwise the TOC won't load w/ turbolinks) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.8.1/tocbot.min.js" async></script>
+  <script src="/oqs-jupyterbook/assets/js/page/tocbot.js"></script>
+
+  <!-- Google analytics -->
+  
+
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script>
+
+  <!-- Load custom website scripts -->
+  <script src="/oqs-jupyterbook/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/oqs-jupyterbook/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/oqs-jupyterbook/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return dict2param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
+    // If the link is an internal link...
+    if (href.search("https://matteoacrossi.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['jupyterhub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'jupyterhub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    jupyterHubUrl = rest['jupyterhub'];
+    var hubType = null;
+    var hubUrl = null;
+    if (jupyterHubUrl !== undefined) {
+      hubType = 'jupyterhub';
+      hubUrl = jupyterHubUrl;
+    }
+
+    if (hubType !== null) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      var interactButtons = document.querySelectorAll("button.interact-button")
+      var lastButton = interactButtons[interactButtons.length-1];
+      var link = lastButton.parentElement;
+
+      // If we've already run this, skip the link updating
+      if (link.nextElementSibling !== null) {
+        return;
+      }
+
+      // Update the link and add context div
+      var href = link.getAttribute('href');
+      if (lastButton.id === 'interact-button-binder') {
+        // If binder links exist, we need to re-work them for jupyterhub
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+          first = [hubUrl, 'git-sync'].join('/')
+        } else {
+          first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+        }
+        href = first + '?' + binder2Jupyterhub(href);
+      } else {
+        // If interact button isn't binderhub, assume it's jupyterhub
+        // If JupyterHub links, we only need to replace the hub url
+        href = href.replace("", hubUrl);
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // Assume we're working from a local Jupyter server and remove `/hub`
+          href = href.replace("/hub/user-redirect", "");
+        }
+      }
+      link.setAttribute('href', decodeURIComponent(href));
+
+      // Add text after interact link saying where we're launching
+      hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+      link.insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
+
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
+
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js" async></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+
+  <!-- Load JS that depends on site variables -->
+  <script src="/oqs-jupyterbook/assets/js/page/copy-button.js" async></script>
+
+  <!-- Hide cell code -->
+  <script src="/oqs-jupyterbook/assets/js/page/hide-cell.js" async></script>
+
+  <!-- Printing the screen -->
+  <!-- Include nbinteract for interactive widgets -->
+<script src="https://printjs-4de6.kxcdn.com/print.min.js" async></script>
+<script>
+printContent = () => {
+    // MathJax displays a second version of any math for assistive devices etc.
+    // This prevents double-rendering in the PDF output.
+    var ignoreAssistList = [];
+    assistives = document.querySelectorAll('.MathJax_Display span.MJX_Assistive_MathML').forEach((element, index) => {
+        var thisId = 'MathJax-assistive-' + index.toString();
+        element.setAttribute('id', thisId);
+        ignoreAssistList.push(thisId)
+    });
+
+    // Print the actual content object
+    printJS({
+        printable: 'textbook_content',
+        type: 'html',
+        css: "/oqs-jupyterbook/assets/css/styles.css",
+        style: "#textbook_content {padding-top: 40px};",
+        scanStyles: false,
+        targetStyles: ["*"],
+        ignoreElements: ignoreAssistList,
+        documentTitle: "Made with Jupyter Book"
+    })
+};
+
+initPrint = () => {
+    document.querySelector('#interact-button-print').addEventListener('click', printContent)
+}
+
+initFunction(initPrint)
+</script>
+
+</head>
+
+  <body>
+    <!-- Include the ThebeLab config so it gets reloaded on each page -->
+    <script type="text/x-thebe-config">{
+    requestKernel: true,
+    binderOptions: {
+    repo: "jupyter/jupyter-book",
+    ref: "gh-pages",
+    },
+    codeMirrorConfig: {
+    theme: "abcdef",
+    mode: "python"
+    },
+    kernelOptions: {
+    kernelName: "python3",
+    path: "content"
+    }
+}
+</script>
+
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://jupyterbook.org/intro.html"><img src="/oqs-jupyterbook/images/logo/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">Jupyter Book</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="index">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/index.html"
+        >
+          
+            1.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="introduction">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/introduction.html"
+        >
+          
+            2.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="preliminaries">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/preliminaries.html"
+        >
+          
+            3.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="microscopic_derivation_of_the_markovian_master_equation">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html"
+        >
+          
+            4.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="markovian_semigroups">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/markovian_semigroups.html"
+        >
+          
+            5.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="divisible_maps">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/divisible_maps.html"
+        >
+          
+            6.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="projection_operator_techniques">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/projection_operator_techniques.html"
+        >
+          
+            7.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="jaynes_cummings_with_losses">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/jaynes_cummings_with_losses.html"
+        >
+          
+            8.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="non-markovian_quantum_dynamics">
+        <a class="c-sidebar__entry"
+          href="/oqs-jupyterbook/non-markovian_quantum_dynamics.html"
+        >
+          
+            9.
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter" data-url="">
+        <a class="c-sidebar__entry"
+          href=".html"
+        >
+          
+          
+        </a>
+      </li>
+
+      
+      
+
+      
+
+      
+      
+
+      
+        
+
+        
+
+        <ul class="c-sidebar__sections">
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-depolarizing_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-depolarizing_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_1-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_1-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-reservoir-engineering">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-reservoir-engineering.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_3-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_3-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-pauli_channel">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-pauli_channel.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_2-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_2-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-amplitude_damping">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-amplitude_damping.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+            
+            
+
+            
+            
+            
+            
+
+            <li class="c-sidebar__section" data-url="project_4-solution">
+              <a class="c-sidebar__entry"
+                href="/oqs-jupyterbook/project_4-solution.html"
+              >
+                
+                
+              </a>
+            </li>
+            
+            
+          
+        </ul>
+      
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</nav>
+
+      
+      <div class="c-topbar" id="top-navbar">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <div class="c-topbar__buttons">
+    <button
+      id="js-sidebar-toggle"
+      class="hamburger hamburger--arrowalt is-active"
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="buttons">
+<div class="download-buttons-dropdown">
+    <button id="dropdown-button-trigger" class="interact-button"><img src="/oqs-jupyterbook/assets/images/download-solid.svg" alt="Download" /></button>
+    <div class="download-buttons">
+        <a href="/oqs-jupyterbook/content/introduction.ipynb" download>
+        <button id="interact-button-download" class="interact-button">.ipynb</button>
+        </a>
+        
+        <a id="interact-button-print"><button id="interact-button-download" class="interact-button">.pdf</button></a>
+    </div>
+</div>
+
+
+  <button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+  
+  
+
+
+
+
+
+
+<a href="https://mybinder.org/v2/gh/jupyter/jupyter-book/gh-pages?filepath=content%2Fintroduction.ipynb"><button class="interact-button" id="interact-button-binder"><img class="interact-button-logo" src="/oqs-jupyterbook/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
+  
+
+
+</div>
+
+  </div>
+  <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+  <aside class="sidebar__right">
+    <header><h4 class="nav__title"><img src="/oqs-jupyterbook/assets/images/list-solid.svg" alt="Search" />   On this page</h4></header>
+    <nav class="onthispage">
+    </nav>
+  </aside>
+  <a href="/oqs-jupyterbook/search.html" class="topbar-right-button" id="search-button">
+    <img src="/oqs-jupyterbook/assets/images/search-solid.svg" alt="Search" />
+  </a>
+</div>
+
+      <main class="c-textbook__page" tabindex="-1">
+            <div class="c-textbook__content" id="textbook_content">
+                  <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Introduction</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction-to-Open-Quantum-Systems">Introduction to Open Quantum Systems<a class="anchor-link" href="#Introduction-to-Open-Quantum-Systems"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents"> </a></h2><ol>
+<li><a href="#OQSwhatwhy">Open Quantum Systems: What and why?</a><ol>
+<li><a href="#what">What</a></li>
+<li><a href="#why">Why</a></li>
+<li><a href="#digital">Digital simulation of open quantum systems in IBM Q devices</a></li>
+<li><a href="#references">References</a></li>
+</ol>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\newcommand{\Mn}{M_n(\mathbb{C})}$
+$\newcommand{\Mq}{M_2(\mathbb{C})}$
+$\newcommand{\Mk}{M_k(\mathbb{C})}$
+$\newcommand{\Mm}{M_m(\mathbb{C})}$
+$\newcommand{\Mnm}{M_{n \times m}(\mathbb{C})}$
+$\newcommand{\Mnp}{M_n^+(\mathbb{C})}$
+$\newcommand{\ra}{\,\rightarrow\,}$
+$\newcommand{\id}{\mbox{id} }$
+$\newcommand{\ot}{ {\,\otimes\,} }$
+$\newcommand{\Cd}{ {\mathbb{C}^d} }$
+$\newcommand{\Rn}{ {\mathbb{R}^n} }$</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="1.-Open-Quantum-Systems:-what-and-why?-">1. Open Quantum Systems: what and why? <a id="OQSwhatwhy" /><a class="anchor-link" href="#1.-Open-Quantum-Systems:-what-and-why?-"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.1.-What-">1.1. What <a id="what" /><a class="anchor-link" href="#1.1.-What-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An open quantum system is a quantum system interacting with its surroundings. During the last few decades, incredible technological advances have made it possible to perform experiments at the level of single atoms or photons. In these experiments, coherent manipulation of individual quantum systems allows us to prepare them in a desired quantum state with astounding precision. However, no quantum system can be considered completely isolated from its surroundings. Ultimately, all quantum systems will be subjected to coupling to what is known as their external environment. The type of environment that most affects the quantum system of interest of course depends on the physical context we are considering. If we are interested in the dynamics of a single atom that has been prepared in a given excited electronic state (for example by means of a resonant laser pulse), then the natural environment is the electromagnetic (e.m.) field surrounding the atom. We know, indeed, that vacuum field fluctuations, and more precisely the coupling between the atom and the zero-temperature e.m. field, are at the origin of the well-known phenomenon of spontaneous emission. If, instead, our quantum system of interest is an atom in a solid crystal, then a possible environment will be made of phonons (vibrational excitations) describing the vibrational motion of the crystal matrix. In both examples above, the quantum environment is bosonic and is described in terms of an infinite number of quantum harmonic oscillators representing the normal modes of the electromagnetic or vibrational field. Photons (phonons) are quantum excitations of quantum harmonic oscillators having different frequencies. As we will see, the frequency spectrum of the environment, and its density of modes, play a key role in the description of open quantum system dynamics.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Which types of environments are generally considered in the Theory of Open Quantum Systems? There are a number of important distinctions. First of all, one can deal with quantum or classical environments. Within the quantum environment scenario, one can have bosonic or fermonic environments, stationary or non-stationary environments, and within stationary environments there can be thermal environments (often called reservoirs) and non-thermal environments. During this course we will mostly deal with the case in which the environment has infinitely many degrees of freedom, as for the e.m. field example or the phonon environments mentioned above. However, in some cases one can also use open quantum systems approach to study finite-size environments. In the latter case, the Poincare time is finite, that is, after a certain time, the system will return to its initial state. By contrast, for truly infinite environments, the Poincare time is infinite.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Generally, an open quantum system is by definition "what we are interested in", but to investigate its properties, e.g., its dynamics, we need to know the effects of the environment on the system. One should mention at this point that, due to the system-environment coupling, the system also generally influences the environment and changes its evolution. Under some circumstances, the changes induced by the system into the environment are not significant and the latter can be, for all intents and purposes, described as stationary. This is the case, e.g., for a quantum system in contact with a reservoir, as often encountered in thermodynamics and statistical physics. The size and the energy of the reservoir are in this case so much greater than the ones of the system that its state can be considered unaffected by the system itself. The quantum system, by contrast, if prepared in a given quantum state such as its ground state, will evolve due to the presence of the reservoir until it reaches thermal equilibrium with it. It is worth mentioning, however, that some of the examples considered in this course will greatly differ from this scenario. This is particularly true for cold quantum environments such as the vacuum of the e.m. field. As an example, we will consider in the course the case of an atom emitting in a photonics band gap material at zero temperature.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In quantum mechanics, we are used to describing the state of the system in terms of vectors in Hilbert space, or <strong><em>kets</em></strong>. However, this description can only be valid in situations in which the state is definite (the so-called <strong><em>pure</em></strong> states), which is not the most general state a physical system can be in. For instance, if two phyisical systems are entangled, their <strong><em>reduced</em></strong> states (i.e., of each individual part alone) cannot be associated with vectors. Instead, it can be shown that they behave precisely as a <strong><em>statistical mixture</em></strong> of pure states, that is, as if the state had been prepared in one of several possible pure states randomly chosen according to some probability. The mathematical object used for the representation of statistical mixtures, and also valid for pure states, is called <strong><em>density operator</em></strong>, which will be accurately defined in <strong>Chapter 2</strong>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In general, the dynamics between an OQS and its environment results in correlations (e.g., entanglement) between both parts, so the state of the system can only be defined in terms of a density operator. In order to determine the evolution of the system, we could, in principle, solve the von Neumann equation of motion, the equivalent to Schrödinger's equation in the density-operator formalism, for the temporal evolution of the total state of the system and the environment, which is closed and, therefore, remains in a pure state at all times. We could then calculate the state of the system at any time by <strong><em>tracing out</em></strong> the environment. This expression refers to the mathematical operation in which one integrates over the degrees of freedom of one part of a quantum system to compute the reduced state of the rest, the <strong><em>partial trace</em></strong>. The problem, however, is that this approach is almost always impractical, as solving for the total state of system plus environment is generally unfeasible. Instead, by analysing the  Hamiltonian, one is usually able to write an effective, and oftentimes approximate, equation of motion for the system's density operator. This equation of motion is called <strong><em>master equation</em></strong>, and will play a central role throughout the book.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When we solve the Schrödinger equation, we find a family of unitary operators parametrized by time that, when applied to the initial state, yield the state at a later time. In OQS, the situation is rather different, as temporal evolutions are no longer unitary. In this case, solving a master equation results in a family of <strong><em>channels</em></strong>, physically consistent superoperators mapping density operators into density operators, that go by the name of <strong><em>dynamical maps</em></strong> and account for the temporal evolution of the system. During this course, we will mathematically define, characterize and present many examples of dynamical maps.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This book aims at introducing all these concepts in a novel way. In addition to traditional analytical examples and exercises, we will provide the methodology to simulate many paradigmatic OQS dynamics on the publicly available IBM Q Experience quantum computers. To that end, we will make use of Qiskit, a Python-based open-source programming language, of which we will assume a basic knowledge. If the reader is not familiar with it, we refer to the Qiskit textbook avaliable at <a href="https://community.qiskit.org/textbook/">https://community.qiskit.org/textbook/</a>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.2.-Why-">1.2. Why <a id="why" /><a class="anchor-link" href="#1.2.-Why-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>During the last decade the theory of open quantum systems has received renewed attention due to its importance to both fundamental and applicative quantum science. From a fundamental perspective, the theory of open quantum systems allows us to assess what is perhaps the most important question still unanswered in quantum theory: the quantum measurement problem, or the quantum to classical transition.</p>
+<p>In simple terms this question is about the elusive border between the quantum description of reality, which generally applies to microscopic objects such as atoms or electrons, and the classical description of reality which we are familiar with. We live in a classical world. The objects of our every day experience do not experience bizarre quantum phenomena such as quantum superpositions or entanglement. Chairs and tables are here or there, but never in a quantum superposition of here and there. But chairs are composed of individual atoms which do behave quantum mechanically, so it is natural to ask how does classical mechanics emerge from quantum mechanics? This question does not yet have a satisfactory answer! Why is it that macroscopic objects behave in a (perhaps) more boring and certainly more predictable way while microscopic ones behave so differently? And is it really simply a matter of size? In fact, it is not just a question of size of a sample. In a beautiful experiment performed at the University of Vienna, interference due to the wave nature of a beam of large organic molecules has been observed [<a href="#5">5</a>]. In solid state physics, Josephson junctions have been prepared in superpositions of macroscopic currents flowing clockwise or counterclockwise.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One of the most profound descriptions of the quantum to classical border has been given by a Polish scientists working at Los Alamos, Wojciech H. Zurek. His theory goes by the name of environment-induced decoherence [<a href="#3">3</a>]. The main idea comes from the observation that quantum superpositions of macroscopically distinguishable states (Schrödinger cat states), as well as other crucially quantum states such as entangled states, can be created in mesoscopic quantum systems provided that the systems are extremely well isolated from their external environment. It is indeed the presence of the environment that is the main culprit for the destruction of all quantum features. In other words, the environment introduces noise into quantum systems destroying fragile coherent superpositions and transforming them into classical statistical mixtures. Moreover, it is found that, given a certain environment and coupling, the bigger the system, prepared, for example, in a Schrödinger cat state, the faster the environment-induced decoherence transforming it into a classical statistical mixture and destroying quantum coherence. Therefore, the reason why we do not observe quantum superpositions of distinguishable states of macroscopic objects would lie ultimately in the extremely fast decoherence that would occur. The bigger the cat, the faster it dies due to the environment. Recently, Zurek has also proposed a new mechanism, quantum Darwinism, to explain the emergence of objective reality [<a href="#6">6</a>]. Indeed, decoherence results in the loss of purity of the system's state, but it does not account for the fact that we generally observe well-defined properties of physical systems in our classical perception of reality. Quantum Darwinism shows that, as the system interacts with the environment, certain properties of the state of the former get redundantly mapped into the environment. Hence, as different observers measure different fractions of the environment, they obtain consistent information about the state of the system, therefore agreeing on its objective reality. The theory of open quantum systems, therefore, allows us to describe the elusive border between the quantum and the classical.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The considerations made above naturally highlight the importance of the theory of open quantum systems for applications too. We are currently on the verge of what is known as the second quantum revolution. Why the second? Because there was already a first. The first quantum revolution is the one that led to a whole new range of technologies based on the understanding of the quantum structure of microscopic systems as, for instance, the invention of the laser, which is now widely used in a number of technologies. To have a clearer idea of the impact of the birth of quantum physics on our technologies and society in general one could cite an estimate by Tegmark and Wheeler [<a href="#4">4</a>] according to which already more than two decades ago 30\% of the gross national product of the United States came from inventions made possible by quantum physics. The second quantum revolution is taking place as the so-called quantum technologies become commercially distributed and available on the market. These technologies include quantum computers, quantum sensors, quantum cryptographic devices and so on and so forth.</p>
+<p>Quantum technologies stem from the most definitively quantum features of microscopic systems, such as quantum superpositions and entanglement. Most of them rely on a recently developed field in science lying at the intersection between information theory, computer science and quantum physics, namely quantum information and computation. Quantum devices operate by manipulating and transmitting quantum information carried by physical systems. But quantum information is delicate and, once again, is quickly destroyed by the noisy environment. Hence, for quantum technologies to reach their full potential, it is crucial to identify and combat the sources of decoherence coming from the interaction with the environment. Once again this requires the use of the methods and techniques of the theory of open quantum systems. In order to have a realistic description of quantum information processing and quantum communication it is indeed necessary to use the formalism and tools that we will learn during this course.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As for why using quantum computers in this course, we believe that the advent of Noisy Intermediate-Scale Quantum (NISQ) technology is changing rapidly the landscape and modality of research in quantum physics. NISQ  devices, such as the IBM Q Experience, have very recently proven their capability as experimental platforms accessible to everyone around the globe. Perhaps, in a not too far future, this will blur the line separating theoretical and experimental research, and an increasing number of experiments will be remotely programmable. Hence, providing an initial toolbox to get the student acquainted with digital simulation can be a valuable resource for theorists willing to test their ideas experimentally.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.3.-Digital-simulation-of-open-quantum-systems-in-IBM-Q-devices-">1.3. Digital simulation of open quantum systems in IBM Q devices <a id="digital" /><a class="anchor-link" href="#1.3.-Digital-simulation-of-open-quantum-systems-in-IBM-Q-devices-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Most of the experiments until now realised for simulating open quantum systems rely on the idea of analogue quantum simulator, that is a quantum system whose dynamics resemble those of another quantum system that we wish to study and understand. In contrast, a digital quantum simulator is a gate-based quantum computer which can be used to simulate any physical system (including open quantum systems), if suitably programmed [<a href="#7">7</a>. <a href="#8">8</a>]. Hence, one of the goals of this course is precisely to teach how to design circuits for the simulation of open quantum systems using currently available quantum computers.</p>
+<p>Theoretical and experimental research on open systems digital quantum simulators is only now starting to flourish [<a href="#9">9</a>-<a href="#14">14</a>]. While, in principle, general algorithms for digital simulation of open quantum systems have been theoretically investigated [<a href="#9">9</a>, <a href="#11">11</a>, <a href="#14">14</a>], their experimental implementation poses several challenges, since the physically implementable quantum gates depend on the experimental platform and the circuit decomposition needs to be optimised in view of gates and measurement errors as well as qubit connectivity. Therefore, the existence of general algorithms for implementing theoretically universal open quantum system simulators does not guarantee the practical implementability in a realistic experiment on a given platform.</p>
+<p>Instead, in this course we will see that a careful circuit decomposition allows us to experimentally implement a great variety of paradigmatic open quantum systems models for one and two qubits on publicly available and remotely accessible NISQ devices, namely, the IBM Q Experience processors. On the one hand, this will present an application of quantum computers somewhat different from what IBM Q processors have traditionally been used for, namely, quantum computation and the simulation of closed quantum systems. On the other hand, it will reveal that the versatility of these devices makes them ideal tools for the investigation of OQS. Indeed, other experimental platforms have been successfully used for the simulation of OQS, but they are usually limited to certain classes of models.</p>
+<p>At this point, it is natural to wonder how can OQS dynamics be simulated on a gate-based quantum computer. After all, we have discussed situations such as an atom interacting with an e.m. field, which has no obvious connection with an $n$-qubit system. To do so, one first identifies the system with a set of qubits in the device. For instance, an atom can be modeled using one qubit as long as only two of its levels are to be taken into account. In principle, one could proceed in a similar manner and use other qubits to play the role of the environment. The system-environment interaction would then be implemented through the appropriate multi-qubit gates between the system and environment qubits. However, in most cases, the environment is too complex and has too many degrees of freedom to be simulated with a few qubits, so one needs to take a different approach. Instead of modeling the dynamics of the environment explicitly, one finds a small set of qubits and interactions among them (and with the system) that result in the same dynamics on the system qubits.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.4.-References-">1.4. References <a id="what" /><a class="anchor-link" href="#1.4.-References-"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>1) Reference book of the course:  <a href="https://dx.doi.org/10.1093/acprof:oso/9780199213900.001.0001">H.-P. Bruer and F. Petruccione, <em>The Theory of Open Quantum Systems</em>, Oxford University Press (2006)</a>. <a id='1'></a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2) Review article on time-local master equations: <a href="https://doi.org/10.1142/S1230161214400046">Dariusz Chruściński, <em>On time-local generators of quantum evolution</em>, Open Syst. Inf. Dyn. <strong>21</strong>, 1440004 (2014)</a>. See also <a href="https://arxiv.org/abs/1311.3314">arXiv:1311.3314</a>. <a id='2'></a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>3) Zurek's article on environment induced decoherence: <a href="https://arxiv.org/pdf/quantph/0306072">W.H. Zurek <em>Decoherence and the transition from quantum to classical - revisited</em>, Los Alamos Science <strong>27</strong>, 86-109 (2002)</a>. <a id='3'></a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>4) Short article about quantum information and environmental effects: <a href="https://doi.org/10.1038/35090662">Rainer Blatt, <em>Delicate information</em>, Nature <strong>412</strong>, 773 (2001)</a>. <a id='4'></a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>[5] <a href="https://www.nature.com/articles/s41567-019-0663-9">Y. Y. Fein, P. Geyer, P. Zwick, F. Kiałka, S. Pedalino, M. Mayor, S. Gerlich and M. Arndt, Nature Physics, <strong>15</strong>, 1242 (2019)</a> <a id='5'></a></p>
+<p>[6] <a href="https://doi.org/10.1038/nphys1202">W. H. Zurek, Nature Physics, <strong>5</strong>, 181 (2009)</a> <a id='6'></a></p>
+<p>[7] <a href="https://doi.org/10.1007/BF02650179">R. P. Feynman, Int. J. Theor. Phys. <strong>21</strong>, 467 (1982)</a> <a id='7'></a></p>
+<p>[8] <a href="https://doi.org/10.1126/science.273.5278.1073">S. Lloyd, Science <strong>273</strong>, 1073 (1996)</a> <a id='8'></a></p>
+<p>[9] <a href="https://doi.org/10.1103/PhysRevA.83.062317">H. Wang, S. Ashhab, and F. Nori, Phys. Rev. A <strong>83</strong>, 062317 (2011)</a> <a id='9'></a></p>
+<p>[10] <a href="https://doi.org/10.1038/nphys2630">P. Schindler, M. Mu¨ller, D. Nigg, J. T. Barreiro, E. A. Martinez, M. Hennrich, T. Monz, S. Diehl, P. Zoller, and R. Blatt, Nat. Phys. <strong>9</strong>, 361 (2013)</a> <a id='10'></a></p>
+<p>[11] <a href="https://doi.org/10.1103/PhysRevLett.111.130504">D.-S. Wang, D. W. Berry, M. C. de Oliveira, and B. C. Sanders, Phys. Rev. Lett. <strong>111</strong>, 130504 (2013)</a> <a id='11'></a></p>
+<p>[12] <a href="https://doi.org/10.1103/PhysRevA.95.042310">H. Lu, C. Liu, D.-S. Wang, L.-K. Chen, Z.-D. Li, X.-C. Yao, L. Li, N.-L. Liu, C.-Z. Peng, B. C. Sanders, Y.-A. Chen, and J.-W. Pan, Phys. Rev. A <strong>95</strong>, 042310 (2017)</a> <a id='12'></a></p>
+<p>[13] <a href="https://doi.org/10.1103/PhysRevA.96.062303">T. Xin, S.-J. Wei, J. S. Pedernales, E. Solano, and G.-L. Long, Phys. Rev. A <strong>96</strong>, 062303 (2017)</a> <a id='13'></a></p>
+<p>[14] <a href="https://doi.org/10.1103/PhysRevB.95.134501">C. Shen, K. Noh, V. V. Albert, S. Krastanov, M. H. Devoret, R. J. Schoelkopf, S. M. Girvin, and L. Jiang, Phys. Rev. B <strong>95</strong>, 134501 (2017)</a> <a id='14'></a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
+            </div>
+            <div class="c-textbook__footer" id="textbook_footer">
+              
+<nav class="c-page__nav">
+  
+    
+    
+
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/oqs-jupyterbook/index.html">
+      〈 <span class="u-margin-right-tiny"></span> Open quantum systems course
+    </a>
+  
+
+  
+    
+
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/oqs-jupyterbook/preliminaries.html">
+      Preliminaries <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+              <footer>
+  <p class="footer">This page was created by <a href="https://github.com/jupyter/jupyter-book/graphs/contributors">The Jupyter Book Community</a></p>
+</footer>
+
+            </div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
