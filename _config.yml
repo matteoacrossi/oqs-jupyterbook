@@ -50,7 +50,7 @@ search_max_words_in_content : 100  # In the search function, use at most this ma
 # filename_title_split_character : '_'  # If inferring titles based on filename, splt on this character.
 
 # Math settings
-number_equations               : true  # Whether to automatically number all block equations with MathJax
+number_equations               : false  # Whether to automatically number all block equations with MathJax
 
 #######################################################################################
 # Interact link settings
