@@ -96,8 +96,8 @@ scholar:
 # Option to add a Goggle analytics tracking code
 
 # Navigate to https://analytics.google.com, add a new property for your jupyter book and copy the tracking id here.
-google_analytics:
-  mytrackingcode: UA-52617120-7
+# google_analytics:
+#   mytrackingcode: UA-52617120-7
 
 #######################################################################################
 # Jupyter book settings you probably don't need to change
