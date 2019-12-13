@@ -16,11 +16,11 @@
 
 #######################################################################################
 # Jekyll site settings
-title: Open Quantum Systems
-author: The Jupyter Book Community
-email: choldgraf@berkeley.edu
+title: Open Quantum Systems with Qiskit
+author: Turku Quantum Technologies
+email: turkuquantum@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is an example book built with Jupyter Books.
+  A master course on Open Quantum Systems with Qiskit
 
 baseurl: "/oqs-jupyterbook" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
 url: "https://matteoacrossi.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -30,7 +30,7 @@ url: "https://matteoacrossi.github.io" # the base hostname & protocol for your s
 # Jupyter Book settings
 
 # Main page settings
-footer_text               : This page was created by <a href="https://github.com/jupyter/jupyter-book/graphs/contributors">The Jupyter Book Community</a>
+footer_text               : Created by Daria Anttila, Guillermo García-Pérez, Matteo Rossi, Boris Sokolov
 
 # Sidebar settings
 show_sidebar              : true  # Show the sidebar. Only set to false if your only wish to host a single page.
@@ -45,9 +45,9 @@ number_toc_chapters       : true  # Whether to add numbers to chapterse in your 
 search_max_words_in_content : 100  # In the search function, use at most this many words (too many words will make search slow)
 
 # # Controlling page information
-# page_titles                    : None  # Either `None`, `infer`, or `toc`
-# page_authors                   : None  # Either `None` or `infer`
-# filename_title_split_character : '_'  # If inferring titles based on filename, splt on this character.
+page_titles                    : toc  # Either `None`, `infer`, or `toc`
+page_authors                   : None  # Either `None` or `infer`
+filename_title_split_character : '_'  # If inferring titles based on filename, splt on this character.
 
 # Math settings
 number_equations               : false  # Whether to automatically number all block equations with MathJax
@@ -67,8 +67,8 @@ jupyterhub_interact_text         : "Interact"  # The text that interact buttons 
 use_binder_button                : true  # If 'true', add a binder button for interactive links
 binderhub_url                    : "https://mybinder.org"  # The URL for your BinderHub. If no URL, use ""
 binder_repo_base                 : "https://github.com/"  # The site on which the textbook repository is hosted
-binder_repo_org                  : "jupyter"  # The username or organization that owns this repository
-binder_repo_name                 : "jupyter-book"  # The name of the repository on the web
+binder_repo_org                  : "matteoacrossi"  # The username or organization that owns this repository
+binder_repo_name                 : "oqs-jupyterbook"  # The name of the repository on the web
 binder_repo_branch               : "gh-pages"  # The branch on which your textbook is hosted.
 binderhub_interact_text          : "Interact"  # The text that interact buttons will contain.
 

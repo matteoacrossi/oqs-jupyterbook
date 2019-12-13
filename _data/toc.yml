@@ -25,9 +25,9 @@
 # generate a demo book by running `jupyter-book create mybook --demo`
 # ==============================
 
-- title: Open quantum systems course
-  url: /index
-  not_numbered: true
+# - title: Open quantum systems course
+#   url: /index
+#   not_numbered: true
 - title: Introduction
   url: /introduction
 - title: Preliminaries
@@ -41,17 +41,36 @@
 - url: /projection_operator_techniques
   title: Projection operator techniques
 - url: /jaynes_cummings_with_losses
-  title: Jaynes-Cummings with losses
+  title: Jaynes-Cummings model with losses
 - url: /non-markovian_quantum_dynamics
   title: Non-Markovian quantum Dynamics
 
 - header: Projects
 
 - url: /project_1-depolarizing_channel
-- url: /project_1-solution
-- url: /project_3-reservoir-engineering
-- url: /project_3-solution
+  title: "Project 1: Depolarizing channel"
+  not_numbered: true
+  sections:
+  - url: /project_1-solution
+    title: Solution
+
 - url: /project_2-pauli_channel
-- url: /project_2-solution
+  title: "Project 2: Pauli channel"
+  not_numbered: true
+  sections:
+  - url: /project_2-solution
+    title: Solution
+
+- url: /project_3-reservoir-engineering
+  title: "Project 3: Reservoir engineering"
+  not_numbered: true
+  sections:
+  - url: /project_3-solution
+    title: Solution
+
 - url: /project_4-amplitude_damping
-- url: /project_4-solution
+  title: "Project 4: Amplitude damping"
+  not_numbered: true
+  sections:
+  - url: /project_4-solution
+    title: Solution
