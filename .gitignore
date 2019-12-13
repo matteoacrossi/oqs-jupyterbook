@@ -4,3 +4,4 @@ _build/
 .jekyll-cache/
 .jekyll-metadata
 Gemfile.lock
+content/.ipynb_checkpoints/*
