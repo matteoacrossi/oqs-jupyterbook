@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/non-markovian_quantum_dynamics.html",
   "headline": "Non-Markovian quantum Dynamics",
-  "datePublished": "2019-12-13T13:41:45+00:00",
-  "dateModified": "2019-12-13T13:41:45+00:00",
+  "datePublished": "2019-12-13T13:49:07+00:00",
+  "dateModified": "2019-12-13T13:49:07+00:00",
   "description": "        Non-Markovian quantum Dynamics    $\newcommand{\parenthnewln}{\right.\\&amp;\left.\quad\quad{} }$$\newcommand{\nc}{\newcommand}$$\nc{\eq}{\begin{equa...",
   "author": {
     "@type": "Person",
@@ -2211,7 +2211,7 @@ For both the Lorentzian reservoir spectrum and the PBG the measures $\N_{\text{C
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>[WE SHOULD DISCUSS THIS SECTION ON MONDAY AND CHANGE IT ACCORDINGLY] In previous chapter we obtained an exact solution for Jaynes-Cummings model with losses, which is a generalised amplitude damping model. The master equation is given by Eq. (\ref{aster}), where the time dependent decay rate $\gamma(t)$ has the following analytical form</p>
+<p>In previous chapter we obtained an exact solution for Jaynes-Cummings model with losses, which is a generalised amplitude damping model. The master equation is given by Eq. (<a href="jaynes_cummings_with_losses.html#me">7.10</a>), where the time dependent decay rate $\gamma(t)$ has the following analytical form</p>
 \begin{equation} \label{ampD}
 \gamma(t)=-2\Re\left[\frac{\dot{c}_{1}(t)}{c_{1}(t)}\right],
 \end{equation}<p>with
@@ -2219,7 +2219,7 @@ For both the Lorentzian reservoir spectrum and the PBG the measures $\N_{\text{C
 c_{1}(t)&amp;=&amp;c_{1}(0)e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right) + \frac{1}{\sqrt{1-2R} }\sinh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)\right].
 \label{c1lor}
 \end{eqnarray}</p>
-<p>It is a straightforward calculation to show that the time-dependent decay rate $\gamma(t)$ takes negative values for certain time intervals whenever $2 R\ge 1$. In this case the dynamical map is not CP-divisible, and therefore non-Markovian. In Fig.~\ref{fig3}\textbf{a} and \textbf{b} we  show [THIS SHOULD BE CHANGED SINCE WE NOW HAVE THE INTERACTIVE PLOTS SO NO NEED TO FIX VALUES OF R], as example of Markovian and non-Markovian dynamics, the evolution of the excited state population of an initially excited state for two values of the parameter $R$, corresponding to Markovian ($R=0.2$) and non-Markovian ($R=100$) dynamics, respectively. The figures show the monotonic decay of the excited state population in the former case, while in the latter case the population oscillates since the qubit exchanges information and energy with the central mode of the Lorentzian peak, resonant with the qubit's Bohr frequency. As done for the other open quantum systems simulators, we compare the experimental data with theoretical predictions, finding a good agreement.</p>
+<p>It is a straightforward calculation to show that the time-dependent decay rate $\gamma(t)$ takes negative values for certain time intervals whenever $2 R\ge 1$. In this case the dynamical map is not CP-divisible, and therefore non-Markovian. The left plot in the interactive figure below shows the population of the excited state. It can be seen that, for small $R$, it decays monotonically, while the population oscillates for large values of $R$, since the qubit exchanges information and energy with the central mode of the Lorentzian peak, resonant with the qubit's Bohr frequency.</p>
 <p>We also implement an experimentally friendly witness of non-Markovianity Ref. [<a href="#47">47</a>] which stems from the spectral properties of the dynamical map. The witness is based on the behaviour of an initial maximally entangled state of qubit and auxiliary ancilla, and requires only the measurement of the expectation values of local observables such as $\sigma_i \otimes \sigma_i$, ($i=x,y,z$). Non-monotonic behaviour of the witness as a function of time signals non-Markovianity. Other witnesses of non-Markovianity (such as the BLP measure [<a href="#12">12</a>]) could be implemented, and may be more efficient at detecting memory effects, but they generally require a larger number of measurements or optimization over initial states.</p>
 
 </div>
@@ -2274,7 +2274,7 @@ c_{1}(t)&amp;=&amp;c_{1}(0)e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we will use as a basis the circuit from previous chapter and add to it the non-Markovianity witness. The non-Markovianity witness for the mentioned above channel proposed in Ref. [<a href="#47">47</a>] is based on the dynamical behaviour of the entanglement between the system and an ancilla initially prepared in a maximally entangled state. Namely, this quantity is defined as $f_{\Phi} = \langle \phi^{+} | \mathbb{I} \otimes \Phi_t [| \phi^{+} \rangle \langle \phi^{+} | ] | \phi^{+} \rangle$. Hence, implementing this quantity requires preparing the state $| \phi^{+} \rangle$ between the system and an ancilla, which can be achieved using a Hadamard and a CNOT gates, applying the dynamical map to the system and measuring the probability of finding the joint system and ancilla state in $| \phi^{+} \rangle$. As suggested in Ref. [<a href="#47">47</a>], we need not use an extra CNOT gate to project on the Bell basis; instead, we can take advantage of the fact that $| \phi^{+} \rangle \langle \phi^{+} | = (\mathbb{I}\otimes \mathbb{I} + \sigma_{x}\otimes \sigma_{x} - \sigma_{y}\otimes \sigma_{y} + \sigma_{z}\otimes \sigma_{z})/4$ and measure the corresponding local observables. We now show the circuit corresponding to the measurement of $\sigma_{y}\otimes \sigma_{y}$.</p>
+<p>Here we will use as a basis the circuit from previous chapter and add to it the non-Markovianity witness. The non-Markovianity witness for the mentioned above channel proposed in Ref. [<a href="#47">47</a>] is based on the dynamical behaviour of the entanglement between the system and an ancilla initially prepared in a maximally entangled state. Namely, this quantity is defined as $f_{\Phi} = \langle \phi^{+} | \mathbb{I} \otimes \Phi_t [| \phi^{+} \rangle \langle \phi^{+} | ] | \phi^{+} \rangle$. Hence, implementing this quantity requires preparing the state $| \phi^{+} \rangle$ between the system and an ancilla, which can be achieved using a Hadamard and a CNOT gates, applying the dynamical map to the system and measuring the probability of finding the joint system and ancilla state in $| \phi^{+} \rangle$. The interactive figure above (right plot) also depicts the behaviour of the witness for different values of $R$, and shows its oscillations in the non-Markovian regime. As suggested in Ref. [<a href="#47">47</a>], we need not use an extra CNOT gate to project on the Bell basis; instead, we can take advantage of the fact that $| \phi^{+} \rangle \langle \phi^{+} | = (\mathbb{I}\otimes \mathbb{I} + \sigma_{x}\otimes \sigma_{x} - \sigma_{y}\otimes \sigma_{y} + \sigma_{z}\otimes \sigma_{z})/4$ and measure the corresponding local observables. We now show the circuit corresponding to the measurement of $\sigma_{y}\otimes \sigma_{y}$.</p>
 
 </div>
 </div>
