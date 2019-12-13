@@ -10,6 +10,9 @@ The course is aimed at master students with a background in Quantum Mechanincs a
 
 ----
 
+Authors: Daria Anttila, Guillermo García-Pérez, Matteo Rossi, Boris Sokolov
+
+
 This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0
 International License][cc-by-sa].
 
