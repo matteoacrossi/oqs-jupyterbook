@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/project_3-solution.html",
   "headline": "Solution",
-  "datePublished": "2019-12-13T09:57:51+00:00",
-  "dateModified": "2019-12-13T09:57:51+00:00",
+  "datePublished": "2019-12-13T13:08:56+00:00",
+  "dateModified": "2019-12-13T13:08:56+00:00",
   "description": "        Solution    Project 3: Markovian reservoir engineering Solution     # Importsimport numpy as npimport matplotlib.pyplot as pltfrom datetime import da...",
   "author": {
     "@type": "Person",
@@ -1223,7 +1223,7 @@ initFunction(initPrint)
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.-Circuit-preparation-">1. Circuit preparation <a id="circuit_preparation" /><a class="anchor-link" href="#1.-Circuit-preparation-"> </a></h3>
+<h3 id="Task-1">Task 1<a class="anchor-link" href="#Task-1"> </a></h3>
 </div>
 </div>
 </div>
@@ -1236,9 +1236,234 @@ initFunction(initPrint)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">reservoir_engineering</span> <span class="kn">import</span> <span class="o">*</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">zz_pump</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">ancilla</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a QuantumCircuit implementing the ZZ pump channel on the system qubits</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        q (QuantumRegister): the register to use for the circuit</span>
+<span class="sd">        c (ClassicalRegister): the register to use for the measurement of the system qubits</span>
+<span class="sd">        p (float): the efficiency for the channel, between 0 and 1</span>
+<span class="sd">        system (list): list of indices for the system qubits</span>
+<span class="sd">        ancilla (int): index for the ancillary qubit</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A QuantumCircuit object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">zz</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    
+    <span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    
+    <span class="c1"># Map information to ancilla</span>
+    <span class="n">zz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">zz</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">ancilla</span><span class="p">])</span>
+    <span class="n">zz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">ancilla</span><span class="p">])</span>
+    
+    <span class="c1"># Conditional rotation</span>
+    <span class="n">zz</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">ancilla</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+    <span class="c1"># Inverse mapping</span>
+    <span class="n">zz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">ancilla</span><span class="p">])</span>
+    
+    <span class="c1"># Measurement</span>
+    <span class="n">zz</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">zz</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">zz</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">zz</span>
+</pre></div>
 
-<span class="n">SHOTS</span> <span class="o">=</span> <span class="mi">8192</span>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">xx_pump</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">ancilla</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a QuantumCircuit implementing the XX pump channel on the system qubits</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        q (QuantumRegister): the register to use for the circuit</span>
+<span class="sd">        c (ClassicalRegister): the register to use for the measurement of the system qubits</span>
+<span class="sd">        p (float): the efficiency for the channel, between 0 and 1</span>
+<span class="sd">        system (list): list of indices for the system qubits</span>
+<span class="sd">        ancilla (int): index for the ancillary qubit</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A QuantumCircuit object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+    <span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    
+    <span class="c1"># Map information to ancilla</span>
+    <span class="n">xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">xx</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">xx</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">ancilla</span><span class="p">])</span>
+    <span class="n">xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">ancilla</span><span class="p">])</span>
+    
+    <span class="c1"># Conditional rotation</span>
+    <span class="n">xx</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">ancilla</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    
+    <span class="c1"># Inverse mapping</span>
+    <span class="n">xx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">ancilla</span><span class="p">])</span>
+    
+    <span class="c1"># Measurement</span>
+    <span class="n">xx</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">xx</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">xx</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">zz_xx_pump</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">ancillae</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a QuantumCircuit implementing the composition channel on the system qubits</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        q (QuantumRegister): the register to use for the circuit</span>
+<span class="sd">        c (ClassicalRegister): the register to use for the measurement of the system qubits</span>
+<span class="sd">        p (float): the efficiency for both channels, between 0 and 1</span>
+<span class="sd">        system (list): list of indices for the system qubits</span>
+<span class="sd">        ancillae (list): list of indices for the ancillary qubits</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A QuantumCircuit object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">zx</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    
+    <span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    
+    <span class="c1"># ZZ pump</span>
+    <span class="c1">## Map information to ancilla</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">ancillae</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">ancillae</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    
+    <span class="c1">## Conditional rotation</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">ancillae</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+    <span class="c1">## Inverse mapping</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">ancillae</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    
+    <span class="c1"># XX pump</span>
+    <span class="c1">## Map information to ancilla</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">ancillae</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">ancillae</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+    <span class="c1">## Conditional rotation</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">ancillae</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    
+    <span class="c1">## Inverse mapping</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">q</span><span class="p">[</span><span class="n">ancillae</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+    <span class="c1"># Measurement</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">zx</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">zx</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Tasks-2-3">Tasks 2-3<a class="anchor-link" href="#Tasks-2-3"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For convenience, we define a function returning the four initial state preparations</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">initial_conditions</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a dictionary containing four QuantumCircuit objects which prepare the two-qubit system in different initial states</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        q (QuantumRegister): the register to use for the circuit</span>
+<span class="sd">        system (list): list of indices for the system qubits</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A dictionary with the initial state QuantumCircuit objects and a list of labels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># State labels</span>
+    <span class="n">state_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> <span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">]</span>
+    
+    <span class="n">ic</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">ic_label</span> <span class="ow">in</span> <span class="n">state_labels</span><span class="p">:</span>
+        <span class="n">ic</span><span class="p">[</span><span class="n">ic_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    
+    <span class="c1"># |01&gt;</span>
+    <span class="n">ic</span><span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    
+    <span class="c1"># |10&gt;</span>
+    <span class="n">ic</span><span class="p">[</span><span class="s1">&#39;10&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+    <span class="c1"># |11&gt;</span>
+    <span class="n">ic</span><span class="p">[</span><span class="s1">&#39;11&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">ic</span><span class="p">[</span><span class="s1">&#39;11&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+    <span class="k">return</span> <span class="n">ic</span><span class="p">,</span> <span class="n">state_labels</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SHOTS</span> <span class="o">=</span> <span class="mi">8192</span>
 
 <span class="c1"># The values for p</span>
 <span class="n">p_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -1270,9 +1495,6 @@ initFunction(initPrint)
         <span class="n">circuits</span><span class="p">[</span><span class="s1">&#39;ZZ&#39;</span><span class="p">][</span><span class="n">ic</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ic_circs</span><span class="p">[</span><span class="n">ic</span><span class="p">]</span><span class="o">+</span><span class="n">zz_pump</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">a_zz</span><span class="p">))</span>
         <span class="n">circuits</span><span class="p">[</span><span class="s1">&#39;XX&#39;</span><span class="p">][</span><span class="n">ic</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ic_circs</span><span class="p">[</span><span class="n">ic</span><span class="p">]</span><span class="o">+</span><span class="n">xx_pump</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">a_xx</span><span class="p">))</span>
         <span class="n">circuits</span><span class="p">[</span><span class="s1">&#39;ZZ_XX&#39;</span><span class="p">][</span><span class="n">ic</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ic_circs</span><span class="p">[</span><span class="n">ic</span><span class="p">]</span><span class="o">+</span><span class="n">zz_xx_pump</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="p">[</span><span class="n">a_zz</span><span class="p">,</span> <span class="n">a_xx</span><span class="p">]))</span>
-
-<span class="c1"># Calibration circuits</span>
-<span class="n">cal_circuits</span><span class="p">,</span> <span class="n">state_labels</span> <span class="o">=</span> <span class="n">complete_meas_cal</span><span class="p">(</span><span class="n">system</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1305,7 +1527,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/project_3-solution_5_0.png"
+<img src="images/project_3-solution_11_0.png"
 >
 </div>
 
@@ -1314,28 +1536,6 @@ initFunction(initPrint)
 </div>
 </div>
 
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Drawing of one of the circuit of the composition map, with measurement on the Bell basis. Notice that consecutive gates resulting in identity have been removed.</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Simulation-">2. Simulation <a id="simulation" /><a class="anchor-link" href="#2.-Simulation-"> </a></h3><p>This cell executes locally the (noiseless) simulation of the circuits above.</p>
-
-</div>
-</div>
 </div>
 </div>
 
@@ -1393,7 +1593,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea ">
-<img src="images/project_3-solution_8_0.png"
+<img src="images/project_3-solution_12_0.png"
 >
 </div>
 
@@ -1409,7 +1609,7 @@ initFunction(initPrint)
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-Execution-on-the-real-device-">3. Execution on the real device <a id="execution" /><a class="anchor-link" href="#3.-Execution-on-the-real-device-"> </a></h3>
+<h3 id="Homework">Homework<a class="anchor-link" href="#Homework"> </a></h3>
 </div>
 </div>
 </div>
@@ -1422,7 +1622,9 @@ initFunction(initPrint)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run the calibration job</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calibration circuits</span>
+<span class="n">cal_circuits</span><span class="p">,</span> <span class="n">state_labels</span> <span class="o">=</span> <span class="n">complete_meas_cal</span><span class="p">(</span><span class="n">system</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="c1"># Run the calibration job</span>
 <span class="n">calibration_job</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">cal_circuits</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="n">SHOTS</span><span class="p">)</span>
 
 <span class="c1"># Run the circuits and save the jobs</span>
@@ -1438,16 +1640,6 @@ initFunction(initPrint)
 </div>
 </div>
 
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.-Analysis-of-the-results-">4. Analysis of the results <a id="analysis" /><a class="anchor-link" href="#4.-Analysis-of-the-results-"> </a></h3>
-</div>
-</div>
 </div>
 </div>
 
@@ -1501,7 +1693,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea ">
-<img src="images/project_3-solution_12_0.png"
+<img src="images/project_3-solution_15_0.png"
 >
 </div>
 

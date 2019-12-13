@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
   <title>Solution</title>
-  <meta name="description" content="        Solution    Project 4: Amplitude damping Solution     import numpy as npimport matplotlib.pyplot as pltfrom datetime import datetimeimport jsonimport...">
+  <meta name="description" content="        Solution    Project 4: Amplitude damping Solution     # Importsimport numpy as npimport matplotlib.pyplot as pltfrom datetime import datetimeimport j...">
 
   <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/project_4-solution.html">
   <link rel="alternate" type="application/rss+xml" title="Open Quantum Systems with Qiskit" href="https://matteoacrossi.github.io/oqs-jupyterbook/feed.xml">
@@ -14,7 +14,7 @@
   <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/project_4-solution.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Solution" />
-<meta property="og:description" content="        Solution    Project 4: Amplitude damping Solution     import numpy as npimport matplotlib.pyplot as pltfrom datetime import datetimeimport jsonimport..." />
+<meta property="og:description" content="        Solution    Project 4: Amplitude damping Solution     # Importsimport numpy as npimport matplotlib.pyplot as pltfrom datetime import datetimeimport j..." />
 <meta property="og:image"       content="https://matteoacrossi.github.io/oqs-jupyterbook/images/oqs.001.png" />
 
 <meta name="twitter:card" content="summary">
@@ -26,9 +26,9 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/project_4-solution.html",
   "headline": "Solution",
-  "datePublished": "2019-12-13T09:57:51+00:00",
-  "dateModified": "2019-12-13T09:57:51+00:00",
-  "description": "        Solution    Project 4: Amplitude damping Solution     import numpy as npimport matplotlib.pyplot as pltfrom datetime import datetimeimport jsonimport...",
+  "datePublished": "2019-12-13T13:08:56+00:00",
+  "dateModified": "2019-12-13T13:08:56+00:00",
+  "description": "        Solution    Project 4: Amplitude damping Solution     # Importsimport numpy as npimport matplotlib.pyplot as pltfrom datetime import datetimeimport j...",
   "author": {
     "@type": "Person",
     "name": "Turku Quantum Technologies"
@@ -1167,7 +1167,8 @@ initFunction(initPrint)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
@@ -1222,17 +1223,7 @@ initFunction(initPrint)
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tasks-1-3">Tasks 1-3<a class="anchor-link" href="#Tasks-1-3"> </a></h2>
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.-Circuit-preparation-">1. Circuit preparation <a id="circuit_preparation" /><a class="anchor-link" href="#1.-Circuit-preparation-"> </a></h3>
+<h2 id="Task-1">Task 1<a class="anchor-link" href="#Task-1"> </a></h2>
 </div>
 </div>
 </div>
@@ -1245,9 +1236,122 @@ initFunction(initPrint)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">amplitude_damping</span> <span class="kn">import</span> <span class="o">*</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">c1</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the coherence factor in the amplitude damping channel</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        R (float): value of R = \gamma_0/\lambda</span>
+<span class="sd">        t (float): value of the time variable</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A float number</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">R</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="n">c1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">t</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cosh</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">c1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">t</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">R</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">R</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">R</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">c1</span>
+</pre></div>
 
-<span class="n">SHOTS</span> <span class="o">=</span> <span class="mi">8192</span>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Task-2">Task 2<a class="anchor-link" href="#Task-2"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">amplitude_damping_channel</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a QuantumCircuit implementing the amplitude damping channel on the system qubit</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        q (QuantumRegister): the register to use for the circuit</span>
+<span class="sd">        c (ClassicalRegister): the register to use for the measurement of the system qubit</span>
+<span class="sd">        sys (int): index for the system qubit</span>
+<span class="sd">        env (int): index for the environment qubit</span>
+<span class="sd">        R (float): value of R = \gamma_0/\lambda</span>
+<span class="sd">        t (float): value of the time variable</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A QuantumCircuit object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ad</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    
+    <span class="c1"># Rotation angle</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">c1</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+    
+    <span class="c1"># Channel</span>
+    <span class="n">ad</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">sys</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">env</span><span class="p">])</span>
+    <span class="n">ad</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">env</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">sys</span><span class="p">])</span>
+    
+    <span class="c1"># Masurement in the computational basis</span>
+    <span class="n">ad</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">sys</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">ad</span>
+
+<span class="c1"># We choose to add the initial condition elsewhere</span>
+<span class="k">def</span> <span class="nf">initial_state</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">sys</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a QuantumCircuit implementing the initial condition for the amplitude damping channel</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        q (QuantumRegister): the register to use for the circuit</span>
+<span class="sd">        sys (int): index for the system qubit</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A QuantumCircuit object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create circuit</span>
+    <span class="n">ic</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    
+    <span class="c1"># System in |1&gt;</span>
+    <span class="n">ic</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">sys</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">ic</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Task-3">Task 3<a class="anchor-link" href="#Task-3"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SHOTS</span> <span class="o">=</span> <span class="mi">8192</span>
 
 <span class="c1"># The values for R and corresponding times</span>
 <span class="n">R_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">200.0</span><span class="p">,</span> <span class="mf">400.0</span><span class="p">]</span>
@@ -1271,9 +1375,6 @@ initFunction(initPrint)
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_values</span><span class="p">[</span><span class="n">R</span><span class="p">]:</span>
         <span class="n">circuits</span><span class="p">[</span><span class="n">R</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_state</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">sys</span><span class="p">)</span>
                            <span class="o">+</span><span class="n">amplitude_damping_channel</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
-
-<span class="c1"># Calibration circuits</span>
-<span class="n">cal_circuits</span><span class="p">,</span> <span class="n">state_labels</span> <span class="o">=</span> <span class="n">complete_meas_cal</span><span class="p">([</span><span class="n">sys</span><span class="p">],</span> <span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1306,7 +1407,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/project_4-solution_6_0.png"
+<img src="images/project_4-solution_9_0.png"
 >
 </div>
 
@@ -1315,28 +1416,6 @@ initFunction(initPrint)
 </div>
 </div>
 
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Drawing of the amplitude damping channel with measurement on the system qubit.</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Simulation-">2. Simulation <a id="simulation" /><a class="anchor-link" href="#2.-Simulation-"> </a></h3><p>This cell executes locally the (noiseless) simulation of the circuits above.</p>
-
-</div>
-</div>
 </div>
 </div>
 
@@ -1388,7 +1467,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea ">
-<img src="images/project_4-solution_9_0.png"
+<img src="images/project_4-solution_10_0.png"
 >
 </div>
 
@@ -1404,7 +1483,7 @@ initFunction(initPrint)
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-Execution-on-the-real-device-">3. Execution on the real device <a id="execution" /><a class="anchor-link" href="#3.-Execution-on-the-real-device-"> </a></h3>
+<h3 id="Homework-(without-non-Markovianity-witness)">Homework (without non-Markovianity witness)<a class="anchor-link" href="#Homework-(without-non-Markovianity-witness)"> </a></h3>
 </div>
 </div>
 </div>
@@ -1417,7 +1496,9 @@ initFunction(initPrint)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run the calibration job</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calibration circuits</span>
+<span class="n">cal_circuits</span><span class="p">,</span> <span class="n">state_labels</span> <span class="o">=</span> <span class="n">complete_meas_cal</span><span class="p">([</span><span class="n">sys</span><span class="p">],</span> <span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="c1"># Run the calibration job</span>
 <span class="n">calibration_job</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">cal_circuits</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="n">SHOTS</span><span class="p">)</span>
 
 <span class="c1"># Run the circuits and save the jobs</span>
@@ -1482,7 +1563,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea ">
-<img src="images/project_4-solution_12_0.png"
+<img src="images/project_4-solution_13_0.png"
 >
 </div>
 
@@ -1498,7 +1579,7 @@ initFunction(initPrint)
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tasks-4-5">Tasks 4-5<a class="anchor-link" href="#Tasks-4-5"> </a></h2>
+<h2 id="Task-4">Task 4<a class="anchor-link" href="#Task-4"> </a></h2>
 </div>
 </div>
 </div>
@@ -1511,9 +1592,92 @@ initFunction(initPrint)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">amplitude_damping</span> <span class="kn">import</span> <span class="o">*</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">amplitude_damping_channel_witness</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">anc</span><span class="p">,</span> <span class="n">observable</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a QuantumCircuit implementing the amplitude damping channel on the system qubit with non-Markovianity witness</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        q (QuantumRegister): the register to use for the circuit</span>
+<span class="sd">        c (ClassicalRegister): the register to use for the measurement of the system and ancilla qubits</span>
+<span class="sd">        sys (int): index for the system qubit</span>
+<span class="sd">        env (int): index for the environment qubit</span>
+<span class="sd">        anc (int): index for the ancillary qubit</span>
+<span class="sd">        observable (str): the observable to be measured</span>
+<span class="sd">        R (float): value of R = \gamma_0/\lambda</span>
+<span class="sd">        t (float): value of the time variable</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A QuantumCircuit object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ad</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    
+    <span class="c1"># Rotation angle</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">c1</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+    
+    <span class="c1"># Channel</span>
+    <span class="n">ad</span><span class="o">.</span><span class="n">cu3</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">sys</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">env</span><span class="p">])</span>
+    <span class="n">ad</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">env</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">sys</span><span class="p">])</span>
+    
+    <span class="c1"># Masurement of the corresponding observable</span>
+    <span class="k">if</span> <span class="n">observable</span> <span class="o">==</span> <span class="s1">&#39;xx&#39;</span><span class="p">:</span>
+        <span class="n">ad</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+        <span class="n">ad</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">anc</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">observable</span> <span class="o">==</span> <span class="s1">&#39;yy&#39;</span><span class="p">:</span>
+        <span class="n">ad</span><span class="o">.</span><span class="n">sdg</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+        <span class="n">ad</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+        <span class="n">ad</span><span class="o">.</span><span class="n">sdg</span><span class="p">(</span><span class="n">anc</span><span class="p">)</span>
+        <span class="n">ad</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">anc</span><span class="p">)</span>
+    <span class="n">ad</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">ad</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">anc</span><span class="p">,</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">ad</span>
 
-<span class="n">SHOTS</span> <span class="o">=</span> <span class="mi">8192</span>
+<span class="c1"># We set the initial entangled state separately</span>
+<span class="k">def</span> <span class="nf">initial_state_witness</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">anc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a QuantumCircuit implementing the initial condition for the amplitude damping channel with non-Markovianity witness</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        q (QuantumRegister): the register to use for the circuit</span>
+<span class="sd">        sys (int): index for the system qubit</span>
+<span class="sd">        anc (int): index for the ancilla qubit</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A QuantumCircuit object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create circuit</span>
+    <span class="n">ic</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    
+    <span class="c1"># System and ancilla in |\psi^+&gt;</span>
+    <span class="n">ic</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">sys</span><span class="p">])</span>
+    <span class="n">ic</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">sys</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">anc</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">ic</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Task-5">Task 5<a class="anchor-link" href="#Task-5"> </a></h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SHOTS</span> <span class="o">=</span> <span class="mi">8192</span>
 
 <span class="c1"># The values for R and corresponding times,</span>
 <span class="c1"># as well as the observables needed for the witness</span>
@@ -1543,9 +1707,6 @@ initFunction(initPrint)
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_values</span><span class="p">[</span><span class="n">R</span><span class="p">]:</span>
             <span class="n">circuits</span><span class="p">[</span><span class="n">R</span><span class="p">][</span><span class="n">observable</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_state_witness</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">anc</span><span class="p">)</span>
                                <span class="o">+</span><span class="n">amplitude_damping_channel_witness</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">anc</span><span class="p">,</span> <span class="n">observable</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
-
-<span class="c1"># Calibration circuits</span>
-<span class="n">cal_circuits</span><span class="p">,</span> <span class="n">state_labels</span> <span class="o">=</span> <span class="n">complete_meas_cal</span><span class="p">([</span><span class="n">sys</span><span class="p">,</span> <span class="n">anc</span><span class="p">],</span> <span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1578,7 +1739,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/project_4-solution_15_0.png"
+<img src="images/project_4-solution_18_0.png"
 >
 </div>
 
@@ -1587,28 +1748,6 @@ initFunction(initPrint)
 </div>
 </div>
 
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Drawing of the amplitude damping channel with non-Markovianity witness. The system and the ancillary qubits are measured in the <code>Y</code> basis.</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Simulation-">2. Simulation <a id="simulation" /><a class="anchor-link" href="#2.-Simulation-"> </a></h3><p>This cell executes locally the (noiseless) simulation of the circuits above.</p>
-
-</div>
-</div>
 </div>
 </div>
 
@@ -1677,7 +1816,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea ">
-<img src="images/project_4-solution_18_0.png"
+<img src="images/project_4-solution_19_0.png"
 >
 </div>
 
@@ -1693,7 +1832,7 @@ initFunction(initPrint)
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-Execution-on-the-real-device-">3. Execution on the real device <a id="execution" /><a class="anchor-link" href="#3.-Execution-on-the-real-device-"> </a></h3>
+<h3 id="Homework-(implementation-of-non-Markovianity-witness)">Homework (implementation of non-Markovianity witness)<a class="anchor-link" href="#Homework-(implementation-of-non-Markovianity-witness)"> </a></h3>
 </div>
 </div>
 </div>
@@ -1706,7 +1845,9 @@ initFunction(initPrint)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run the calibration job</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calibration circuits</span>
+<span class="n">cal_circuits</span><span class="p">,</span> <span class="n">state_labels</span> <span class="o">=</span> <span class="n">complete_meas_cal</span><span class="p">([</span><span class="n">sys</span><span class="p">,</span> <span class="n">anc</span><span class="p">],</span> <span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="c1"># Run the calibration job</span>
 <span class="n">calibration_job</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">cal_circuits</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="n">SHOTS</span><span class="p">)</span>
 
 <span class="c1"># Run the circuits and save the jobs</span>
@@ -1789,7 +1930,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea ">
-<img src="images/project_4-solution_21_0.png"
+<img src="images/project_4-solution_22_0.png"
 >
 </div>
 

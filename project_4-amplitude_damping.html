@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
   <title>Project 4: Amplitude damping</title>
-  <meta name="description" content="        Project 4: Amplitude damping    In Chapter 7, we introduced the Jaynes-Cummings model. In this project, we will simulate it along with the Markoviani...">
+  <meta name="description" content="        Project 4: Amplitude damping    Project 4: Amplitude damping In Chapter 7, we introduced the Jaynes-Cummings model. In this project, we will simulate...">
 
   <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/project_4-amplitude_damping.html">
   <link rel="alternate" type="application/rss+xml" title="Open Quantum Systems with Qiskit" href="https://matteoacrossi.github.io/oqs-jupyterbook/feed.xml">
@@ -14,7 +14,7 @@
   <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/project_4-amplitude_damping.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Project 4: Amplitude damping" />
-<meta property="og:description" content="        Project 4: Amplitude damping    In Chapter 7, we introduced the Jaynes-Cummings model. In this project, we will simulate it along with the Markoviani..." />
+<meta property="og:description" content="        Project 4: Amplitude damping    Project 4: Amplitude damping In Chapter 7, we introduced the Jaynes-Cummings model. In this project, we will simulate..." />
 <meta property="og:image"       content="https://matteoacrossi.github.io/oqs-jupyterbook/images/oqs.001.png" />
 
 <meta name="twitter:card" content="summary">
@@ -26,9 +26,9 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/project_4-amplitude_damping.html",
   "headline": "Project 4: Amplitude damping",
-  "datePublished": "2019-12-13T09:57:51+00:00",
-  "dateModified": "2019-12-13T09:57:51+00:00",
-  "description": "        Project 4: Amplitude damping    In Chapter 7, we introduced the Jaynes-Cummings model. In this project, we will simulate it along with the Markoviani...",
+  "datePublished": "2019-12-13T13:08:56+00:00",
+  "dateModified": "2019-12-13T13:08:56+00:00",
+  "description": "        Project 4: Amplitude damping    Project 4: Amplitude damping In Chapter 7, we introduced the Jaynes-Cummings model. In this project, we will simulate...",
   "author": {
     "@type": "Person",
     "name": "Turku Quantum Technologies"
@@ -1154,7 +1154,7 @@ initFunction(initPrint)
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In Chapter 7, we introduced the Jaynes-Cummings model. In this project, we will simulate it along with the Markovianity of the dynamics depending on the coupling strength.</p>
+<h2 id="Project-4:-Amplitude-damping">Project 4: Amplitude damping<a class="anchor-link" href="#Project-4:-Amplitude-damping"> </a></h2><p>In Chapter 7, we introduced the Jaynes-Cummings model. In this project, we will simulate it along with the Markovianity of the dynamics depending on the coupling strength.</p>
 <p>You can find the circuit decomposition for the amplitude damping below.</p>
 
 </div>
@@ -1245,7 +1245,7 @@ initFunction(initPrint)
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Recall that, in the above circuit, $\theta = \arccos{c_1(t)}$ with
 \begin{equation}
-c_{1}(t)=e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)+\frac{1}{\sqrt{1-2R} }\sinh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)\right].
+c_{1}(t)=e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)+\frac{1}{\sqrt{1-2R}}\sinh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)\right].
 \end{equation}</p>
 
 </div>
@@ -1488,6 +1488,17 @@ c_{1}(t)=e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Task-5">Task 5<a class="anchor-link" href="#Task-5"> </a></h3><p>Simulate the dynamics with the witness for the same values of $R$ and $t$ as in Task 3. To do so, run the circuits for the three observables, $\sigma_{x}\otimes \sigma_{x}$, $\sigma_{y}\otimes \sigma_{y}$, and $\sigma_{z}\otimes \sigma_{z}$ and compute their expected values. This allows to compute the value of the witness as $1 + \left\langle \sigma_{x}\otimes \sigma_{x} \right\rangle - \left\langle\sigma_{y}\otimes \sigma_{y} \right\rangle + \left\langle\sigma_{z}\otimes \sigma_{z} \right\rangle)/4$. Plot the results as a function of $t$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Homework">Homework<a class="anchor-link" href="#Homework"> </a></h3><p>Run the circuits on the IBM Q Experience with noise mitigation and plot the results.</p>
 
 </div>
 </div>
