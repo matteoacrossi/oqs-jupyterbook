@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/divisible_maps.html",
   "headline": "Dynamical maps: divisibility",
-  "datePublished": "2019-12-13T21:38:17+00:00",
-  "dateModified": "2019-12-13T21:38:17+00:00",
+  "datePublished": "2019-12-13T22:02:09+00:00",
+  "dateModified": "2019-12-13T22:02:09+00:00",
   "description": "        Dynamical maps: divisibility    $\newcommand{\Mn}{M_n(\mathbb{C})}$$\newcommand{\Mq}{M_2(\mathbb{C})}$$\newcommand{\Mk}{M_k(\mathbb{C})}$$\newcommand...",
   "author": {
     "@type": "Person",
@@ -1815,8 +1815,8 @@ but not applying $Z$ is equivalent (up to global phases) to just applying $Z$, a
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The above formula provides a generalization of the semi-group composition law (<a href="markovian_semigroups.html#mjx-eqn-c-low">4.2</a>). Here we assume the following extended definition of Markovian evolution: <strong>_a
-dynamical map $\Lambda_t$ corresponds to Markovian evolution if and only if it is divisible_</strong>.</p>
+<p>The above formula provides a generalization of the semi-group composition law (<a href="markovian_semigroups.html#mjx-eqn-c-low">4.2</a>). Here we assume the following extended definition of Markovian evolution: a
+dynamical map $\Lambda_t$ corresponds to Markovian evolution if and only if it is divisible.</p>
 <p>Interestingly, the property of being Markovian (or divisible) is fully characterized in terms of the local generator $L_t$. Note, that if $\Lambda_t$ satisfies (<a href="preliminaries.html#mjx-eqn-ME">2.28</a>) then $V_{t,s}$ satisfies
 \begin{equation}\label{Local-V}
     \frac{d}{dt}\, V_{t,s} = L_t V_{t,s}\ ,     \ \ \ V_{s,s}=\mathbb{1}\ ,
@@ -2139,7 +2139,6 @@ E_{2z}  &amp;= \frac{1}{2} \left( \mathbb{I}-\sigma_z^{(1)}\otimes\sigma_z^{(2)}
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#######################</span>
 <span class="c1">#  ZZ pump on IBMQX2  #</span>
 <span class="c1">#######################</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Quantum register</span>
 <span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
@@ -2175,24 +2174,6 @@ E_{2z}  &amp;= \frac{1}{2} \left( \mathbb{I}-\sigma_z^{(1)}\otimes\sigma_z^{(2)}
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="jb_output_wrapper }}">
-<div class="output_area">
-
-
-
-<div class="output_png output_subarea output_execute_result">
-<img src="images/divisible_maps_55_0.png"
->
-</div>
-
-</div>
-</div>
 </div>
 </div>
 
