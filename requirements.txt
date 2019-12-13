@@ -2,3 +2,5 @@
 # Useful for MyBinder configuration
 scipy
 jupyter-book
+qiskit
+bokeh
