@@ -25,9 +25,9 @@
 # generate a demo book by running `jupyter-book create mybook --demo`
 # ==============================
 
-# - title: Open quantum systems course
-#   url: /index
-#   not_numbered: true
+- title: Open quantum systems course
+  url: /index
+  not_numbered: true
 - title: Introduction
   url: /introduction
 - title: Preliminaries
