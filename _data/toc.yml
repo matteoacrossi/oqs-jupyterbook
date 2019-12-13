@@ -14,20 +14,10 @@
 # - divider: true  # Will insert a divider in the sidebar
 # - header: My Header  # Will insert a header with no link in the sidebar
 
-#
-# ==============================
-# AUTOMATICALLY GENERATED TOC FILE.
-# You should review the contents of this file, re-order items as you wish,
-# and nest chapters in sections if you wish. The ======= symbols represent
-# folder breaks.
-#
-# See the demo `toc.yml` for the right structure to follow. You can
-# generate a demo book by running `jupyter-book create mybook --demo`
-# ==============================
-
-- title: Open quantum systems course
-  url: /index
+- url: /index
+  title: Index
   not_numbered: true
+
 - title: Introduction
   url: /introduction
 - title: Preliminaries
