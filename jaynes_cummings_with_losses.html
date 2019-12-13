@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/jaynes_cummings_with_losses.html",
   "headline": "Jaynes-Cummings model with losses",
-  "datePublished": "2019-12-13T13:28:07+00:00",
-  "dateModified": "2019-12-13T13:28:07+00:00",
+  "datePublished": "2019-12-13T13:31:23+00:00",
+  "dateModified": "2019-12-13T13:31:23+00:00",
   "description": "        Jaynes-Cummings model with losses    $\newcommand{\Mn}{M_n(\mathbb{C})}$$\newcommand{\Mq}{M_2(\mathbb{C})}$$\newcommand{\Mk}{M_k(\mathbb{C})}$$\newco...",
   "author": {
     "@type": "Person",
@@ -1443,10 +1443,7 @@ c_{1}(t)=c_{1}(0)e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><strong>Weak and strong coupling</strong> </li>
-</ul>
-<p>We can switch from weak to strong coupling by varying the $R$ parameter, which quantifies the competitive effects of coupling and dissipation. <a href="#fig_1">Figure 1</a> shows the change in the dynamics of $\rho_{ee}(t)$ in the two regimes: $R&lt;1/2, R&gt;1/2$ corresponding to weak (red curve) and strong (blue curve) coupling, respectively. The existence of zeros in $\rho_{ee}(t)$ for strong couplings signals that a TCL master equation does not exist.</p>
+<h3 id="Weak-and-strong-coupling">Weak and strong coupling<a class="anchor-link" href="#Weak-and-strong-coupling"> </a></h3><p>We can switch from weak to strong coupling by varying the $R$ parameter, which quantifies the competitive effects of coupling and dissipation. <a href="#figure_1">Figure 1</a> (left) shows the dynamics of ρ_ee(t) in a wide range of values of $R$. The existence of zeros in ρ_ee(t) for strong couplings ($R &gt; 1/2$ signals that a TCL master equation does not exist. The right curve depicts the spectral density corresponding to the chosen value of $R$.</p>
 
 </div>
 </div>
@@ -1500,10 +1497,19 @@ c_{1}(t)=c_{1}(0)e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><strong>Master equation</strong> </li>
-</ul>
-<p>Recalling Eq.(\ref{eq:g}) we can derive the time dependent decay rate $\gamma(t)$ for the Lorentzian spectrum</p>
+<p><a id="figure_1"></a>
+<strong>Figure 1</strong> This <em>interactive plot</em> shows the dynamics of ρ_ee(t) in a wide range of values of $R$. The existence of zeros in ρ_ee(t) for strong couplings ($R &gt; 1/2$ signals that a TCL master equation does not exist. The right curve depicts the spectral density corresponding to the chosen value of $R$. Drag the slider to change $R$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Master-equation">Master equation<a class="anchor-link" href="#Master-equation"> </a></h3><p>Recalling Eq.(\ref{eq:g}) we can derive the time dependent decay rate $\gamma(t)$ for the Lorentzian spectrum</p>
 $$
 \gamma(t)=-2\Re \left\{\frac{\dot{c}_{1}(t)}{c_{1}(t)} \right\} =\frac{2\gamma_{0} \sinh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)}{\sqrt{1-2R}\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)+\sinh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)}
 $$<p>which diverges in the strong coupling limit.  Formally, this means that the superoperator $[\textrm{I}-\Sigma(t))]^{-1}$ is not defined.</p>
@@ -1517,10 +1523,7 @@ $$<p>which diverges in the strong coupling limit.  Formally, this means that the
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><strong>TCL2</strong></li>
-</ul>
-<p>Using the TCL projection operator technique one can derive the following time-local master equation</p>
+<h3 id="TCL2">TCL2<a class="anchor-link" href="#TCL2"> </a></h3><p>Using the TCL projection operator technique one can derive the following time-local master equation</p>
 \begin{equation}
 \frac{d\varrho_{s}(t)}{dt}=\left[\sum_{n=1}^{\infty}\alpha_{n}K_{n}(t)\right]\varrho_{s}(t).
 \label{tclmast}
@@ -1660,7 +1663,7 @@ $$<p>Hence,</p>
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/jaynes_cummings_with_losses_25_0.png"
+<img src="images/jaynes_cummings_with_losses_26_0.png"
 >
 </div>
 
