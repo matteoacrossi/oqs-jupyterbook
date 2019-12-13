@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/preliminaries.html",
   "headline": "Preliminaries",
-  "datePublished": "2019-12-13T09:49:21+00:00",
-  "dateModified": "2019-12-13T09:49:21+00:00",
+  "datePublished": "2019-12-13T09:57:51+00:00",
+  "dateModified": "2019-12-13T09:57:51+00:00",
   "description": "        Preliminaries    $\newcommand{\Mn}{M_n(\mathbb{C})}$$\newcommand{\Mq}{M_2(\mathbb{C})}$$\newcommand{\Mk}{M_k(\mathbb{C})}$$\newcommand{\Mm}{M_m(\math...",
   "author": {
     "@type": "Person",
@@ -1801,7 +1801,7 @@ with $A_{ij} \in \Mm$. For example if $n=2$ one has
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Formula (<a href="#mjx-eqn-Kraus">2.18</a>) is usually called the <strong><em>Kraus</em></strong> or <strong><em>Operator Sum Representation</em></strong> of $\Phi$ and $K_\alpha$ are called Kraus operators. Actually, the above formula  appeared already in the Sudarshan et. al. paper [<a href="#6">6</a>]. It should be stressed that the Kraus representation is highly non unique. A completely positive trace preserving map (CPTP) is called a <strong><em>quantum channel</em></strong>. A CP map possessing a Kraus representation is trace-preserving iff</p>
+<p>Formula (\ref{Kraus}) is usually called the <strong><em>Kraus</em></strong> or <strong><em>Operator Sum Representation</em></strong> of $\Phi$ and $K_\alpha$ are called Kraus operators. Actually, the above formula  appeared already in the Sudarshan et. al. paper [<a href="#6">6</a>]. It should be stressed that the Kraus representation is highly non unique. A completely positive trace preserving map (CPTP) is called a <strong><em>quantum channel</em></strong>. A CP map possessing a Kraus representation is trace-preserving iff</p>
 \begin{equation}
  \sum_\alpha\, K_\alpha^\dagger \, K_\alpha = \mathbb{I}_n\ .
 \tag{2.19}
@@ -1826,7 +1826,7 @@ with $A_{ij} \in \Mm$. For example if $n=2$ one has
 </blockquote>
 <p>One usually interprets $\mathcal{H}_E$ as a Hilbert space of the environment and $\omega$ as its fixed state.
 Let</p>
-$$ \omega |E_k \rangle =  \lambda_k |E_k \rangle\  , $$<p>with $\lambda_k \geq 0$.  Moreover,  let $U = \sum_{k,l} U_{kl} \ot |E_k\rangle \langle E_l|$. Formula (<a href="#mjx-eqn-200">2.20</a>) implies</p>
+$$ \omega |E_k \rangle =  \lambda_k |E_k \rangle\  , $$<p>with $\lambda_k \geq 0$.  Moreover,  let $U = \sum_{k,l} U_{kl} \ot |E_k\rangle \langle E_l|$. Formula (\ref{200}) implies</p>
 \begin{eqnarray*}
     \Phi(\rho) &amp;=&amp; \sum_{m,n} \sum_{i,j} \sum_k \lambda_k \, {\rm Tr}_E \big[ (U_{ij} \ot |E_i \rangle \langle E_j|)  (\rho \ot |E_k \rangle \langle E_k|) (U_{mn}^\dagger \ot |E_n \rangle \langle E_m|) \big] \nonumber \\ &amp;=&amp; \sum_{m,n} \sum_{i,j} \sum_k \lambda_k \, {\rm Tr} [ |E_i \rangle \langle E_j|E_k \rangle \langle E_k|E_n \rangle \langle E_m|]\, U_{ij} \rho U_{mn}^\dagger \ .
 \end{eqnarray*}
@@ -1839,7 +1839,7 @@ $$ \omega |E_k \rangle =  \lambda_k |E_k \rangle\  , $$<p>with $\lambda_k \geq 0
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Using ${\rm Tr} [ |E_i \rangle \langle E_j|E_k \rangle \langle E_k|E_n \rangle \langle E_m| ] = \delta_{im} \delta_{jk} \delta_{kn}$ and introducing $K_\alpha := K_{mn} = \sqrt{\lambda_n}\, U_{mn}$ one arrives at the Kraus representation $\Phi(\rho) = \sum_\alpha\, K_\alpha \rho\, K_\alpha^\dagger$ which proves that $\Phi$ defined <em>via</em> formula (<a href="#mjx-eqn-200">2.20</a>) is completely positive. One easily proves that $\Phi$ is also trace preserving and hence defines a quantum channel.</p>
+<p>Using ${\rm Tr} [ |E_i \rangle \langle E_j|E_k \rangle \langle E_k|E_n \rangle \langle E_m| ] = \delta_{im} \delta_{jk} \delta_{kn}$ and introducing $K_\alpha := K_{mn} = \sqrt{\lambda_n}\, U_{mn}$ one arrives at the Kraus representation $\Phi(\rho) = \sum_\alpha\, K_\alpha \rho\, K_\alpha^\dagger$ which proves that $\Phi$ defined <em>via</em> formula (\ref{200}) is completely positive. One easily proves that $\Phi$ is also trace preserving and hence defines a quantum channel.</p>
 
 </div>
 </div>
@@ -1957,7 +1957,7 @@ $$ \omega |E_k \rangle =  \lambda_k |E_k \rangle\  , $$<p>with $\lambda_k \geq 0
     \mathcal{U}_t(\rho) := U_t \rho U_t^\dagger\ ,
 \tag{2.23}
 \end{equation}</p>
-<p>with $U_t = e^{-iHt}$. Note that (<a href="#mjx-eqn-UUU">2.23</a>) defines a family of quantum channels.</p>
+<p>with $U_t = e^{-iHt}$. Note that (\ref{UUU}) defines a family of quantum channels.</p>
 <p>Let us observe that the 1-parameter unitary group $U_t$ implies the following composition law</p>
 \begin{equation}\label{U-t-s}
     \mathcal{U}_t \, \mathcal{U}_s = \mathcal{U}_{t+s}\ ,
@@ -1973,7 +1973,7 @@ $$ \omega |E_k \rangle =  \lambda_k |E_k \rangle\  , $$<p>with $\lambda_k \geq 0
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Equation (<a href="#mjx-eqn-v-N">2.21</a>) may be transformed into the following equation for $\mathcal{U}_t$</p>
+<p>Equation (\ref{v-N}) may be transformed into the following equation for $\mathcal{U}_t$</p>
 \begin{equation}\label{v-N-U}
     \dot{\mathcal{U} }_t  = L \,\mathcal{U}_t\ , \ \ \ \mathcal{U}_0 = \mathbb{1}\ ,
 \tag{2.25}
@@ -1994,9 +1994,9 @@ L(X) = -i [H,X]\ ,
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now come the natural questions:</p>
 <ol>
-<li><p>how to generalize the unitary evolution defined by (<a href="#mjx-eqn-UUU">2.23</a>), valid for closed systems, to open quantum systems?</p>
+<li><p>how to generalize the unitary evolution defined by (\ref{UUU}), valid for closed systems, to open quantum systems?</p>
 </li>
-<li><p>how to generalize the corresponding equation of motion (<a href="#mjx-eqn-v-N-U">2.25</a>)?</p>
+<li><p>how to generalize the corresponding equation of motion (\ref{v-N-U})?</p>
 </li>
 </ol>
 
@@ -2030,7 +2030,7 @@ L(X) = -i [H,X]\ ,
 \begin{equation}\label{ME}
     \dot{\Lambda}_t = L_t\Lambda_t\ ,\ \ \ \Lambda_0 = \mathbb{1}_n\ ,
 \tag{2.28}
-\end{equation}<p>where $L_t : \Mn \ra \Mn$ denotes a time-dependent generator. This equation provides a natural generalization of (<a href="#mjx-eqn-v-N-U">2.25</a>).</p>
+\end{equation}<p>where $L_t : \Mn \ra \Mn$ denotes a time-dependent generator. This equation provides a natural generalization of (\ref{v-N-U}).</p>
 
 </div>
 </div>
@@ -2041,7 +2041,7 @@ L(X) = -i [H,X]\ ,
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The formal solution of (<a href="#mjx-eqn-ME">2.28</a>) may be written as follows
+<p>The formal solution of (\ref{ME}) may be written as follows
 \begin{equation}\label{Lambda-t}
     \Lambda_t = {\rm T} \exp\left( \int_0^t L_\tau\, d\tau\right)\ ,
 \tag{2.29}

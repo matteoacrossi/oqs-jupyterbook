@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/microscopic_derivation_of_the_markovian_master_equation.html",
   "headline": "Microscopic derivation of the master equation",
-  "datePublished": "2019-12-13T09:49:21+00:00",
-  "dateModified": "2019-12-13T09:49:21+00:00",
+  "datePublished": "2019-12-13T09:57:51+00:00",
+  "dateModified": "2019-12-13T09:57:51+00:00",
   "description": "        Microscopic derivation of the master equation    $\newcommand{\Mn}{M_n(\mathbb{C})}$$\newcommand{\Mq}{M_2(\mathbb{C})}$$\newcommand{\Mk}{M_k(\mathbb{...",
   "author": {
     "@type": "Person",
@@ -1260,7 +1260,7 @@ The integral form of this equation is
 \label{eq:2}
 \tag{3.6}
 \end{equation}</p>
-<p>Inserting Eq. (<a href="#mjx-eqn-eq:2">3.6</a>) into Eq. (<a href="#mjx-eqn-eq:1">3.5</a>) and taking the partial trace over the environmental degrees of freedom we get \ref{eq:2}</p>
+<p>Inserting Eq. (\ref{eq:2}) into Eq. (\ref{eq:1}) and taking the partial trace over the environmental degrees of freedom we get \ref{eq:2}</p>
 \begin{equation}
 \frac{d\varrho_{S} }{dt}(t)=-\int_{0}^{t}ds\textrm{Tr}_{B}\{[H_{I}(t),[H_{I}(s),\varrho_{SB}(s)]]\},
 \label{micro1}
@@ -1295,12 +1295,12 @@ $$<p>Within this approximation we get a closed integro-differential equation for
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A further simplification to this equation is obtained by assuming that we can replace $\varrho_{S}(s)$ appearing inside the integral with its value at time $t$, $\varrho_{S}(t)$. This is possible if the density matrix does not change sensibly in the interval of time $0 \le s \le t$. But $t$ here is a variable so one may think that this approximation gets worse and worse for bigger and bigger values of time $t$. This reasoning would be correct if the integrand of Eq. (<a href="#mjx-eqn-micro2">3.8</a>) were, e.g., constant in time. However, in many physical situations this integrand (or rather that part of it describing the environment correlations) quickly decays to zero after a short characteristic correlation time $\tau_B$. This time scale quantifies the memory time of the reservoir. Hence, if the density matrix of the system does not change sensibly in the correlation time $\tau_B$, then we can approximate $\varrho_{S}(s)$ with $\varrho_{S}(t)$ in Eq. (<a href="#mjx-eqn-micro2">3.8</a>). The resulting equation is known as the Redfield equation</p>
+<p>A further simplification to this equation is obtained by assuming that we can replace $\varrho_{S}(s)$ appearing inside the integral with its value at time $t$, $\varrho_{S}(t)$. This is possible if the density matrix does not change sensibly in the interval of time $0 \le s \le t$. But $t$ here is a variable so one may think that this approximation gets worse and worse for bigger and bigger values of time $t$. This reasoning would be correct if the integrand of Eq. (\ref{micro2}) were, e.g., constant in time. However, in many physical situations this integrand (or rather that part of it describing the environment correlations) quickly decays to zero after a short characteristic correlation time $\tau_B$. This time scale quantifies the memory time of the reservoir. Hence, if the density matrix of the system does not change sensibly in the correlation time $\tau_B$, then we can approximate $\varrho_{S}(s)$ with $\varrho_{S}(t)$ in Eq. (\ref{micro2}). The resulting equation is known as the Redfield equation</p>
 \begin{equation}
 \frac{d\varrho_{S} (t)}{dt}=-\int_{0}^{t}ds\textrm{Tr}_{B}\{[H_{I}(t),[H_{I}(s),\varrho_{S}(t)\otimes\varrho_{B}]]\}.
 \label{micro4}
 \tag{3.9}
-\end{equation}<p>Equation (<a href="#mjx-eqn-micro4">3.9</a>) is local in time, i.e., the future evolution of the state of the system does not depend on its past state. However, it still retains memory of the initial state $\varrho_{S} (0)$.</p>
+\end{equation}<p>Equation (\ref{micro4}) is local in time, i.e., the future evolution of the state of the system does not depend on its past state. However, it still retains memory of the initial state $\varrho_{S} (0)$.</p>
 
 </div>
 </div>
@@ -1311,13 +1311,13 @@ $$<p>Within this approximation we get a closed integro-differential equation for
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Until now we have assumed the the density matrix does not change much within the correlation time $\tau_B$. The next step will be to neglect such a change altogether, by performing a coarse-graining in time. This is mathematically achieved by replacing the upper limit of the integral in Eq. (<a href="#mjx-eqn-micro4">3.9</a>)  with $\infty$:</p>
+<p>Until now we have assumed the the density matrix does not change much within the correlation time $\tau_B$. The next step will be to neglect such a change altogether, by performing a coarse-graining in time. This is mathematically achieved by replacing the upper limit of the integral in Eq. (\ref{micro4})  with $\infty$:</p>
 \begin{equation}
 \frac{d\varrho_{S} }{dt}(t)=-\int_{0}^{\infty}ds\textrm{Tr}_{B}\{[H_{I}(t),[H_{I}(t-s),\varrho_{S}(t)\otimes\varrho_{B}]]\},
 \label{micro44}
 \tag{3.10}
 \end{equation}<p>where we have replaced for the sake of convenience $s$ with $t-s$.</p>
-<p>The two-step approximation described in Eqs. (<a href="#mjx-eqn-micro4">3.9</a>) and (<a href="#mjx-eqn-micro44">3.10</a>) is known as the Markov approximation. So we say that  Eq. (<a href="#mjx-eqn-micro44">3.10</a>) is derived from a microscopic model under the Born-Markov approximation, i.e., for weak coupling and quickly decaying reservoir correlations (memoryless dynamics).</p>
+<p>The two-step approximation described in Eqs. (\ref{micro4}) and (\ref{micro44}) is known as the Markov approximation. So we say that  Eq. (\ref{micro44}) is derived from a microscopic model under the Born-Markov approximation, i.e., for weak coupling and quickly decaying reservoir correlations (memoryless dynamics).</p>
 
 </div>
 </div>

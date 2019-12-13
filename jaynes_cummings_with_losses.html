@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/jaynes_cummings_with_losses.html",
   "headline": "Jaynes-Cummings model with losses",
-  "datePublished": "2019-12-13T09:49:21+00:00",
-  "dateModified": "2019-12-13T09:49:21+00:00",
+  "datePublished": "2019-12-13T09:57:51+00:00",
+  "dateModified": "2019-12-13T09:57:51+00:00",
   "description": "        Jaynes-Cummings model with losses    $\newcommand{\Mn}{M_n(\mathbb{C})}$$\newcommand{\Mq}{M_2(\mathbb{C})}$$\newcommand{\Mk}{M_k(\mathbb{C})}$$\newco...",
   "author": {
     "@type": "Person",
@@ -1255,7 +1255,7 @@ $$<p>is a constant of motion, i.e. $[H,N]=0$, the total state of the system $|\p
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Noting that $H_{I}(t)|\psi_{0}\rangle=0$, one can see that the amplitude $c_{0}(t)=c_0$ is constant. Inserting (<a href="#mjx-eqn-psit">7.2</a>) in the Schrödinger equation we get the following set of coupled differential equations for the coefficients</p>
+<p>Noting that $H_{I}(t)|\psi_{0}\rangle=0$, one can see that the amplitude $c_{0}(t)=c_0$ is constant. Inserting (\ref{psit}) in the Schrödinger equation we get the following set of coupled differential equations for the coefficients</p>
 \begin{equation}
 \begin{cases}
 \dot{c}_{1}=-i\sum_{k}g_{k}e^{i(\omega_{0}-\omega_{k})t}c_{k}\\
@@ -1270,7 +1270,7 @@ $$<p>is a constant of motion, i.e. $[H,N]=0$, the total state of the system $|\p
 \end{aligned}
 \label{ed2}
 \tag{7.4}
-\end{equation}<p>and, inserting Eq. (<a href="#mjx-eqn-ed2">7.4</a>) in the equation for $c_1(t)$, we obtain</p>
+\end{equation}<p>and, inserting Eq. (\ref{ed2}) in the equation for $c_1(t)$, we obtain</p>
 \begin{equation}
 \dot{c}_{1}(t)=- \sum_{k}|g_{k}|^{2}\int_{0}^{t}dt'e^{-i(\omega_{0}-\omega_{k})(t-t')}c_{1}(t'). \label{eq:c1}
 \tag{7.5}
@@ -1290,7 +1290,7 @@ $$
 $$<p>we can define the reservoir correlation function $f (t-t')$ as follows</p>
 $$
 f(t-t')=\int d\omega J(\omega)e^{i(\omega_{0}-\omega)(t-t')}.
-$$<p>It is a simple but useful exercise to show that, if  the environment is in the vacuum state $\varrho_{B}=|0\rangle \langle0|$, then $\int d\omega J(\omega) e^{-i\omega(t-t')}=\textrm{Tr}_{B}[B(t)B^{\dagger}(t')\varrho_{B}]$, where $B(t)=\sum_k g_k b_k \exp(-i\omega_k t)$. Moreover, if $J(\omega)$ is an integrable function, we can exchange the order of integration in Eq. (<a href="#mjx-eqn-eq:c1">7.5</a>) obtaining</p>
+$$<p>It is a simple but useful exercise to show that, if  the environment is in the vacuum state $\varrho_{B}=|0\rangle \langle0|$, then $\int d\omega J(\omega) e^{-i\omega(t-t')}=\textrm{Tr}_{B}[B(t)B^{\dagger}(t')\varrho_{B}]$, where $B(t)=\sum_k g_k b_k \exp(-i\omega_k t)$. Moreover, if $J(\omega)$ is an integrable function, we can exchange the order of integration in Eq. (\ref{eq:c1}) obtaining</p>
 \begin{equation}
 \dot{c}_{1}(t)=-\int_{0}^{t}dt' f(t-t')c_{1}(t').
 \label{integrodiff}
@@ -1341,7 +1341,7 @@ S(t)&amp;=&amp;-2\Im\left[\frac{\dot{c}_{1}(t)}{c_{1}(t)}\right], \label{eq:St}
 \gamma(t)&amp;=&amp;-2\Re\left[\frac{\dot{c}_{1}(t)}{c_{1}(t)}\right],\label{eq:g}
 \tag{7.9}
 \end{eqnarray}<p>i.e. the time-dependent Lamb shift $S(t)$ and the decay rate $\gamma(t)$ are the imaginary and real part, respectively, of the ratio between the derivative of $c_1(t)$ and the coefficient itself.</p>
-<p>By deriving the solution for the reduced density matrix, i.e. Eq. (<a href="#mjx-eqn-rohs">7.7</a>), it is straightforward to show that the master equation is given by</p>
+<p>By deriving the solution for the reduced density matrix, i.e. Eq. (\ref{rohs}), it is straightforward to show that the master equation is given by</p>
 \begin{equation}
 \frac{d\varrho_{S}}{dt}(t)=-\frac{iS(t)}{2}\left[\sigma_{z},\varrho_{S}(t)\right]+\gamma(t)\left[\sigma_{-}\varrho_{S}(t)\sigma_{+}-\frac{1}{2}\{\sigma_{+}\sigma_{-},\varrho_{S}(t)\}\right].
 \label{me}
@@ -1356,7 +1356,7 @@ S(t)&amp;=&amp;-2\Im\left[\frac{\dot{c}_{1}(t)}{c_{1}(t)}\right], \label{eq:St}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is the exact master equation for the system dynamics. However, for the equation above to be considered a proper master equation, the Lamb shift $S(t)$ and the decay rate $\gamma(t)$ should be properties of the open system only and should not depend on the initial state of the system. This does not seem to be the case from Eqs. (<a href="#mjx-eqn-eq:St">7.8</a>)-(<a href="#mjx-eqn-eq:g">7.9</a>). One should notice that, as Eq. (<a href="#mjx-eqn-integrodiff">7.6</a>) is a first order integro-differential equation, it admits one independent solution only, and in particular it admits a solution of the form $c_1(t) = c f(t)$, with $f(t)$ a time dependent function and $c$ a constant. Hence, the general solution can be written as $c_1(t)=c_1(0) f(t)$, which eliminates the dependence on the initial condition in both $S(t)$ and $\gamma(t)$.</p>
+<p>This is the exact master equation for the system dynamics. However, for the equation above to be considered a proper master equation, the Lamb shift $S(t)$ and the decay rate $\gamma(t)$ should be properties of the open system only and should not depend on the initial state of the system. This does not seem to be the case from Eqs. (\ref{eq:St})-(\ref{eq:g}). One should notice that, as Eq. (\ref{integrodiff}) is a first order integro-differential equation, it admits one independent solution only, and in particular it admits a solution of the form $c_1(t) = c f(t)$, with $f(t)$ a time dependent function and $c$ a constant. Hence, the general solution can be written as $c_1(t)=c_1(0) f(t)$, which eliminates the dependence on the initial condition in both $S(t)$ and $\gamma(t)$.</p>
 
 </div>
 </div>
@@ -1367,7 +1367,7 @@ S(t)&amp;=&amp;-2\Im\left[\frac{\dot{c}_{1}(t)}{c_{1}(t)}\right], \label{eq:St}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Another important remark is that  Eq. (<a href="#mjx-eqn-me">7.10</a>) is exact; however, it is in time local form, i.e. it does not contain memory kernels. One could argue whether this equation always exists (remember our discussion on the existence of the inverse superoperator $(\textrm{I}- \Sigma(t))^{-1}$ in the TCL projection operator derivation). It is easy to see that the time-dependent decay rate diverges if $c_1(t)=0$ (and $\dot{c}_1(t)\neq 0$) for certain time instants. In this case, even if the solution of the master equation is well defined, the master equation is not. In other words a TCL master equation does not exist.</p>
+<p>Another important remark is that  Eq. (\ref{me}) is exact; however, it is in time local form, i.e. it does not contain memory kernels. One could argue whether this equation always exists (remember our discussion on the existence of the inverse superoperator $(\textrm{I}- \Sigma(t))^{-1}$ in the TCL projection operator derivation). It is easy to see that the time-dependent decay rate diverges if $c_1(t)=0$ (and $\dot{c}_1(t)\neq 0$) for certain time instants. In this case, even if the solution of the master equation is well defined, the master equation is not. In other words a TCL master equation does not exist.</p>
 
 </div>
 </div>
@@ -1419,7 +1419,7 @@ J(\omega)=\frac{1}{2\pi}\frac{\gamma_{0}\lambda^{2}}{(\omega_{0}-\omega)^{2}+\la
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If we now take the Laplace transform of Eq. (<a href="#mjx-eqn-integrodiff">7.6</a>), namely $s\tilde{c}(s)-c(0)=-\tilde{f}(s)\tilde{c}(s)$ (See <a href="#appendix">Appendix 7.4</a> at the end of this chapter), we get</p>
+<p>If we now take the Laplace transform of Eq. (\ref{integrodiff}), namely $s\tilde{c}(s)-c(0)=-\tilde{f}(s)\tilde{c}(s)$ (See <a href="#appendix">Appendix 7.4</a> at the end of this chapter), we get</p>
 $$\tilde{c}(s)=\left[\frac{1}{s+\tilde{f}(s)}\right]c(0).$$<p></p>
 <p>Performing the inverse Laplace transform leads to</p>
 $$
@@ -1503,7 +1503,7 @@ c_{1}(t)=c_{1}(0)e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}
 <ul>
 <li><strong>Master equation</strong> </li>
 </ul>
-<p>Recalling Eq.(<a href="#mjx-eqn-eq:g">7.9</a>) we can derive the time dependent decay rate $\gamma(t)$ for the Lorentzian spectrum</p>
+<p>Recalling Eq.(\ref{eq:g}) we can derive the time dependent decay rate $\gamma(t)$ for the Lorentzian spectrum</p>
 $$
 \gamma(t)=-2\Re \left\{\frac{\dot{c}_{1}(t)}{c_{1}(t)} \right\} =\frac{2\gamma_{0} \sinh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)}{\sqrt{1-2R}\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)+\sinh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)}
 $$<p>which diverges in the strong coupling limit.  Formally, this means that the superoperator $[\textrm{I}-\Sigma(t))]^{-1}$ is not defined.</p>
@@ -1557,7 +1557,7 @@ S_{2}(t)=0,\qquad\gamma_{2}(t)=\gamma_{0}(1-e^{-\lambda t}).
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Recalling (<a href="#mjx-eqn-c1lor">7.13</a>)</p>
+<p>Recalling (\ref{c1lor})</p>
 $$\varrho_{11}(t)=\Bigg|c_{1}(0)e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)+\frac{1}{\sqrt{1-2R}}\sinh\left(\frac{\lambda t}{2}\sqrt{1-2R}\right)\right]\Bigg|^{2},$$<p>where the correlation time of the reservoir is $\tau=1/\lambda$. In the Markovian limit $\lambda\to\infty$ but $\lambda\gamma_{0}$ is constant ($\gamma_{0}\to 0$). In other words the Markovian limit in this model corresponds at taking both a flat reservoir spectrum $\lambda\to\infty$  and very weak coupling $\gamma_{0}\to 0$, the two assumptions are not independent.</p>
 
 </div>
@@ -1676,7 +1676,7 @@ $$<p>Hence,</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For an arbitrary pure state of the system $|\psi\rangle_s = \alpha |0\rangle_s + \beta |1\rangle_s$ (notice that we chose $\alpha = 1$ and $\beta = 0$ in the above circuit), and setting the state of the environment to vacuum $|0\rangle_e$, the two gates between the system and environment qubits transform the joint state into $\alpha |0\rangle_s|0\rangle_e + \beta \cos \theta |1\rangle_s|0\rangle_e + \beta \sin \theta |0\rangle_s|1\rangle_e$. Therefore, identifying the states $|0\rangle_s$ and $|1\rangle_s$ with the ground and excited states respectively, and by choosing $\theta = \arccos{c_1(t)}$, the reduced state of the system becomes Eq. (<a href="#mjx-eqn-rohs">7.7</a>).</p>
+<p>For an arbitrary pure state of the system $|\psi\rangle_s = \alpha |0\rangle_s + \beta |1\rangle_s$ (notice that we chose $\alpha = 1$ and $\beta = 0$ in the above circuit), and setting the state of the environment to vacuum $|0\rangle_e$, the two gates between the system and environment qubits transform the joint state into $\alpha |0\rangle_s|0\rangle_e + \beta \cos \theta |1\rangle_s|0\rangle_e + \beta \sin \theta |0\rangle_s|1\rangle_e$. Therefore, identifying the states $|0\rangle_s$ and $|1\rangle_s$ with the ground and excited states respectively, and by choosing $\theta = \arccos{c_1(t)}$, the reduced state of the system becomes Eq. (\ref{rohs}).</p>
 <p>In <a href="#fig_2">Figure 2</a> we show the experimental results obtained by running this circuit for different values of $t$ on <code>ibmq_vigo</code>.</p>
 
 </div>

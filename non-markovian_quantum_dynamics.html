@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/non-markovian_quantum_dynamics.html",
   "headline": "Non-Markovian quantum Dynamics",
-  "datePublished": "2019-12-13T09:49:21+00:00",
-  "dateModified": "2019-12-13T09:49:21+00:00",
+  "datePublished": "2019-12-13T09:57:51+00:00",
+  "dateModified": "2019-12-13T09:57:51+00:00",
   "description": "        Non-Markovian quantum Dynamics    $\newcommand{\parenthnewln}{\right.\\&amp;\left.\quad\quad{} }$$\newcommand{\nc}{\newcommand}$$\nc{\eq}{\begin{equa...",
   "author": {
     "@type": "Person",
@@ -1313,7 +1313,7 @@ g(t)=\lim_{\epsilon\rightarrow0^+}\frac{||[\mathbb{I}+(\mathcal{L}_t\otimes\math
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Mathematically, an apparent advantage of this measure is that no optimization over states is required. The measure is most simple to calculate using only the specific form of the master equation. However, Eq. (<a href="#mjx-eqn-g">8.4</a>) may be also calculated in terms of the intermediate dynamical map $\Phi_{t,t'}$  [<a href="#14">14</a>].</p>
+<p>Mathematically, an apparent advantage of this measure is that no optimization over states is required. The measure is most simple to calculate using only the specific form of the master equation. However, Eq. (\ref{g}) may be also calculated in terms of the intermediate dynamical map $\Phi_{t,t'}$  [<a href="#14">14</a>].</p>
 
 </div>
 </div>
@@ -1507,7 +1507,7 @@ I(\rho, \Phi_t)=S(\rho)+S(\Phi_t \rho )-S(\rho,\Phi_t),
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let us consider, first, the entanglement-assisted classical capacity $C_{ea}$, which sets a bound on the amount of classical information that can be transmitted along a quantum channel when one allows two parties (Alice and Bob) to share an unlimited amount of entanglement [<a href="#29">29</a>]. It  is defined in terms of the quantum mutual information $I (\rho, \Phi_t)$ between the input and the output of the channel, as given by Eq. (<a href="#mjx-eqn-NI">8.11</a>), by optimizing over all initial states $\rho$</p>
+<p>Let us consider, first, the entanglement-assisted classical capacity $C_{ea}$, which sets a bound on the amount of classical information that can be transmitted along a quantum channel when one allows two parties (Alice and Bob) to share an unlimited amount of entanglement [\ref{NI}), by optimizing over all initial states $\rho$</p>
 \begin{equation}
 C_{ea}(\Phi_t)=\sup_{\rho} I(\rho, \Phi_t). \label{eq:Cea}
 \tag{8.13}
@@ -1600,7 +1600,7 @@ Q(\Phi_t) = \lim_{n \rightarrow \infty} \frac{\max_{\rho_n }I_c(\rho_n,\Phi_t ^{
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It it worth noting that the two measures of non-Markovianity based on capacities, in general, do not coincide. The distinction between them is actually quite subtle. We notice indeed that as $ I(\rho,\Phi_t) = S(\rho)+I_c(\rho, \Phi_t)$, with $\rho$ the input state, we have $\frac{d}{dt} I(\rho,\Phi_t) = \frac{d}{dt} I_c(\rho, \Phi_t)$. Therefore a measure based on the violation of the data processing inequality for certain non divisible maps and $\mathcal{N}_\text{I}$ would not be able to distinguish between an increase in the different types of correlations. The optimizing state in the definitions (<a href="#mjx-eqn-eq:Cea">8.13</a>) and (<a href="#mjx-eqn-eq:Q">8.15</a>), however, is time dependent and does not coincide for the two quantities, hence  $dQ/dt \neq dC_{ea}/dt$.</p>
+<p>It it worth noting that the two measures of non-Markovianity based on capacities, in general, do not coincide. The distinction between them is actually quite subtle. We notice indeed that as $ I(\rho,\Phi_t) = S(\rho)+I_c(\rho, \Phi_t)$, with $\rho$ the input state, we have $\frac{d}{dt} I(\rho,\Phi_t) = \frac{d}{dt} I_c(\rho, \Phi_t)$. Therefore a measure based on the violation of the data processing inequality for certain non divisible maps and $\mathcal{N}_\text{I}$ would not be able to distinguish between an increase in the different types of correlations. The optimizing state in the definitions (\ref{eq:Cea}) and (\ref{eq:Q}), however, is time dependent and does not coincide for the two quantities, hence  $dQ/dt \neq dC_{ea}/dt$.</p>
 <p>Contrarily to the entanglement-assisted classical capacity, the quantum channel capacity is in general not additive. However, for degradable channels [<a href="#31">31</a>], the general definition coincides with the one-shot capacity, $Q(\Phi_t) = \max_{\rho }I_c(\rho,\Phi_t) $, and additivity for identical independent channels holds.</p>
 
 </div>
@@ -1763,12 +1763,12 @@ In Ref. [<a href="#38">38</a>] it is shown that, for $s&lt;2$,  $\gamma_1(t) &gt
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Inserting Eq. (<a href="#mjx-eqn-twoqubit">8.20</a>) into Eq. (<a href="#mjx-eqn-g">8.4</a>) and using Eq. (<a href="#mjx-eqn-RHP_One">8.3</a>) one immediately obtains the analytical expression for the RHP non-Markovianity measure $\mathcal{N}_{\text{RHP} }$ for a single qubit [<a href="#14">14</a>]:
+<p>Inserting Eq. (\ref{twoqubit}) into Eq. (\ref{g}) and using Eq. (\ref{RHP<em>One}) one immediately obtains the analytical expression for the RHP non-Markovianity measure $\mathcal{N}</em>{\text{RHP} }$ for a single qubit [<a href="#14">14</a>]:
 \begin{equation}
 \mathcal{N}_{\text{RHP} }=-2\int_{\gamma_1(t)&lt;0}dt\:\gamma_1(t)=\sum_i\Gamma(a_i)-\Gamma(b_i). \label{RHPdephasing}
 \tag{8.26}
 \end{equation}</p>
-<p>For the sake of simplicity we look at values of the Ohmicity parameter in the interval $0 \le s \le 6$. In this case there is only one interval of negativity of the decay rates and the only values needed are $\Gamma(a_1)$ and $\Gamma(b_{1})$, defined in Eqs. (<a href="#mjx-eqn-1gamma1">8.23</a>)-(<a href="#mjx-eqn-1gammb1">8.25</a>).</p>
+<p>For the sake of simplicity we look at values of the Ohmicity parameter in the interval $0 \le s \le 6$. In this case there is only one interval of negativity of the decay rates and the only values needed are $\Gamma(a_1)$ and $\Gamma(b_{1})$, defined in Eqs. (\ref{1gamma1})-(\ref{1gammb1}).</p>
 
 </div>
 </div>
@@ -1830,7 +1830,7 @@ In Ref. [<a href="#38">38</a>] it is shown that, for $s&lt;2$,  $\gamma_1(t) &gt
 \label{BLPone}
 \tag{8.27}
 \end{equation}<p>where $m=\rho_{11}^1(0)-\rho_{11}^2(0)$ and $n=\rho_{12}^1(0)-\rho_{12}^2(0)$, with $\rho^i_{jj} (0)$  the diagonal elements of the initial density matrices  of the pair and $\rho_{jk}^i(0)$ their off diagonal elements, with $(i,j,k=1,2)$.  This expression shows immediately that  $\sigma(t)&gt;0$ iff $\gamma_1(t)&lt;0$; i.e. $\mathcal{N}_{\text{BLP} }\neq 0$ only when the dynamical map is non-divisible [<a href="#12">12</a>].</p>
-<p>For the model here considered it is possible to analytically solve the optimization problem of Eq. (<a href="#mjx-eqn-BLPone">8.27</a>) [<a href="#40">40</a>]. The pair of states optimizing the increase of the trace distance are antipodal states lying on the equatorial plane, e.g., the states $| \pm \rangle=\frac{1}{\sqrt{2} }(| 0 \rangle \pm | 1\rangle)$, with $ | 0 \rangle$ and $| 1 \rangle$ the two states forming the qubit. Hence, we now have:
+<p>For the model here considered it is possible to analytically solve the optimization problem of Eq. (\ref{BLPone}) [<a href="#40">40</a>]. The pair of states optimizing the increase of the trace distance are antipodal states lying on the equatorial plane, e.g., the states $| \pm \rangle=\frac{1}{\sqrt{2} }(| 0 \rangle \pm | 1\rangle)$, with $ | 0 \rangle$ and $| 1 \rangle$ the two states forming the qubit. Hence, we now have:
 \begin{equation}
 \mathcal{N}_{\text{BLP} }=\sum_i e^{-\Gamma(b_i)}-e^{-\Gamma(a_i)} \label{NBLPdephasing}
 \tag{8.28}
@@ -1904,7 +1904,7 @@ $I\left(\frac{\mathbb{I} }{2}, \Phi_t \right)= 2-H_2 \left( \frac{1}{2}+ \frac{e
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We conclude this subsection stressing that, for the single qubit case, all non-Markovianity measures detect non-divisibility, hence when studying their behavior as a function of the parameter $s$ we obtain the same crossover between Markovian and non-Markovian dynamics, i.e., $s=2$. A direct comparison between the analytic expressions of Eqs. (<a href="#mjx-eqn-RHPdephasing">8.26</a>), (<a href="#mjx-eqn-NBLPdephasing">8.28</a>) and (<a href="#mjx-eqn-NID">8.30</a>) clarifies the different qualitative behaviour shown by the RHP measure with respect to the other ones in <a href="#fig_1">Figure 1</a>. Indeed, the increasing value of the former measure is due to the fact that, for increasing $s$, the number of periods of negativity of the dephasing rate increases and with it the terms contributing to the sum of  Eq. (<a href="#mjx-eqn-RHPdephasing">8.26</a>). On the contrary, the other measures all depend on the dephasing factors $e^{-\Gamma(t)}$ calculated at times at which the direction of information flow changes, i.e. $t=a_i$ and $t=b_i$. For increasing values of $s$, in the $s \gtrsim 3$ parameter space, however,  $e^{-\Gamma(a_i)} \simeq e^{-\Gamma(b_i)}$, hence the values of both $\mathcal{N}_\text{BLP}$ and $\mathcal{N}_\text{I}(\Phi_t)=\mathcal{N}_\text{Q}(\Phi_t)=\mathcal{N}_\text{C}(\Phi_t)$ decreases, as one can easily see from Eqs. (<a href="#mjx-eqn-NBLPdephasing">8.28</a>) and (<a href="#mjx-eqn-NID">8.30</a>).</p>
+<p>We conclude this subsection stressing that, for the single qubit case, all non-Markovianity measures detect non-divisibility, hence when studying their behavior as a function of the parameter $s$ we obtain the same crossover between Markovian and non-Markovian dynamics, i.e., $s=2$. A direct comparison between the analytic expressions of Eqs. (\ref{RHPdephasing}), (\ref{NBLPdephasing}) and (\ref{NID}) clarifies the different qualitative behaviour shown by the RHP measure with respect to the other ones in <a href="#fig_1">Figure 1</a>. Indeed, the increasing value of the former measure is due to the fact that, for increasing $s$, the number of periods of negativity of the dephasing rate increases and with it the terms contributing to the sum of  Eq. (\ref{RHPdephasing}). On the contrary, the other measures all depend on the dephasing factors $e^{-\Gamma(t)}$ calculated at times at which the direction of information flow changes, i.e. $t=a_i$ and $t=b_i$. For increasing values of $s$, in the $s \gtrsim 3$ parameter space, however,  $e^{-\Gamma(a_i)} \simeq e^{-\Gamma(b_i)}$, hence the values of both $\mathcal{N}_\text{BLP}$ and $\mathcal{N}_\text{I}(\Phi_t)=\mathcal{N}_\text{Q}(\Phi_t)=\mathcal{N}_\text{C}(\Phi_t)$ decreases, as one can easily see from Eqs. (\ref{NBLPdephasing}) and (\ref{NID}).</p>
 
 </div>
 </div>
@@ -2118,7 +2118,7 @@ J(\omega)=\frac{\gamma_M\lambda^2}{2\pi[(\omega-\omega_c)^2+\lambda^2]},
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For the PBG model [<a href="#42">42</a>], using Eqs. (<a href="#mjx-eqn-gammaADC">8.32</a>) and (<a href="#8.55">8.55</a>) we can study the Markovian to non-Markovian crossover as a function of the reservoir parameter $z=\Delta/\beta$, with $\Delta$ the detuning of the qubit frequency from the edge frequency $\omega_e$ of the band gap spectrum,  and $\beta$ a characteristic frequency.  Positive values of $z$ correspond to the case in which the qubit is outside the band gap region while negative values of $z$ correspond to the qubit in the band gap region. In the latter case the well-known phenomenon of population trapping occurs as the emission of energy in the reservoir is strongly inhibited.</p>
+<p>For the PBG model [\ref{gammaADC}) and (<a href="#8.55">8.55</a>) we can study the Markovian to non-Markovian crossover as a function of the reservoir parameter $z=\Delta/\beta$, with $\Delta$ the detuning of the qubit frequency from the edge frequency $\omega_e$ of the band gap spectrum,  and $\beta$ a characteristic frequency.  Positive values of $z$ correspond to the case in which the qubit is outside the band gap region while negative values of $z$ correspond to the qubit in the band gap region. In the latter case the well-known phenomenon of population trapping occurs as the emission of energy in the reservoir is strongly inhibited.</p>
 <p>For $z&lt;z_{\text{crit} }=1.7$,  the rate $\gamma_1 (t)$ temporarily attains negative values for certain time intervals. In fact, due to population trapping, for $z \ll z_{\text{crit} }$ the asymptotic long time limit is characterized by small amplitude oscillations between positive and negative values which persist as $t \rightarrow \infty$. This eventually leads to a divergency not only of the $\mathcal{N}_{\text{RHP} }$ measure but of all non-Markovianity measures. In any practical experimental situation, however, the time of the experiment is finite. We will therefore calculate the measures for a fixed time interval, longer compared to the typical times of the system but, of course, shorter than the system-reservoir correlation time which in this case is $\infty$.</p>
 <p>In <a href="#fig_2">Figure 2</a> ii) we plot the RHP measure (red stars) for the PBG reservoir as a function of the parameter $z$. As we can see from the plot the measure has a sudden peak at values of $z$  close to the edge $z=0$, reaching its maximum value for $z=1.0$ before vanishing for $z=1.7$. For increasingly negative values of $z$ under the critical point, RHP non-Markovianity measure decreases to small but finite values. This is due to the decreasing amplitude of the oscillations in the decay rate.</p>
 
@@ -2200,7 +2200,7 @@ For both the Lorentzian reservoir spectrum and the PBG the measures $\N_{\text{C
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>[WE SHOULD DISCUSS THIS SECTION ON MONDAY AND CHANGE IT ACCORDINGLY] In previous chapter we obtained an exact solution for Jaynes-Cummings model with losses, which is a generalised amplitude damping model. The master equation is given by Eq. (<a href="#mjx-eqn-aster">8.31</a>), where the time dependent decay rate $\gamma(t)$ has the following analytical form</p>
+<p>[WE SHOULD DISCUSS THIS SECTION ON MONDAY AND CHANGE IT ACCORDINGLY] In previous chapter we obtained an exact solution for Jaynes-Cummings model with losses, which is a generalised amplitude damping model. The master equation is given by Eq. (\ref{aster}), where the time dependent decay rate $\gamma(t)$ has the following analytical form</p>
 \begin{equation} \label{ampD}
 \gamma(t)=-2\Re\left[\frac{\dot{c}_{1}(t)}{c_{1}(t)}\right],
 \end{equation}<p>with
@@ -2404,7 +2404,7 @@ H=\omega_0\sigma_z+\sum_k\omega_k a^{\dagger}_ka_k+\sum_k\sigma_z(g_za_k+g^*_ka_
 \begin{eqnarray}
 \tilde{\phi}_t^D&amp;=&amp;\frac{1}{2}\left[(1+e^{-\Gamma(t)})| 1 \rangle_e \langle 1 |+(1-e^{\Gamma(t)})| 2 \rangle_E \langle 2 |\right]\nn\\&amp;+&amp;\frac{1}{2}\sqrt{1-e^{2\Gamma(t)} }\text{Tr}(\rho\sigma_z)\left(| 1 \rangle_E \langle 2 |+| 2 \rangle_E \langle 1| \right).
 \tag{8.48}
-\end{eqnarray}<p>We write in full Eq. (<a href="#mjx-eqn-gamma0">8.21</a>) to give the explicit form of $\Gamma(t)$: 
+\end{eqnarray}<p>We write in full Eq. (\ref{gamma0}) to give the explicit form of $\Gamma(t)$: 
 \begin{eqnarray}
 \Gamma(t)&amp;=&amp;\frac{2\tilde \Gamma[s]}{-1 + s}(1-(1+\tau^2)^{-s/2}(\cos[s\arctan[\tau]]\nn\\&amp;+&amp;\tau\sin[s\arctan[\tau]]).
 \tag{8.49}
