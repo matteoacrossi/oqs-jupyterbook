@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/preliminaries.html",
   "headline": "Preliminaries",
-  "datePublished": "2019-12-13T13:08:56+00:00",
-  "dateModified": "2019-12-13T13:08:56+00:00",
+  "datePublished": "2019-12-13T13:12:07+00:00",
+  "dateModified": "2019-12-13T13:12:07+00:00",
   "description": "        Preliminaries    $\newcommand{\Mn}{M_n(\mathbb{C})}$$\newcommand{\Mq}{M_2(\mathbb{C})}$$\newcommand{\Mk}{M_k(\mathbb{C})}$$\newcommand{\Mm}{M_m(\math...",
   "author": {
     "@type": "Person",
@@ -1186,17 +1186,6 @@ $\newcommand{\Rn}{ {\mathbb{R}^n} }$</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We begin by introducing basic notation and terminology.</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="2.1.-The-structure-of-quantum-states-">2.1. The structure of quantum states <a id="states" /><a class="anchor-link" href="#2.1.-The-structure-of-quantum-states-"> </a></h2>
 </div>
 </div>
@@ -1250,7 +1239,7 @@ $\newcommand{\Rn}{ {\mathbb{R}^n} }$</p>
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/preliminaries_5_0.png"
+<img src="images/preliminaries_4_0.png"
 >
 </div>
 
@@ -1266,7 +1255,7 @@ $\newcommand{\Rn}{ {\mathbb{R}^n} }$</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The state of the two qubits in the circuit is the Bell state $| \psi^- \rangle = \frac{1}{\sqrt{2} } \left( |01\rangle - |10\rangle \right)$, which is maximally entangled. If we were to describe the state of either of the two qubits alone, no single vector in their corresponding Hilbert spaces would faithfully characterize it. Indeed, it is easy to see that, regardless of which single-qubit unitary we apply to e.g. $q_0$, the probability of its measurement yielding zero is $1/2$, contrarily to the predictions for any pure state $\alpha |0 \rangle + \beta | 1 \rangle$. Instead, these probabilities are consistent with the situation in which one tosses a fair coin and prepares the qubit in states $|0\rangle$ or $|1\rangle$ depending on the outcome. In fact, <em>any</em> quantum state can be represented as such statistical mixture.</p>
+<p>The state of the two qubits in the circuit is the Bell state $| \psi^- \rangle = \frac{1}{\sqrt{2} } \left( |01\rangle - |10\rangle \right)$, which is maximally entangled. If we were to describe the state of either of the two qubits alone, no single vector in their corresponding Hilbert spaces would faithfully characterize it. Indeed, it is easy to see that, regardless of which single-qubit unitary we apply to e.g. $q_0$, the probability of its measurement yielding zero is $1/2$, contrarily to the predictions for any pure state $\alpha |0 \rangle + \beta | 1 \rangle$. Instead, these probabilities are consistent with the situation in which one tosses a fair coin and prepares the qubit in states $|0\rangle$ or $|1\rangle$ depending on the outcome. In fact, <em>any</em> quantum state can be represented in tems of a statistical mixture, as in the previous example.</p>
 <p>Mathematically, statistical mixtures are represented by density operators. From any pure state $| \psi \rangle$, one can construct the corresponding projection operator $| \psi \rangle \langle \psi |$, which promotes the mathematical description of the state from vector to operator, but is otherwise equivalent. The reason why using operators becomes essential is that they admit a <em>convex sum</em>, that is, the operator $p_1 | \psi_1 \rangle \langle \psi_1 | + p_2 | \psi_2 \rangle \langle \psi_2 |$ results in a physical state if $p_1 + p_2 = 1$ and $| \psi_1 \rangle$, $| \psi_2 \rangle$ are normalized. Therefore, they can accomodate statistical mixtures of states in a very natural way. As a final remark, one usually finds the terms density matrix and density operator. While density matrix in principle refers to the matrix representing the density operator in some particular basis, it is common to use both terms indistinctly.</p>
 
 </div>
@@ -1440,7 +1429,7 @@ where $\left\lbrace | i \rangle \right\rbrace$ is any orthogonal basis of $B$'s 
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/preliminaries_16_0.png"
+<img src="images/preliminaries_15_0.png"
 >
 </div>
 
@@ -1481,7 +1470,7 @@ where $\left\lbrace | i \rangle \right\rbrace$ is any orthogonal basis of $B$'s 
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In many situations, one needs to describe the change of the state of the system, for instance, when studying temporal evolution or to characterize the effect of a measurement. The general (linear) mathematical object used to map operators into operators is called a <em>map</em>. However, not all maps map density operators (aka states) into density operators. A map which does is called a <em>quantum channel</em>. Notice that a channel need not be a unitary transformation in general, but can map a pure state into a statistical mixture. For example, consider the following circuit, which implements a channel on qubit $q_0$.</p>
+<p>In many situations, one needs to describe the change of the state of the system, for instance, when studying temporal evolution or to characterize the effect of a measurement. The general (linear) mathematical object used to map operators into operators is called a <em>map</em>. However, not all maps map states into states. A map which does is called a <em>quantum channel</em>. Notice that a channel need not be a unitary transformation in general, but can map a pure state into a statistical mixture. For example, consider the following circuit, which implements a channel on qubit $q_0$.</p>
 
 </div>
 </div>
@@ -1521,7 +1510,7 @@ where $\left\lbrace | i \rangle \right\rbrace$ is any orthogonal basis of $B$'s 
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/preliminaries_20_0.png"
+<img src="images/preliminaries_19_0.png"
 >
 </div>
 
@@ -1861,7 +1850,7 @@ $$ \omega |E_k \rangle =  \lambda_k |E_k \rangle\  , $$<p>with $\lambda_k \geq 0
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exercise-2.2.1-">Exercise 2.2.1 <a id="exercise221" /><a class="anchor-link" href="#Exercise-2.2.1-"> </a></h3><p>Consider the following circuit</p>
+<h3 id="Exercise-2.2.1-">Exercise 2.2.1 <a id="exercise221" /><a class="anchor-link" href="#Exercise-2.2.1-"> </a></h3><p>Consider the following circuit implementing a channel on qubit $q_0$ (we assume $q_1$ to be initially in state $| 0 \rangle$)</p>
 
 </div>
 </div>
@@ -1903,7 +1892,7 @@ $$ \omega |E_k \rangle =  \lambda_k |E_k \rangle\  , $$<p>with $\lambda_k \geq 0
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/preliminaries_43_0.png"
+<img src="images/preliminaries_42_0.png"
 >
 </div>
 
@@ -2081,10 +2070,10 @@ L(X) = -i [H,X]\ ,
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this section, we will briefly discuss the main aspects to take into account when designing a circuit to be implemented on a real device from the IBM Q Experience in order to reduce the noise in the experiment. As we introduced in <strong><a href="introduction.html">Chapter 1</a></strong> and briefly again in the discussion of the <em>dilation theorem</em>, the general strategy consists in using some qubits to play the role of the system and other qubits for the environment and then applying the appropriate unitary gates among them to simulate the dynamics. In fact, we will even use extra ancillary qubits to quantify some dynamical properties of some dynamical evolutions in <strong><a href="jaynes_cummings_with_losses.html">Chapter 7</a></strong>. In any case, there are many choices for the roles of the qubits, as well as of unitaries, that would be equivalent in principle. However, due to the noisy nature of the current NISQ devices, not all of them yield equally good results.</p>
+<p>In this section, we will briefly discuss the main aspects to take into account when designing a circuit to be implemented on a real device from the IBM Q Experience in order to reduce the noise in the experiment. As we introduced in <strong><a href="introduction.html">Chapter 1</a></strong> and briefly again in the discussion of the <em>dilation theorem</em>, the general strategy consists in using some qubits to play the role of the system and other qubits for the environment and then applying the appropriate unitary gates among them to simulate the dynamics. In fact, we will even use extra ancillary qubits to quantify some dynamical properties of some dynamical evolutions in <strong><a href="non-markovian_quantum_dynamics.html">Chapter 8</a></strong>. In any case, there are many choices for the roles of the qubits, as well as of unitaries, that would be equivalent in principle. However, due to the noisy nature of the current NISQ devices, not all of them yield equally good results.</p>
 <p>Given the large number of experimental runs allowed by the devices ($N = 8192$), the errors due to statistical fluctuations, of order $\mathcal{O}(1/\sqrt{N}) \approx 0.011$, are generally far less significant than other sources of error. The discrepancy between the experimental points and the theoretical predictions, on the other hand, often come from systematic errors induced by various factors in the hardware implementation. First, the qubits undergo relaxation and decoherence due to external noise. This error becomes more relevant when increasing the depth of the circuit. As we add more gates, the circuit takes longer to run, hence being more susceptible to these effects. Second, the gates have errors due to cross-talk and unwanted interactions between qubits when addressing them with pulses. In particular, the error rate of CNOT gates is about 10 times larger than single-qubit unitaries. Finally, there is a readout error affecting the quantum measurement, although this can be mitigated to some extent, as we discuss later on. The error rates and noise parameters on IBM Q devices are characterized on a daily basis using randomized benchmarking techniques. Since there are various, interdependent sources of noise, modeling and predicting the deviations in the experimental data is a non-trivial matter, beyond the scope of this book. Let us discuss some general guidelines targeted at minimising the aforementioned inaccuracies.</p>
 <p>Since the IBM Q Experience devices are universal quantum computers, they enable the implementation of any unitary transformation of their constituent qubits; once a quantum circuit is provided for its execution, it is compiled into an equivalent circuit involving only the machine's basis gates (that is, those realisable experimentally). However, if the circuit requires a multi-qubit gate among qubits that are not physically connected [<a href="#1">1</a>], the corresponding gate will be replaced with a longer circuit in which the states are swapped to neighbouring qubits in the compiled circuit. Since every swap gate includes a minimum of three CNOT gates, and these introduce considerable noise to the execution, it is crucial to assign the relevant qubits involved in the simulation (e.g. system, environment and ancillae) to the machine's qubits so that the number of CNOT gates between
-disconnected qubits is minimised. Furthermore, the devices are calibrated daily and the errors of the basis gates are reported. This information can also be taken into account in the qubit assignment, as using the CNOT gates with smaller errors is preferable. The figure below shows the connectivity layout of <code>ibmq_16_melbourne</code>, IBM Q's 14-qubit device.</p>
+disconnected qubits is minimised. Furthermore, the devices are calibrated daily and the errors of the basis gates are reported. This information can also be taken into account in the qubit assignment, as using the CNOT gates with smaller errors is preferable. The figure below shows the connectivity layout and gate errors of <code>ibmq_16_melbourne</code>, IBM Q's 14-qubit device.</p>
 
 </div>
 </div>
@@ -2107,7 +2096,7 @@ disconnected qubits is minimised. Furthermore, the devices are calibrated daily 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In addition to the gate errors, the qubits' readout errors characterising the discrepancies between the qubit state and the measurement outcome probabilities are also provided. In the IBM Q Experience devices, there are considerable differences in the readout errors of the different qubits, so this information should also be taken into account in the qubit-assignment process: if possible, it is preferable to assign the system (and any auxiliary ancillae whose measurement is required) to low readout-error qubits, while qubits with large readout errors  can still be used to simulate the environment or other ancillae that need not be measured. In any case, Qiskit provides post-processing error-mitigation tools that generally improve the experimental
-results under the package \texttt{ignis}. We will explain how to use it in the next subsection.</p>
+results under the package <code>ignis</code>. We will explain how to use it in the next subsection.</p>
 <p><a id='1'></a> [1]: The basis gates for the IBM Q Experience devices include any single-qubit rotation, whereas the only
 multi-qubit gates are CNOTs. Two qubits are connected in a given device if there is a basis CNOT between them.</p>
 
@@ -2132,7 +2121,7 @@ multi-qubit gates are CNOTs. Two qubits are connected in a given device if there
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we prepare a qubit in state e.g. $|0\rangle$ and measure it in a NISQ device, we will not obtain the outcome 0 with probability one due to imperfections in the measurement process. Nevertheless, Qiskit's <code>Ignis</code> provides a tool to mitigate these errors that is very easy to use.</p>
 <p>The working principle is the following. We first prepare all possible computational-basis states $| 0\cdots 0 \rangle, | 0\cdots 1 \rangle, \ldots, | 1\cdots 1 \rangle$ and measure their corresponding outcome probabilities (notice that it is only necessary to include the qubits whose measurement outcomes are needed). Once these are known, they can be used to correct any other experimental result by finding, via likelihood maximization, the experimental outcome that is most congruent with the observed measurement deviations. All the data shown in the book have been mitigated as described above.</p>
-<p>The snippet below contains an example of the code needed to use the noise mitigation tool.</p>
+<p>We now illustrate how to use the noise mitigation tool in what follows.</p>
 
 </div>
 </div>
@@ -2260,7 +2249,7 @@ multi-qubit gates are CNOTs. Two qubits are connected in a given device if there
 
 
 <div class="output_png output_subarea ">
-<img src="images/preliminaries_62_1.png"
+<img src="images/preliminaries_61_1.png"
 >
 </div>
 
@@ -2316,7 +2305,7 @@ multi-qubit gates are CNOTs. Two qubits are connected in a given device if there
 
 
 <div class="output_png output_subarea ">
-<img src="images/preliminaries_64_0.png"
+<img src="images/preliminaries_63_0.png"
 >
 </div>
 
@@ -2421,7 +2410,7 @@ multi-qubit gates are CNOTs. Two qubits are connected in a given device if there
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/preliminaries_68_0.png"
+<img src="images/preliminaries_67_0.png"
 >
 </div>
 
@@ -2521,7 +2510,7 @@ multi-qubit gates are CNOTs. Two qubits are connected in a given device if there
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/preliminaries_72_0.png"
+<img src="images/preliminaries_71_0.png"
 >
 </div>
 
@@ -2571,13 +2560,13 @@ multi-qubit gates are CNOTs. Two qubits are connected in a given device if there
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>State tomography is the process of reconstructing the density operator of a quantum system by performing a set of measurements on identical preparations of its state. To be able to uniquely identify the state, the measurements must be <strong><em>tomographically complete</em></strong>, meaning that the measurement operators must form an operator basis on the Hilbert space of the system, so that full information of the state can be obtained.</p>
 <p>State tomography is very useful for the characterization of devices, in particular for determining the actual state of qubits under the action of noise.</p>
-<h4 id="How-does-it-work?">How does it work?<a class="anchor-link" href="#How-does-it-work?"> </a></h4><p>Since the Pauli matrices form a tomographically complete set of measurements, and they are natural choice of measurement operators for a digital quantum computer, we will focus on those.</p>
+<h3 id="How-does-it-work?">How does it work?<a class="anchor-link" href="#How-does-it-work?"> </a></h3><p>Since the Pauli matrices form a tomographically complete set of measurements, and they are natural choice of measurement operators for a digital quantum computer, we will focus on those.</p>
 <p>Given a qubit in the state $\rho$, the expectation values of the Pauli matrices are given by</p>
 $$ \langle \sigma_i \rangle = \text{Tr}[\rho \sigma_i], \qquad i=1,2,3 $$<p>where we identify $\sigma_0 = \mathbb{I}$, $\sigma_1 = \sigma_x$, $\sigma_2 =\sigma_y$, and $\sigma_3 = \sigma_z$. 
-By performing a large number of measurements of $\sigma_x$, $\sigma_y$, $\sigma_z$, one obtains an <em>estimate</em> of the expectation values of the operators, let's call them $\overline{\sigma_i}$ and could then write the density operator of the system as</p>
+By performing a large number of measurements of $\sigma_x$, $\sigma_y$, $\sigma_z$, one obtains an <em>estimate</em> of the expectation values of the operators, (let us call them σ_i) allowing us to write the density operator of the system as</p>
 $$ \rho = \frac 12 \left(\mathbb{I} + \sum_{i=1}^3 \overline{\sigma_i} \sigma_i \right).$$<p>This method would work if $\overline{\sigma_i} = \langle \sigma_i \rangle$, but, since this is not the case with a finite number of measurement shots, the equation above can give states that are not physical.</p>
 <p>In order to obtain a physical density operator, a <strong><em>maximum-likelihood method</em></strong> is employed: among all possible density operators, the one that maximizes the probability to give $\overline{\sigma_i}$ as expectation values is chosen as the result of the tomography process.</p>
-<p>For reconstructing a state of $n$ qubits, all possible combinations of the Pauli matrices $\sigma_{i_1} \otimes \ldots \otimes \sigma_{i_n}$ are needed, with $i_{j} = 0,\ldots,3$, meaning $3^n-1$ measurement (the case $\sigma_0 ^{\otimes n}$ doesn't need to be measured).</p>
+<p>For reconstructing a state of $n$ qubits, all possible combinations of the Pauli matrices $\sigma_{i_1} \otimes \ldots \otimes \sigma_{i_n}$ are needed, with $i_{j} = 0,\ldots,3$, meaning $3^n-1$ measurement (the case $\sigma_0 ^{\otimes n}$ does not need to be measured).</p>
 <p><code>qiskit</code> implements the maximum-likelihood state tomography in the <code>qiskit-ignis</code> package. 
 Here we will see an example with the Bell state prepared above</p>
 
@@ -2631,7 +2620,7 @@ Here we will see an example with the Bell state prepared above</p>
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/preliminaries_78_0.png"
+<img src="images/preliminaries_77_0.png"
 >
 </div>
 
@@ -2686,7 +2675,7 @@ Now let's perform a two-qubit tomography on the real device</p>
 
 
 <div class="output_png output_subarea ">
-<img src="images/preliminaries_80_0.png"
+<img src="images/preliminaries_79_0.png"
 >
 </div>
 
@@ -2760,7 +2749,7 @@ Now let's perform a two-qubit tomography on the real device</p>
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/preliminaries_83_0.png"
+<img src="images/preliminaries_82_0.png"
 >
 </div>
 
@@ -2795,7 +2784,7 @@ Now let's perform a two-qubit tomography on the real device</p>
 
 
 <div class="output_png output_subarea output_execute_result">
-<img src="images/preliminaries_84_0.png"
+<img src="images/preliminaries_83_0.png"
 >
 </div>
 
