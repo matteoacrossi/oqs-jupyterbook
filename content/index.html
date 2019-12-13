@@ -5,16 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
-  <title>Project 1: Depolarizing channel</title>
-  <meta name="description" content="        Project 1: Depolarizing channel    In this project we will implement the depolarizing channel in qiskit and test it with state tomography on the simu...">
+  <title>Open Quantum Systems with Qiskit</title>
+  <meta name="description" content="# Open Quantum Systems with QiskitThis set of notebooks contains the material for a comprehensive 54-hour course on open quantum systems (OQS), starting from...">
 
-  <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/project_1-depolarizing_channel.html">
+  <link rel="canonical" href="https://matteoacrossi.github.io/oqs-jupyterbook/content/">
   <link rel="alternate" type="application/rss+xml" title="Open Quantum Systems with Qiskit" href="https://matteoacrossi.github.io/oqs-jupyterbook/feed.xml">
 
-  <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/project_1-depolarizing_channel.html" />
+  <meta property="og:url"         content="https://matteoacrossi.github.io/oqs-jupyterbook/content/" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Project 1: Depolarizing channel" />
-<meta property="og:description" content="        Project 1: Depolarizing channel    In this project we will implement the depolarizing channel in qiskit and test it with state tomography on the simu..." />
+<meta property="og:title"       content="Open Quantum Systems with Qiskit" />
+<meta property="og:description" content="# Open Quantum Systems with QiskitThis set of notebooks contains the material for a comprehensive 54-hour course on open quantum systems (OQS), starting from..." />
 <meta property="og:image"       content="https://matteoacrossi.github.io/oqs-jupyterbook/images/oqs.001.png" />
 
 <meta name="twitter:card" content="summary">
@@ -24,11 +24,11 @@
   {
   "@context": "http://schema.org",
   "@type": "NewsArticle",
-  "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/project_1-depolarizing_channel.html",
-  "headline": "Project 1: Depolarizing channel",
+  "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/content/",
+  "headline": "Open Quantum Systems with Qiskit",
   "datePublished": "2019-12-13T08:44:15+00:00",
   "dateModified": "2019-12-13T08:44:15+00:00",
-  "description": "        Project 1: Depolarizing channel    In this project we will implement the depolarizing channel in qiskit and test it with state tomography on the simu...",
+  "description": "# Open Quantum Systems with QiskitThis set of notebooks contains the material for a comprehensive 54-hour course on open quantum systems (OQS), starting from...",
   "author": {
     "@type": "Person",
     "name": "Turku Quantum Technologies"
@@ -541,7 +541,7 @@ initFunction(initPrint)
     },
     kernelOptions: {
     kernelName: "python3",
-    path: "content"
+    path: ""
     }
 }
 </script>
@@ -1077,27 +1077,10 @@ initFunction(initPrint)
 <div class="download-buttons-dropdown">
     <button id="dropdown-button-trigger" class="interact-button"><img src="/oqs-jupyterbook/assets/images/download-solid.svg" alt="Download" /></button>
     <div class="download-buttons">
-        <a href="/oqs-jupyterbook/content/project_1-depolarizing_channel.ipynb" download>
-        <button id="interact-button-download" class="interact-button">.ipynb</button>
-        </a>
         
         <a id="interact-button-print"><button id="interact-button-download" class="interact-button">.pdf</button></a>
     </div>
 </div>
-
-
-  <button id="interact-button-thebelab" class="interact-button">Thebelab</button>
-
-  
-  
-
-
-
-
-
-
-<a href="https://mybinder.org/v2/gh/matteoacrossi/oqs-jupyterbook/gh-pages?filepath=content%2Fproject_1-depolarizing_channel.ipynb"><button class="interact-button" id="interact-button-binder"><img class="interact-button-logo" src="/oqs-jupyterbook/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
-  
 
 
 </div>
@@ -1116,268 +1099,42 @@ initFunction(initPrint)
 
       <main class="c-textbook__page" tabindex="-1">
             <div class="c-textbook__content" id="textbook_content">
-                  <main class="jupyter-page">
-    <div id="page-info"><div id="page-title">Project 1: Depolarizing channel</div>
-</div>
-    <div class="jb_cell">
+              <h1 id="open-quantum-systems-with-qiskit">Open Quantum Systems with Qiskit</h1>
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In this project we will implement the <strong>depolarizing channel</strong> in qiskit and test it with state tomography on the simulator and on a real device.</p>
-<p>We introduced the depolarizing channel in Chapter 5 where we showed the circuit that implements it.</p>
-<p>Here it is again, for reference</p>
+<p>This set of notebooks contains the material for a comprehensive 54-hour course on open quantum systems (OQS), starting from basic concepts and covering the most essential concepts in the literature of OQS. Moreover, we present a novel idea: to teach how to simulate many paradigmatic examples of OQS dynamics with Qiskit and the IBM Q processors. This idea finds its origin in a recent publication (https://arxiv.org/abs/1906.07099, currently in press at NPJ Quantum Information), in which we demonstrate that the IBM Q Experience is a versatile and robust platform for simulating open quantum systems.</p>
 
-</div>
-</div>
-</div>
-</div>
+<p>The course is aimed at master students with a background in Quantum Mechanincs and Quantum Information theory who are also familiar with Qiskit. It is divided into lectures and projects. Throught the lecture notes, the lecturer will find several examples of important concepts for OQS in terms of circuits, with which we assume the student to be acquainted. The lecture material also includes many circuits that enable the simulation of OQS dynamics on the real IBM Q devices, with comprehensive explanations on their working principles. Finally, the lectures are to be supplemented with guided practical “hands-on” sessions in which the students must implement the corresponding circuits and analyze the results.</p>
 
-<div class="jb_cell">
+<p><img src="images/oqs.001.png" /></p>
 
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<h2 id="lectures">Lectures</h2>
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">QuantumCircuit</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">####################################</span>
-<span class="c1">#  Depolarizing channel on IBMQX2  #</span>
-<span class="c1">####################################</span>
-
-<span class="c1"># Quantum register</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">)</span>
-
-<span class="c1"># Quantum circuit</span>
-<span class="n">depolarizing</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-
-<span class="c1"># Depolarizing channel acting on q_2</span>
-<span class="c1">## Qubit identification</span>
-<span class="n">system</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">a_0</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">a_1</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">a_2</span> <span class="o">=</span> <span class="mi">3</span>
-
-<span class="c1">## Define rotation angle</span>
-<span class="n">theta</span> <span class="o">=</span> <span class="mf">0.0</span>
-
-<span class="c1">## Construct circuit</span>
-<span class="n">depolarizing</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">])</span>
-<span class="n">depolarizing</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">])</span>
-<span class="n">depolarizing</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">a_2</span><span class="p">])</span>
-<span class="n">depolarizing</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
-<span class="n">depolarizing</span><span class="o">.</span><span class="n">cy</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
-<span class="n">depolarizing</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">a_2</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
-
-<span class="c1"># Draw circuit</span>
-<span class="n">depolarizing</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="jb_output_wrapper }}">
-<div class="output_area">
-
-
-
-<div class="output_png output_subarea output_execute_result">
-<img src="images/project_1-depolarizing_channel_2_0.png"
->
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Task-1">Task 1<a class="anchor-link" href="#Task-1"> </a></h2><p>Create a function that returns a quantum circuit implementing a depolarizing channels with parameter $p$ on a specified qubit <code>system</code>, using three ancillary qubits <code>ancillae = [a1, a2, a3]</code>.</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">depolarizing_channel</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">ancillae</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a QuantumCircuit implementing depolarizing channel on q[system]</span>
-<span class="sd">    </span>
-<span class="sd">    Args:</span>
-<span class="sd">        q (QuantumRegister): the register to use for the circuit</span>
-<span class="sd">        p (float): the probability for the channel between 0 and 1</span>
-<span class="sd">        system (int): index of the system qubit</span>
-<span class="sd">        ancillae (list): list of indices for the ancillary qubits</span>
-<span class="sd">        </span>
-<span class="sd">    Returns:</span>
-<span class="sd">        A QuantumCircuit object</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="c1"># Write the code here...</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Task-2">Task 2<a class="anchor-link" href="#Task-2"> </a></h2><p>Write a circuit <code>prepare_state</code> that prepares the <code>system</code> qubit in an initial state that has non-zero populations and coherences (both real and imaginary parts)</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Let&#39;s fix the quantum register and the qubit assignments</span>
-
-<span class="c1"># We create the quantum circuit</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
-
-<span class="c1"># Index of the system qubit</span>
-<span class="n">system</span> <span class="o">=</span> <span class="mi">2</span>
-
-<span class="c1"># Indices of the ancillary qubits</span>
-<span class="n">ancillae</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Task-3">Task 3<a class="anchor-link" href="#Task-3"> </a></h2><p>For different values of $p \in [0, 1]$:</p>
 <ol>
-<li>Concatenate <code>prepare_state</code> and <code>depolarizing_channel</code> in a circuit and create the corresponding  <code>tomography_circuits</code> (check the <a href="preliminaries.html">preliminaries</a> for help with the tomography).</li>
-<li>Execute the <code>tomography_circuits</code> in the simulator and collect the rsults</li>
+  <li><a href="introduction.html">Introduction</a></li>
+  <li><a href="preliminaries.html">Preliminaries</a></li>
+  <li><a href="microscopic_derivation_of_the_markovian_master_equation.html">Microscopic derivation of the master equation</a></li>
+  <li><a href="markovian_semigroups.html">Dynamical maps: Markovian semigroups</a></li>
+  <li><a href="divisible_maps.html#commanddiv">Dynamical maps: divisibility</a></li>
+  <li><a href="projection_operator_techniques.html">Projection operator techniques</a></li>
+  <li><a href="jaynes_cummings_with_losses.html">Jaynes-Cummings model with losses</a></li>
+  <li><a href="non-markovian_quantum_dynamics.html">Non-Markovian quantum dynamics</a></li>
 </ol>
 
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># For example, let&#39;s consider 10 equally spaced values of p</span>
-<span class="n">p_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Task-4">Task 4<a class="anchor-link" href="#Task-4"> </a></h2><ol>
-<li>Process the results of the simulation by performing the tomographic reconstruction.</li>
-<li>Find analytically what is the density matrix of the system qubit after the depolarizing channel as a function of $p$.</li>
-<li>Plot the values of $\rho_{11}$, $\rho_{22}$, $\Re \rho_{12}$, $\Im \rho_{12}$ as functions of $p$ and compare them to the analytical prediction.</li>
+<h2 id="projects">Projects</h2>
+<ol>
+  <li><a href="project_1-depolarizing_channel.html">Depolarizing channel</a> (<a href="project_1-solution.html">Solution</a>)</li>
+  <li><a href="project_2-pauli_channel.html">Pauli channel</a> (<a href="project_2-solution.html">Solution</a>)</li>
+  <li><a href="project_3-reservoir-engineering.html">Markovian reservoir engineering</a> (<a href="project_3-solution.html">Solution</a>)</li>
+  <li><a href="project_4-amplitude_damping.html">Amplitude damping channel</a> (<a href="project_4-solution.html">Solution</a>)</li>
 </ol>
-<p>Up to the statistical errors due to the finite number of shots, the simulated points should match the analytical prediction.</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Homework">Homework<a class="anchor-link" href="#Homework"> </a></h2><p>Perform Tasks 3-5 on a real device, and include error mitigation (check the <a href="preliminaries.html">preliminaries</a> for instructions). Compare the results with the simulation.</p>
-
-</div>
-</div>
-</div>
-</div>
-
- 
 
 
-    </main>
-    
             </div>
             <div class="c-textbook__footer" id="textbook_footer">
               
 <nav class="c-page__nav">
   
-    
-    
 
-    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/oqs-jupyterbook/non-markovian_quantum_dynamics.html">
-      〈 <span class="u-margin-right-tiny"></span> Non-Markovian quantum Dynamics
-    </a>
-  
-
-  
-    
-
-    
-    <a id="js-page__nav__next" class="c-page__nav__next" href="/oqs-jupyterbook/project_1-solution.html">
-      Solution <span class="u-margin-right-tiny"></span> 〉
-    </a>
   
 </nav>
 
