@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/non-markovian_quantum_dynamics.html",
   "headline": "Non-Markovian quantum Dynamics",
-  "datePublished": "2019-12-13T14:04:04+00:00",
-  "dateModified": "2019-12-13T14:04:04+00:00",
+  "datePublished": "2019-12-13T14:07:38+00:00",
+  "dateModified": "2019-12-13T14:07:38+00:00",
   "description": "        Non-Markovian quantum Dynamics    $\newcommand{\parenthnewln}{\right.\\&amp;\left.\quad\quad{} }$$\newcommand{\nc}{\newcommand}$$\nc{\eq}{\begin{equa...",
   "author": {
     "@type": "Person",
@@ -1260,7 +1260,7 @@ The reasons for such interest are manifold. On the one hand,  we have witnessed 
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Hystorically, Markovian open quantum dynamics was identified with the GKSL form of the master equation and was extensively used due to its powerful property of guaranteeing complete positivity (CP), and hence physicality, of the density matrix at all times. A straightforward extension of the GKSL theorem [<a href="#1">1</a>, <a href="#2">2</a>] to time local master equations identifies Markovian and non-Markovian dynamics with the properties of the dynamical map $\Phi_t: \rho(t)=\Phi_t \rho(0)$ characterizing the open system evolution. More precisely, the dynamics is said to be Markovian whenever the dynamical map possesses the property of being completely-positive (CP) divisible, namely whenever the propagator $V_{t,s}$, defined by $\Phi_t = V_{t,s} \Phi_s$, is CP.  On the contrary, non-Markovian dynamics occurs when the dynamical map $\Phi_t$ is not CP divisible.</p>
+<p>Historically, Markovian open quantum dynamics was identified with the GKSL form of the master equation and was extensively used due to its powerful property of guaranteeing complete positivity (CP), and hence physicality, of the density matrix at all times. A straightforward extension of the GKSL theorem [<a href="#1">1</a>, <a href="#2">2</a>] to time local master equations identifies Markovian and non-Markovian dynamics with the properties of the dynamical map $\Phi_t: \rho(t)=\Phi_t \rho(0)$ characterizing the open system evolution. More precisely, the dynamics is said to be Markovian whenever the dynamical map possesses the property of being completely-positive (CP) divisible, namely whenever the propagator $V_{t,s}$, defined by $\Phi_t = V_{t,s} \Phi_s$, is CP.  On the contrary, non-Markovian dynamics occurs when the dynamical map $\Phi_t$ is not CP divisible.</p>
 <p>A common feature of all non-Markovianity measures described in the following subsections is that they are based on the non-monotonic time evolution of certain quantities occurring when the divisibility property is violated. However, while non-monotonic behavior of such quantities always implies non-divisibility, the inverse is not true, i.e., there can be non-divisible maps consistent with monotonic dynamics. In this sense, if one would assume divisibility as the definition of non-Markovianity, all the other non-Markovianity measures should be considered as non-Markovianity witnesses.</p>
 <p>With the defining attribute of all non-Markovian dynamics in mind, namely the violation of the divisibilty property, Rivas, Huelga and Plenio (RHP) propose a measure based on the Choi-Jamiolkowski isomorphism [<a href="#21">21</a>]. The inability to write the dynamical map $\Phi_{t}$ as a concatenation of two independent CPTP maps connects with intuitive reasoning of present dynamics being dependent on memory effects.</p>
 
@@ -1277,7 +1277,7 @@ The reasons for such interest are manifold. On the one hand,  we have witnessed 
 \begin{equation}
 \frac{d \rho_t}{dt}= \mathcal{L}_t \rho_t= -i[H,\rho_t]+ \sum_k\! \! \gamma_k(t) \! \! \left(\! V_k \rho_t V^{\dagger}_k-\frac{1}{2}\{V_k^{\dagger}V_k,\rho_t\}\!\right),
 \tag{8.1}
-\end{equation}<p>it is possible to show that the corresponding dynamical map satisfies divisibilty if and only if $\gamma_k(t)\geq0$. If on the other hand, $\gamma_k(t)$ becomes temporarily negative, there will exist an intermediate map $\Phi_{t,t'}$ which is not CPTP, defying the composition law.</p>
+\end{equation}<p>it is possible to show that the corresponding dynamical map satisfies divisibility if and only if $\gamma_k(t)\geq0$. If on the other hand, $\gamma_k(t)$ becomes temporarily negative, there will exist an intermediate map $\Phi_{t,t'}$ which is not CPTP, defying the composition law.</p>
 
 </div>
 </div>
@@ -1302,7 +1302,7 @@ The reasons for such interest are manifold. On the one hand,  we have witnessed 
 g(t)=\lim_{\epsilon\rightarrow0^+}\frac{||[\mathbb{I}+(\mathcal{L}_t\otimes\mathbb{I})\epsilon]|\Omega \rangle \langle \Omega |\ \ ||_{1}-1}{\epsilon}.
 \tag{8.4}
 \end{equation}</p>
-<p>and $\epsilon$ encapslates the time elapsed between the initial time $t'$ to the final time $t$.</p>
+<p>and $\epsilon$ encapsulates the time elapsed between the initial time $t'$ to the final time $t$.</p>
 
 </div>
 </div>
@@ -1410,7 +1410,7 @@ D(\rho_1,\rho_2) = \tfrac{1}{2} \text{tr}\vert \rho_1-\rho_2 \vert .
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The non-additivity of this measure has been numerically proven, highlighting the challenge presented when one wishes to consider higher dimensional systems of qubits  [<a href="#23">23</a>]-[<a href="#25">25</a>]. Proofs of specific mathematical attributes of the optimal state pairs have to some degree eased the numerical challenges of this calculation by eliminating regions of the $n$-dimensional Hilbert space one should consider [<a href="#26">26</a>]. Indeed, it has been shown that the states which maximize the measure must lie on the boundary of the space of physical states and must be orthgonal. Finally, we note that in the spirit of this measure, trace distance is not a unique monotone distance and one may also use others such as the statistical distance [<a href="#27">27</a>].</p>
+<p>The non-additivity of this measure has been numerically proven, highlighting the challenge presented when one wishes to consider higher dimensional systems of qubits  [<a href="#23">23</a>]-[<a href="#25">25</a>]. Proofs of specific mathematical attributes of the optimal state pairs have to some degree eased the numerical challenges of this calculation by eliminating regions of the $n$-dimensional Hilbert space one should consider [<a href="#26">26</a>]. Indeed, it has been shown that the states which maximize the measure must lie on the boundary of the space of physical states and must be orthogonal. Finally, we note that in the spirit of this measure, trace distance is not a unique monotone distance and one may also use others such as the statistical distance [<a href="#27">27</a>].</p>
 
 </div>
 </div>
@@ -1670,7 +1670,7 @@ This allows one to interpret lack of CP-divisibility in terms of information bac
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, one can release the assumption of prior information and prove that, if one uses a $d+1$ dimensional ancilla, then the dynamical map $\Phi_t$  is CP-divisible if and only if the trace distance $D$ decreases or remains constant as a function of time for all pairs of initial system-ancilla states Ref.[<a href="#18">18</a>]. Therefore, also in this case, one can interpret the loss of CP-divisibility in terms of information back-flow for the system-ancilla pair. For further details on the conncetion between CP-divisibility and information back-flow we refer the reader to the recent perspective article [<a href="#11">11</a>].</p>
+<p>Finally, one can release the assumption of prior information and prove that, if one uses a $d+1$ dimensional ancilla, then the dynamical map $\Phi_t$  is CP-divisible if and only if the trace distance $D$ decreases or remains constant as a function of time for all pairs of initial system-ancilla states Ref.[<a href="#18">18</a>]. Therefore, also in this case, one can interpret the loss of CP-divisibility in terms of information back-flow for the system-ancilla pair. For further details on the connection between CP-divisibility and information back-flow we refer the reader to the recent perspective article [<a href="#11">11</a>].</p>
 
 </div>
 </div>
@@ -2472,7 +2472,7 @@ H=\omega_o\sigma_z+\sum_k\omega_k a^{\dagger}_k a_k +\sum_k (g_k a_k\sigma_+ +g^
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We now discuss the specific forms of $G(t)$ for both amplitude damped systems, starting with the Lorentizan spectrum [<a href="#37">37</a>] using notation $G^L(t)$.</p>
+<p>We now discuss the specific forms of $G(t)$ for both amplitude damped systems, starting with the Lorentzian spectrum [<a href="#37">37</a>] using notation $G^L(t)$.</p>
 <p>If the spectral density has a Lorentzian shape, i.e, $J(\omega)=\gamma_M\lambda^2/2\pi[(\omega-\omega^2)+\lambda^2]$, then the function $G^L(t)$ takes the form:</p>
 \begin{equation}
 G^L(t)=e^{-\frac{(\lambda-i\delta)t}{2} }\left[\text{cosh}\left(\frac{\Omega t}{2}\right)+\frac{\lambda-i\delta}{\Omega}\text {sinh}\left(\frac{\Omega t}{2}\right)\right],
@@ -2544,7 +2544,7 @@ y_j=\sqrt{ {x_j}^2} \: (j=1,2,3),
 \end{equation}\begin{equation}
 \beta^{3/2}=\omega_0^{7/2}d^2/6\pi\epsilon_0\hbar c^3.
 \tag{8.60}
-\end{equation}<p>The coefficient $\beta$ is defined as the characteriztic frequency, $\epsilon_0$ the Coulomb constant and $d$ the atomic dipole moment. We have defined in our results $z=\Delta/\beta$.</p>
+\end{equation}<p>The coefficient $\beta$ is defined as the characteristic frequency, $\epsilon_0$ the Coulomb constant and $d$ the atomic dipole moment. We have defined in our results $z=\Delta/\beta$.</p>
 
 </div>
 </div>
@@ -2555,7 +2555,7 @@ y_j=\sqrt{ {x_j}^2} \: (j=1,2,3),
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We note, that $G(t)$ satisfies the non-local equation $\dot{G}(t)=-\int_0^tf(t-t')G(t')dt'$ with initial condition $G(0)=1$, and f(t) is the reservoir correlation function wihich is related via the Fourer transform with a spectral density $J(\omega)$.</p>
+<p>We note, that $G(t)$ satisfies the non-local equation $\dot{G}(t)=-\int_0^tf(t-t')G(t')dt'$ with initial condition $G(0)=1$, and f(t) is the reservoir correlation function which is related via the Fourier transform with a spectral density $J(\omega)$.</p>
 
 </div>
 </div>
