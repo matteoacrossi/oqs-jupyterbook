@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/jaynes_cummings_with_losses.html",
   "headline": "Jaynes-Cummings model with losses",
-  "datePublished": "2019-12-13T21:18:52+00:00",
-  "dateModified": "2019-12-13T21:18:52+00:00",
+  "datePublished": "2019-12-13T21:38:17+00:00",
+  "dateModified": "2019-12-13T21:38:17+00:00",
   "description": "        Jaynes-Cummings model with losses    $\newcommand{\Mn}{M_n(\mathbb{C})}$$\newcommand{\Mq}{M_2(\mathbb{C})}$$\newcommand{\Mk}{M_k(\mathbb{C})}$$\newco...",
   "author": {
     "@type": "Person",
@@ -1309,7 +1309,8 @@ $$<p>It is a simple but useful exercise to show that, if  the environment is in 
 $$
 \begin{aligned}
 \varrho_{S}(t)&amp;=\textrm{Tr}_{B}\{|\psi(t)\rangle\langle\psi(t)|\}=\langle 0|\psi(t)\rangle\langle\psi(t)|0\rangle+\sum_{k}\langle 1_{k}|\psi(t)\rangle\langle\psi(t)|1_{k}\rangle\\
-&amp;=|c_{0}|^{2}|g\rangle\langle g|+c_{0}^{*}c_{1}(t)|g\rangle\langle e|+c_{1}^{*}(t)c_{0}|e\rangle\langle g|+\sum_{k}|c_{k}(t)|^{2}|g\rangle\langle g|+|c_{1}(t)|^{2}|e\rangle\langle e|.
+&amp;=|c_{0}|^{2}|g\rangle\langle g|+c_{0}^{*}c_{1}(t)|g\rangle\langle e|+c_{1}^{*}(t)c_{0}|e\rangle\langle g|\\
+&amp;+\sum_{k}|c_{k}(t)|^{2}|g\rangle\langle g|+|c_{1}(t)|^{2}{|e\rangle\langle e|}.
 \end{aligned}
 $$<p>Since $|c_{0}|^{2}+|c_{1}(t)|^{2}+\sum_{k}|c_{k}(t)|^{2}=1$ we can rewrite $\varrho_{S}(t)$ as follows</p>
 \begin{equation}
@@ -1443,7 +1444,7 @@ c_{1}(t)=c_{1}(0)e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Weak-and-strong-coupling">Weak and strong coupling<a class="anchor-link" href="#Weak-and-strong-coupling"> </a></h3><p>We can switch from weak to strong coupling by varying the $R$ parameter, which quantifies the competitive effects of coupling and dissipation. <a href="#figure_1">Figure 1</a> (left) shows the dynamics of ρ_ee(t) in a wide range of values of $R$. The existence of zeros in $ρ_ee(t)$ for strong couplings ($R &gt; 1/2$) signals that a TCL master equation does not exist. The right curve depicts the spectral density corresponding to the chosen value of $R$.</p>
+<h3 id="Weak-and-strong-coupling">Weak and strong coupling<a class="anchor-link" href="#Weak-and-strong-coupling"> </a></h3><p>We can switch from weak to strong coupling by varying the $R$ parameter, which quantifies the competitive effects of coupling and dissipation. <a href="#figure_1">Figure 1</a> (left) shows the dynamics of $ρ_{ee}(t)$ in a wide range of values of $R$. The existence of zeros in $ρ_{ee}(t)$ for strong couplings ($R &gt; 1/2$) signals that a TCL master equation does not exist. The right curve depicts the spectral density corresponding to the chosen value of $R$.</p>
 
 </div>
 </div>
@@ -1498,7 +1499,7 @@ c_{1}(t)=c_{1}(0)e^{-\lambda t/2}\left[\cosh\left(\frac{\lambda t}{2}\sqrt{1-2R}
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="figure_1"></a>
-<strong>Figure 1</strong> This <em>interactive plot</em> shows the dynamics of ρ_ee(t) in a wide range of values of $R$. The existence of zeros in ρ_ee(t) for strong couplings ($R &gt; 1/2$ signals that a TCL master equation does not exist. The right curve depicts the spectral density corresponding to the chosen value of $R$. Drag the slider to change $R$.</p>
+<strong>Figure 1.</strong> This <em>interactive plot</em> shows the dynamics of $ρ_{ee}(t)$ in a wide range of values of $R$. The existence of zeros in $ρ_{ee}(t)$ for strong couplings ($R &gt; 1/2$) signals that a TCL master equation does not exist. The right curve depicts the spectral density corresponding to the chosen value of $R$. Drag the slider to change $R$.</p>
 
 </div>
 </div>
@@ -1693,6 +1694,17 @@ $$<p>Hence,</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='fig_2'></a></p>
 <p><img src="images/fig_ad_pop.png"></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Figure 2.</strong> Experimental simulation of the amplitude damping channel. The points show the population of the excited state of the system qubit as a function of the simulation parameter $t$ for different values of the coupling a) $R = 0.2$ and b) $R = 100$. The dashed lines show the theoretical prediction.</p>
 
 </div>
 </div>
