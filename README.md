@@ -1,4 +1,4 @@
-Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
+[![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 # Open quantum systems with qiskit
 
@@ -9,6 +9,9 @@ The course is aimed at master students with a background in Quantum Mechanincs a
 [Link to the website](https://matteoacrossi.github.io/oqs-jupyterbook)
 
 ----
+
+Authors: Daria Anttila, Guillermo García-Pérez, Matteo Rossi, Boris Sokolov
+
 
 This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0
 International License][cc-by-sa].
