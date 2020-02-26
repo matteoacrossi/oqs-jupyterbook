@@ -9,6 +9,10 @@ group :jekyll_plugins do
   gem 'jekyll-scholar'
 end
 
+# Security updates
+gem "bibtex-ruby", ">= 5.1.0"
+gem "nokogiri", ">= 1.10.8"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
