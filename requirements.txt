@@ -1,6 +1,7 @@
 # Requirements for the demo notebooks
 # Useful for MyBinder configuration
 scipy
-jupyter-book
+nbconvert<6
+jupyter-book==0.6.4
 qiskit
 bokeh
