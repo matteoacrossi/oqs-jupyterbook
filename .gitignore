@@ -3,5 +3,4 @@ _build/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
-Gemfile.lock
 content/.ipynb_checkpoints/*
