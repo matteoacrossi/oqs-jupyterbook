@@ -4,3 +4,4 @@ _build/
 .jekyll-cache/
 .jekyll-metadata
 content/.ipynb_checkpoints/*
+env

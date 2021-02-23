@@ -1,0 +1,47 @@
+- file: index
+  title: Index
+
+- part: Lectures
+  chapters:
+    - title: Introduction
+      file: introduction
+    - title: Preliminaries
+      file: preliminaries
+    - title: Microscopic derivation of the master equation
+      file: microscopic_derivation_of_the_markovian_master_equation
+    - title: "Dynamical maps: Markovian semigroups"
+      file: markovian_semigroups
+    - title: "Dynamical maps: divisibility"
+      file: divisible_maps
+    - file: projection_operator_techniques
+      title: Projection operator techniques
+    - file: jaynes_cummings_with_losses
+      title: Jaynes-Cummings model with losses
+    - file: non-markovian_quantum_dynamics
+      title: Non-Markovian quantum dynamics
+
+- part: Projects
+  chapters:
+    - file: project_1-depolarizing_channel
+      title: "Project 1: Depolarizing channel"
+      sections:
+        - file: project_1-solution
+          title: Solution
+
+    - file: project_2-pauli_channel
+      title: "Project 2: Pauli channel"
+      sections:
+        - file: project_2-solution
+          title: Solution
+
+    - file: project_3-reservoir-engineering
+      title: "Project 3: Reservoir engineering"
+      sections:
+        - file: project_3-solution
+          title: Solution
+
+    - file: project_4-amplitude_damping
+      title: "Project 4: Amplitude damping"
+      sections:
+        - file: project_4-solution
+          title: Solution
