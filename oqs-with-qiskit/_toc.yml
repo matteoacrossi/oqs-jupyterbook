@@ -38,26 +38,25 @@
 
   #   title: Non-Markovian quantum dynamics
 - part: Projects
+  numbered: false
   chapters:
     - file: project_1-depolarizing_channel
-    #   title: "Project 1: Depolarizing channel"
-    #   sections:
-    - file: project_1-solution
+      #   title: "Project 1: Depolarizing channel"
+      sections:
+        - file: project_1-solution
     #       title: Solution
 
     - file: project_2-pauli_channel
-    #   title: "Project 2: Pauli channel"
-    - file: project_2-solution
-    #       title: Solution
+      #   title: "Project 2: Pauli channel"
+      sections:
+        - file: project_2-solution
 
     - file: project_3-reservoir-engineering
-    #   title: "Project 3: Reservoir engineering"
-    #   sections:
-    - file: project_3-solution
-    #       title: Solution
+      #   title: "Project 3: Reservoir engineering"
+      sections:
+        - file: project_3-solution
 
     - file: project_4-amplitude_damping
-    #   title: "Project 4: Amplitude damping"
-    #   sections:
-    - file: project_4-solution
-#       title: Solution
+      #   title: "Project 4: Amplitude damping"
+      sections:
+        - file: project_4-solution
