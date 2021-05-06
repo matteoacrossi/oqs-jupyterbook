@@ -22,8 +22,10 @@ email: turkuquantum@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   A master course on Open Quantum Systems with Qiskit
 logo: images/oqs.001.png # A logo to be displayed at the top of your textbook sidebar. Should be square
+
 execute:
-  execute_notebooks: "off"
+  execute_notebooks: false
+  allow_errors: false
 
 only_build_toc_files: true
 
