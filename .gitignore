@@ -1,6 +1,3 @@
 _site/
-_build/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-content/.ipynb_checkpoints/*
+.ipynb_checkpoints/*
+oqs-with-qiskit/_build/
