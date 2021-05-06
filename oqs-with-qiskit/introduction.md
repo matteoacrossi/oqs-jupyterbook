@@ -10,9 +10,9 @@ $\newcommand{\ot}{ {\,\otimes\,} }$
 $\newcommand{\Cd}{ {\mathbb{C}^d} }$
 $\newcommand{\Rn}{ {\mathbb{R}^n} }$
 
-# 1. Open Quantum Systems: what and why? <a id='OQSwhatwhy'></a>
+# Open Quantum Systems: what and why? <a id='OQSwhatwhy'></a>
 
-## 1.1. What <a id='what'></a>
+## What <a id='what'></a>
 
 An open quantum system is a quantum system interacting with its surroundings. During the last few decades, incredible technological advances have made it possible to perform experiments at the level of single atoms or photons. In these experiments, coherent manipulation of individual quantum systems allows us to prepare them in a desired quantum state with astounding precision. However, no quantum system can be considered completely isolated from its surroundings. Ultimately, all quantum systems will be subjected to coupling to what is known as their external environment. The type of environment that most affects the quantum system of interest of course depends on the physical context we are considering. If we are interested in the dynamics of a single atom that has been prepared in a given excited electronic state (for example by means of a resonant laser pulse), then the natural environment is the electromagnetic (e.m.) field surrounding the atom. We know, indeed, that vacuum field fluctuations, and more precisely the coupling between the atom and the zero-temperature e.m. field, are at the origin of the well-known phenomenon of spontaneous emission. If, instead, our quantum system of interest is an atom in a solid crystal, then a possible environment will be made of phonons (vibrational excitations) describing the vibrational motion of the crystal matrix. In both examples above, the quantum environment is bosonic and is described in terms of an infinite number of quantum harmonic oscillators representing the normal modes of the electromagnetic or vibrational field. Photons (phonons) are quantum excitations of quantum harmonic oscillators having different frequencies. As we will see, the frequency spectrum of the environment, and its density of modes, play a key role in the description of open quantum system dynamics.
 
@@ -28,7 +28,7 @@ When we solve the Schrödinger equation, we find a family of unitary operators p
 
 This book aims at introducing all these concepts in a novel way. In addition to traditional analytical examples and exercises, we will provide the methodology to simulate many paradigmatic OQS dynamics on the publicly available IBM Q Experience quantum computers. To that end, we will make use of Qiskit, a Python-based open-source programming language, of which we will assume a basic knowledge. If the reader is not familiar with it, we refer to the Qiskit textbook available at https://community.qiskit.org/textbook/.
 
-## 1.2. Why <a id='why'></a>
+## Why <a id='why'></a>
 
 During the last decade the theory of open quantum systems has received renewed attention due to its importance to both fundamental and applicative quantum science. From a fundamental perspective, the theory of open quantum systems allows us to assess what is perhaps the most important question still unanswered in quantum theory: the quantum measurement problem, or the quantum to classical transition.
 
@@ -42,7 +42,7 @@ Quantum technologies stem from the most definitively quantum features of microsc
 
 As for why using quantum computers in this course, we believe that the advent of Noisy Intermediate-Scale Quantum (NISQ) technology is changing rapidly the landscape and modality of research in quantum physics. NISQ  devices, such as the IBM Q Experience, have very recently proven their capability as experimental platforms accessible to everyone around the globe. Perhaps, in a not too far future, this will blur the line separating theoretical and experimental research, and an increasing number of experiments will be remotely programmable. Hence, providing an initial toolbox to get the student acquainted with digital simulation can be a valuable resource for theorists willing to test their ideas experimentally.
 
-## 1.3. Digital simulation of open quantum systems in IBM Q devices <a id='digital'></a>
+## Digital simulation of open quantum systems in IBM Q devices <a id='digital'></a>
 
 Most of the experiments until now realised for simulating open quantum systems rely on the idea of analogue quantum simulator, that is a quantum system whose dynamics resemble those of another quantum system that we wish to study and understand. In contrast, a digital quantum simulator is a gate-based quantum computer which can be used to simulate any physical system (including open quantum systems), if suitably programmed [[7](#7). [8](#8)]. Hence, one of the goals of this course is precisely to teach how to design circuits for the simulation of open quantum systems using currently available quantum computers.
 
@@ -52,7 +52,7 @@ Instead, in this course we will see that a careful circuit decomposition allows 
 
 At this point, it is natural to wonder how can OQS dynamics be simulated on a gate-based quantum computer. After all, we have discussed situations such as an atom interacting with an e.m. field, which has no obvious connection with an $n$-qubit system. To do so, one first identifies the system with a set of qubits in the device. For instance, an atom can be modeled using one qubit as long as only two of its levels are to be taken into account. In principle, one could proceed in a similar manner and use other qubits to play the role of the environment. The system-environment interaction would then be implemented through the appropriate multi-qubit gates between the system and environment qubits. However, in most cases, the environment is too complex and has too many degrees of freedom to be simulated with a few qubits, so one needs to take a different approach. Instead of modeling the dynamics of the environment explicitly, one finds a small set of qubits and interactions among them (and with the system) that result in the same dynamics on the system qubits.
 
-## 1.4. References <a id='what'></a>
+## References <a id='what'></a>
 
 [1] Reference book of the course:  [H.-P. Bruer and F. Petruccione, *The Theory of Open Quantum Systems*, Oxford University Press (2006)](https://dx.doi.org/10.1093/acprof:oso/9780199213900.001.0001). <a id='1'></a>
 
