@@ -15,6 +15,7 @@
 # - header: My Header  # Will insert a header with no link in the sidebar
 
 - file: index
+  numbered: true
 #title: Index
 #not_numbered: true
 

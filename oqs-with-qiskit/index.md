@@ -11,7 +11,7 @@ The course is aimed at master students with a background in Quantum Mechanics an
 1. [Introduction](introduction.html)
 2. [Preliminaries](preliminaries.html)
 3. [Microscopic derivation of the master equation](microscopic_derivation_of_the_markovian_master_equation.html)
-4. [Dynamical maps: Markovian semigroups](markovian_semigroups.html)
+4. [Dynamical maps: Markovian semigroups](markovian_semigroups.ipynb)
 5. [Dynamical maps: divisibility](divisible_maps.html#commanddiv)
 6. [Projection operator techniques](projection_operator_techniques.html)
 7. [Jaynes-Cummings model with losses](jaynes_cummings_with_losses.html)
