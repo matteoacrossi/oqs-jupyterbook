@@ -5,13 +5,14 @@ description = ""
 authors = ["Matteo Rossi <teo.red90@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-jupyter-book = "^0.10.2"
-qiskit = "^0.25.4"
-bokeh = "^2.3.1"
-matplotlib = "^3.4.2"
+python = "3.8"
+qiskit = "0.25.4"
+matplotlib = "3.4.2"
+pylatexenc = "2.10"
 
 [tool.poetry.dev-dependencies]
+jupyter-book = "0.6.4"
+bokeh = "2.3.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
