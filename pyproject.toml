@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "oqs-jupyterbook"
+version = "0.1.0"
+description = ""
+authors = ["Matteo Rossi <teo.red90@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "3.8"
+qiskit = "0.25.4"
+matplotlib = "3.4.2"
+pylatexenc = "2.10"
+
+[tool.poetry.dev-dependencies]
+jupyter-book = "0.6.4"
+bokeh = "2.3.1"
+nbconvert = "<6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
