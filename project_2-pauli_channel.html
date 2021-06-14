@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/project_2-pauli_channel.html",
   "headline": "Project 2: Pauli channel",
-  "datePublished": "2021-06-08T07:02:13+00:00",
-  "dateModified": "2021-06-08T07:02:13+00:00",
+  "datePublished": "2021-06-14T15:18:04+00:00",
+  "dateModified": "2021-06-14T15:18:04+00:00",
   "description": "        Project 2: Pauli channel    In this project we will implement the general Pauli channel in qiskit.As an application, we will evaluate a quantity that...",
   "author": {
     "@type": "Person",
@@ -1868,16 +1868,16 @@ with $0 \leq p_i \leq 1$ and $\sum_i p_i = 1$.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Task-4">Task 4<a class="anchor-link" href="#Task-4"> </a></h2><p>We are now going to implement two different types of dynamics, i.e. functions that return the values of p as function of time. One is a non-CP-divisible map (see <a href="https://matteoacrossi.github.io/open_quantum_systems_course/non-markovian_quantum_dynamics.html">Chapter 8</a>)</p>
 
-<pre><code>p_ncp =  [1/4 * (1 - np.exp(-2 * t *eta)), 
-          1/4 * (1 - np.exp(-2 * t *eta)),
-          1/4 * (1 + np.exp(-2 * t * eta) - 2 *np.exp(-t *eta) * np.cosh(t *omega))]
+<pre><code>p_ncp = [1/4 * (1 - np.exp(-2 * t *eta)), 
+         1/4 * (1 - np.exp(-2 * t *eta)),
+         1/4 * (1 + np.exp(-2 * t * eta) - 2 *np.exp(-t *eta) * np.cos(t *omega))]
 
 </code></pre>
 <p>and the other is eternally non-Markovian (cf. <a href="https://arxiv.org/abs/1906.07099"><em>G. García-Pérez et al., arXiv:1906.07099</em></a>)</p>
 
 <pre><code>p_enm = [1/4 * (1 - np.exp(-2 * t *eta)), 
          1/4 * (1 - np.exp(-2 * t *eta)),
-         1/4 * (1 + np.exp(-2 * t * eta) - 2 *np.exp(-t *eta) * np.cos(t *omega))]
+         1/4 * (1 + np.exp(-2 * t * eta) - 2 *np.exp(-t *eta) * np.cosh(t *omega))]
 
 </code></pre>
 <ol>
