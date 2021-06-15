@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "https://matteoacrossi.github.io/oqs-jupyterbook/project_4-amplitude_damping.html",
   "headline": "Project 4: Amplitude damping",
-  "datePublished": "2021-06-15T06:19:41+00:00",
-  "dateModified": "2021-06-15T06:19:41+00:00",
+  "datePublished": "2021-06-15T09:45:55+00:00",
+  "dateModified": "2021-06-15T09:45:55+00:00",
   "description": "        Project 4: Amplitude damping    Project 4: Amplitude damping In Chapter 7, we introduced the Jaynes-Cummings model. In this project, we will simulate...",
   "author": {
     "@type": "Person",
@@ -1207,6 +1207,7 @@ initFunction(initPrint)
 
 <span class="c1"># Construct circuit</span>
 <span class="n">ad</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
+<span class="c1"># Notice the extra factor 2 due to how qiskit defines the unitary angles</span>
 <span class="n">ad</span><span class="o">.</span><span class="n">cu</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">environment</span><span class="p">])</span>
 <span class="n">ad</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">environment</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">system</span><span class="p">])</span>
 
