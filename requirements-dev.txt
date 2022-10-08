@@ -27,7 +27,7 @@ ipython-genutils==0.2.0; python_version >= "3.7" and python_full_version < "3.0.
 ipython==7.23.1; python_version >= "3.7"
 jedi==0.18.0; python_version >= "3.7"
 jinja2==2.11.3; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
-joblib==1.2.0; python_version >= "3.6"
+joblib==1.0.1; python_version >= "3.6"
 jsonschema==3.2.0; python_version >= "3.6"
 jupyter-book==0.6.4; python_version >= "3.6"
 jupyter-client==6.2.0; python_full_version >= "3.6.1" and python_version >= "3.6"
