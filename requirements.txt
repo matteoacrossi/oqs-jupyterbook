@@ -2,7 +2,7 @@ attrs==21.2.0; python_version >= "3.6" and python_full_version < "3.0.0" or pyth
 certifi==2020.12.5; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
 cffi==1.14.5; python_version >= "3.6"
 chardet==4.0.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
-cryptography==39.0.1; python_version >= "3.6"
+cryptography==41.0.0; python_version >= "3.6"
 cycler==0.10.0; python_version >= "3.7"
 dill==0.3.3; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.1.0" and python_version >= "3.6"
 dlx==1.0.4; python_version >= "3.6"
